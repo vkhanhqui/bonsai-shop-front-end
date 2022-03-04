@@ -1,24 +1,35 @@
-import React from 'react'
-import styled from 'styled-components'
-import { formatPrice } from '../utils/helpers'
-import { FaSearch } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-const Product = ({ image, name, price, id }) => {
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { formatPrice } from "../utils/helpers";
+import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+const Product = ({ images, product_name, product_price, product_id }) => {
+  const [url, setUrl] = useState(null);
+  const fecthUrlImage = async (images) => {
+    const baseUrl =
+      "http://localhost:8000/bonsai-backend/files/get-image?image_path=";
+    const image_path = images[0].image_path;
+    setUrl(baseUrl + image_path);
+  };
+  useEffect(() => {
+    fecthUrlImage(images);
+  }, []);
   return (
     <Wrapper>
-      <div className='container'>
-        <img src={image} alt={name} />
-        <Link to={`/products/${id}`} className='link'>
+      <div className="container">
+        <img src={url} alt={product_name} />
+        <Link to={`/products/${product_id}`} className="link">
           <FaSearch />
         </Link>
       </div>
       <footer>
-        <h5>{name}</h5>
-        <p>{formatPrice(price)}</p>
+        <h5>{product_name}</h5>
+        <p>{formatPrice(product_price)}</p>
       </footer>
     </Wrapper>
-  )
-}
+  );
+};
 const Wrapper = styled.article`
   .container {
     position: relative;
@@ -74,5 +85,5 @@ const Wrapper = styled.article`
     color: var(--clr-primary-5);
     letter-spacing: var(--spacing);
   }
-`
-export default Product
+`;
+export default Product;
