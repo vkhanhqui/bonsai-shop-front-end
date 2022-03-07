@@ -7,19 +7,18 @@ import { Link } from "react-router-dom";
 const Product = ({ images, product_name, product_price, product_id }) => {
   const [url, setUrl] = useState(null);
   const fecthUrlImage = async (images) => {
-    const baseUrl =
-      "http://localhost:8000/bonsai-backend/files/get-image?image_path=";
-    const image_path = images[0].image_path;
-    setUrl(baseUrl + image_path);
+    const url = "http://" + images[0].image_path;
+    setUrl(url);
   };
   useEffect(() => {
     fecthUrlImage(images);
-  }, []);
+  }, [images]);
   return (
     <Wrapper>
       <div className="container">
         <img src={url} alt={product_name} />
-        <Link to={`/products/${product_id}`} className="link">
+        {/* <Link to={`/products/${product_id}`} className="link"> */}
+        <Link to={{ pathname: `/products/${product_id}` }} className="link">
           <FaSearch />
         </Link>
       </div>
