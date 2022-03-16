@@ -37,7 +37,7 @@ const AddToCart = ({ oldProduct }) => {
   };
   return (
     <Wrapper>
-      <div className="colors">
+      {/* <div className="colors">
         <span>colors :</span>
         <div>
           {colors.map((color, index) => {
@@ -55,7 +55,7 @@ const AddToCart = ({ oldProduct }) => {
             );
           })}
         </div>
-      </div>
+      </div> */}
       <div className="btn-container">
         <AmountButtons
           increase={increase}

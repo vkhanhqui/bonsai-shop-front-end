@@ -1,6 +1,6 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Navbar, Sidebar, Footer } from './components'
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Navbar, Sidebar, Footer } from "./components";
 import {
   Home,
   SingleProduct,
@@ -15,7 +15,7 @@ import {
   Services,
   LoginPage,
   Register,
-} from './pages'
+} from "./pages";
 
 function App() {
   return (
@@ -24,49 +24,44 @@ function App() {
         <Navbar />
         <Sidebar />
         <Switch>
-          <Route exact path='/'>
+          <Route exact path="/">
             <Home />
           </Route>
-          <Route path='/about'>
+          <Route path="/about">
             <About />
           </Route>
-          <Route path='/cart'>
+          <Route path="/cart">
             <Cart />
           </Route>
-          <Route path='/login'>
+          <Route path="/login">
             <LoginPage />
           </Route>
-          <Route exact path='/products'>
+          <Route exact path="/products">
             <Products />
           </Route>
 
-          <Route exact path='/services'>
+          {/* <Route exact path='/services'>
             <Services />
-          </Route>
+          </Route> */}
 
-          <Route exact path='/blogs'>
+          <Route exact path="/blogs">
             <Blogs />
           </Route>
-          <Route exact path='/register'>
+          <Route exact path="/register">
             <Register />
           </Route>
-          <Route path='/products/:id' children={<SingleProduct />} />
-          <PrivateRoute path='/checkout'>
+          <Route path="/products/:id" children={<SingleProduct />} />
+          <PrivateRoute path="/checkout">
             <Checkout />
           </PrivateRoute>
-          <Route path='*'>
+          <Route path="*">
             <Error />
           </Route>
-          
-
-         
-
-
         </Switch>
         <Footer />
       </Router>
     </AuthWrapper>
-  )
+  );
 }
 
-export default App
+export default App;

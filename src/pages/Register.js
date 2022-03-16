@@ -9,20 +9,28 @@ import axios from "axios";
 const Register = () => {
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
+  const emailRef = React.useRef();
+  const firstnameRef = React.useRef();
+  const lastnameRef = React.useRef();
+  const birthdayRef = React.useRef();
   const history = useHistory();
   const handleSubmit = async () => {
-    console.log("data", usernameRef.current.value, passwordRef.current.value);
+    // console.log("data", usernameRef.current.value, passwordRef.current.value);
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
+    const email = emailRef.current.value;
+    const first_name = firstnameRef.current.value;
+    const last_name = lastnameRef.current.value;
+    const birthday = birthdayRef.current.value;
     const response = await axios.post(
       "http://localhost:8000/bonsai-backend/customers/create-customer",
       {
-        birthday: "2022-03-13",
-        email: "tes21t@example.com",
-        last_name: "string12",
-        first_name: "string12",
-        password: password,
-        username: username,
+        birthday,
+        email,
+        last_name,
+        first_name,
+        password,
+        username,
       }
     );
     console.log(response.data);
@@ -55,6 +63,54 @@ const Register = () => {
               type="passw"
               className="form-input"
               placeholder="Enter Password"
+            />
+          </div>
+
+          <div className="informationLogin">
+            <h2>Email: </h2>
+          </div>
+          <div className="inputLogin">
+            <input
+              ref={emailRef}
+              type="user"
+              className="form-input"
+              placeholder="Enter Email"
+            />
+          </div>
+
+          <div className="informationLogin">
+            <h2>Firstname: </h2>
+          </div>
+          <div className="inputLogin">
+            <input
+              ref={firstnameRef}
+              type="user"
+              className="form-input"
+              placeholder="Enter FirstName"
+            />
+          </div>
+
+          <div className="informationLogin">
+            <h2>Lastname: </h2>
+          </div>
+          <div className="inputLogin">
+            <input
+              ref={lastnameRef}
+              type="user"
+              className="form-input"
+              placeholder="Enter LastName"
+            />
+          </div>
+
+          <div className="informationLogin">
+            <h2>Birthday: </h2>
+          </div>
+          <div className="inputLogin">
+            <input
+              ref={birthdayRef}
+              type="user"
+              className="form-input"
+              placeholder="Enter Birthday"
             />
           </div>
           <div>
@@ -101,7 +157,7 @@ const Wrapper = styled.section`
     width: 90%;
     padding: 10px;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     border: 2px solid var(--clr-primary-7);
     border-radius: 25px;
     outline: none;
@@ -126,7 +182,7 @@ const Wrapper = styled.section`
     transition: 0.5s;
 
     margin-left: 500px;
-
+    margin-bottom: 20px;
     item-align: right;
     color: var(--clr-grey-5);
     background: var(--clr-primary-7);
@@ -141,6 +197,7 @@ const Wrapper = styled.section`
 
     margin-left: 30px;
     margin-right: -500px;
+    margin-bottom: 20px;
 
     item-align: right;
     color: var(--clr-grey-5);

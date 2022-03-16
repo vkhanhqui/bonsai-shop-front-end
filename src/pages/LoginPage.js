@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { PageHero } from "../components";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-// import { useUserContext } from '../context/user_context'
+// import { useUserContext } from "../context/user_context";
 import axios from "axios";
 const LoginPage = () => {
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
   const history = useHistory();
+  // const { user } = useUserContext();
   const handleSubmit = async () => {
-    console.log("data", usernameRef.current.value, passwordRef.current.value);
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
     const response = await axios.post(
@@ -27,7 +27,9 @@ const LoginPage = () => {
       }
     );
     console.log(response.data);
+    localStorage.setItem("token", response.data);
     history.push("/");
+    window.location.reload();
   };
   return (
     <main>
