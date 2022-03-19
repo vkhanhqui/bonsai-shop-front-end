@@ -27,7 +27,7 @@ const LoginPage = () => {
       }
     );
     console.log(response.data);
-    localStorage.setItem("token", response.data);
+    localStorage.setItem("token", response.data.access_token);
     history.push("/");
     window.location.reload();
   };

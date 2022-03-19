@@ -64,8 +64,8 @@ const Filters = () => {
           {/* end of category */}
           {/* company */}
           <div className="form-control">
-            <h5>company</h5>
-            <select
+            {/* <h5>company</h5> */}
+            {/* <select
               name="company"
               value={company}
               onChange={updateFilters}
@@ -78,11 +78,11 @@ const Filters = () => {
                   </option>
                 );
               })}
-            </select>
+            </select> */}
           </div>
           {/* end of company */}
           {/* colors */}
-          <div className="form-control">
+          {/* <div className="form-control">
             <h5>colors</h5>
             <div className="colors">
               {colors.map((c, index) => {
@@ -117,7 +117,7 @@ const Filters = () => {
                 );
               })}
             </div>
-          </div>
+          </div> */}
           {/* end of colors */}
           {/* price */}
           <div className="form-control">

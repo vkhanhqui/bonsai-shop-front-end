@@ -10,7 +10,6 @@ const ProductImages = ({ images = [[]] }) => {
       <img src={main} alt="" className="main " />
       <div className="gallery">
         {images.map((image, index) => {
-          console.log(index, images["image_path"]);
           return (
             <img
               src={baseUrl + image["image_path"]}
