@@ -16,6 +16,7 @@ import {
   LoginPage,
   Register,
   Admin,
+  Overview,
 } from "./pages";
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
         <Switch>
           <Route path="/admin">
             <Admin />
+          </Route>
+          <Route path="/overview">
+            <Overview />
           </Route>
           <Route>
             <Navbar />

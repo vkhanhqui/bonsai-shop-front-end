@@ -106,8 +106,8 @@ const Admin = () => {
               height: 250,
               marginLeft: 70,
             }}
-          />
-        </Link>
+          />{" "}
+        </Link>{" "}
         {localStorage.getItem("token") ? (
           <button
             type="button"
@@ -132,8 +132,8 @@ const Admin = () => {
           >
             Login <FaUserPlus />
           </Link>
-        )}
-      </div>
+        )}{" "}
+      </div>{" "}
       <Wrapper className="page section section-center">
         <Menu
           mode="inline"
@@ -151,60 +151,59 @@ const Admin = () => {
           className="menu"
         >
           <SubMenu key="sub1" icon={<MailOutlined />} title="Tổng quan">
-            <Menu.Item key="1">Option 1</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
-            <Menu.Item key="3">Option 3</Menu.Item>
-            <Menu.Item key="4">Option 4</Menu.Item>
-          </SubMenu>
+            <Menu.Item key="1"> Option 1 </Menu.Item>{" "}
+            <Menu.Item key="2"> Option 2 </Menu.Item>{" "}
+            <Menu.Item key="3"> Option 3 </Menu.Item>{" "}
+            <Menu.Item key="4"> Option 4 </Menu.Item>{" "}
+          </SubMenu>{" "}
           <SubMenu
             key="sub2"
             icon={<AppstoreOutlined />}
             title="Quản Lý Đơn Hàng"
           >
-            <Menu.Item key="5">Option 5</Menu.Item>
-            <Menu.Item key="6">Option 6</Menu.Item>
+            <Menu.Item key="5"> Option 5 </Menu.Item>{" "}
+            <Menu.Item key="6"> Option 6 </Menu.Item>{" "}
             <SubMenu key="sub3" title="Submenu">
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-          </SubMenu>
+              <Menu.Item key="7"> Option 7 </Menu.Item>{" "}
+              <Menu.Item key="8"> Option 8 </Menu.Item>{" "}
+            </SubMenu>{" "}
+          </SubMenu>{" "}
           <SubMenu
             key="sub4"
             icon={<SettingOutlined />}
             title="Quản Lý Sản Phẩm"
           >
-            <Menu.Item key="9">Option 9</Menu.Item>
-            <Menu.Item key="10">Option 10</Menu.Item>
-            <Menu.Item key="11">Option 11</Menu.Item>
-            <Menu.Item key="12">Option 12</Menu.Item>
-          </SubMenu>
+            <Menu.Item key="9"> Option 9 </Menu.Item>{" "}
+            <Menu.Item key="10"> Option 10 </Menu.Item>{" "}
+            <Menu.Item key="11"> Option 11 </Menu.Item>{" "}
+            <Menu.Item key="12"> Option 12 </Menu.Item>{" "}
+          </SubMenu>{" "}
           <SubMenu
             key="sub5"
             icon={<SettingOutlined />}
             title="Quản Lý Loại Sản Phẩm"
           >
-            <Menu.Item key="9">Option 9</Menu.Item>
-            <Menu.Item key="10">Option 10</Menu.Item>
-            <Menu.Item key="11">Option 11</Menu.Item>
-            <Menu.Item key="12">Option 12</Menu.Item>
-          </SubMenu>
+            <Menu.Item key="9"> Option 9 </Menu.Item>{" "}
+            <Menu.Item key="10"> Option 10 </Menu.Item>{" "}
+            <Menu.Item key="11"> Option 11 </Menu.Item>{" "}
+            <Menu.Item key="12"> Option 12 </Menu.Item>{" "}
+          </SubMenu>{" "}
           <SubMenu
             key="sub6"
             icon={<SettingOutlined />}
             title="Quản Lý Nhân Viên"
           >
-            <Menu.Item key="9">Option 9</Menu.Item>
-            <Menu.Item key="10">Option 10</Menu.Item>
-            <Menu.Item key="11">Option 11</Menu.Item>
-            <Menu.Item key="12">Option 12</Menu.Item>
-          </SubMenu>
-        </Menu>
-        {/* <img src={aboutImg} alt="nice desk" /> */}
+            <Menu.Item key="9"> Option 9 </Menu.Item>{" "}
+            <Menu.Item key="10"> Option 10 </Menu.Item>{" "}
+            <Menu.Item key="11"> Option 11 </Menu.Item>{" "}
+            <Menu.Item key="12"> Option 12 </Menu.Item>{" "}
+          </SubMenu>{" "}
+        </Menu>{" "}
+        {/* <img src={aboutImg} alt="nice desk" /> */}{" "}
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
-            <h2>THÊM SẢN PHẨM</h2>
-            <div className="underline"></div>
-          </div>
+            <h2> THÊM SẢN PHẨM </h2> <div className="underline"> </div>{" "}
+          </div>{" "}
           <div>
             <Form
               name="basic"
@@ -219,16 +218,16 @@ const Admin = () => {
             >
               <Form.Item label="Tên Sản Phẩm" name="product_name">
                 <Input placeholder="input placeholder" />
-              </Form.Item>
+              </Form.Item>{" "}
               <Form.Item label="Giá Sản Phẩm" name="product_price">
                 <Input placeholder="input placeholder" />
-              </Form.Item>
+              </Form.Item>{" "}
               <Form.Item label="Loại Sản Phẩm" name="category_id">
                 <Input placeholder="input placeholder" />
-              </Form.Item>
+              </Form.Item>{" "}
               <Form.Item label="Mô Tả Sản Phẩm" name="description">
                 <Input placeholder="input placeholder" />
-              </Form.Item>
+              </Form.Item>{" "}
               <Form.Item label="Ảnh Sản Phẩm" name="image">
                 <Upload
                   action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
@@ -236,32 +235,25 @@ const Admin = () => {
                   maxCount={3}
                   multiple
                 >
-                  <Button icon={<UploadOutlined />}>Upload (Max: 3)</Button>
-                </Upload>
-              </Form.Item>
+                  <Button icon={<UploadOutlined />}> Upload(Max: 3) </Button>{" "}
+                </Upload>{" "}
+              </Form.Item>{" "}
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
-        </article>
-      </Wrapper>
+                  Submit{" "}
+                </Button>{" "}
+              </Form.Item>{" "}
+            </Form>{" "}
+          </div>{" "}
+        </article>{" "}
+      </Wrapper>{" "}
     </main>
   );
 };
 const Wrapper = styled.section`
   display: grid;
   gap: 4rem;
-  ${
-    "" /* .menu {
-    width: 100%;
-    display: block;
-    border-radius: var(--radius);
-    height: 500px;
-    object-fit: cover;
-  } */
+  
   }
   .nav-header {
     display: flex;

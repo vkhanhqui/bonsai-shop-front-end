@@ -39,7 +39,6 @@ const Nav = () => {
         <CartButtons />
         <button type="button" className="nav-toggle" onClick={myUser}>
           <FaBars />
-          <h1>Dsad</h1>
         </button>
       </div>
     </NavContainer>
