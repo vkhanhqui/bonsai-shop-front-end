@@ -13,20 +13,22 @@ import LoginPage from "./LoginPage";
 import Register from "./Register";
 import Admin from "./Admin";
 import Overview from "./Overview";
+import ManagerProduct from "./ManagerProduct";
 export {
-    Home,
-    SingleProduct,
-    Cart,
-    About,
-    Error,
-    Checkout,
-    Products,
-    PrivateRoute,
-    AuthWrapper,
-    Blogs,
-    Services,
-    LoginPage,
-    Register,
-    Admin,
-    Overview,
+  Home,
+  SingleProduct,
+  Cart,
+  About,
+  Error,
+  Checkout,
+  Products,
+  PrivateRoute,
+  AuthWrapper,
+  Blogs,
+  Services,
+  LoginPage,
+  Register,
+  Admin,
+  Overview,
+  ManagerProduct,
 };

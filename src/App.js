@@ -17,6 +17,7 @@ import {
   Register,
   Admin,
   Overview,
+  ManagerProduct,
 } from "./pages";
 
 function App() {
@@ -24,12 +25,20 @@ function App() {
     <AuthWrapper>
       <Router>
         <Switch>
-          <Route path="/admin">
-            <Admin />
-          </Route>
-          <Route path="/overview">
-            <Overview />
-          </Route>
+          {localStorage.getItem("token") && (
+            <>
+              <Route path="/add-product">
+                <Admin />
+              </Route>
+              <Route path="/overview">
+                <Overview />
+              </Route>
+              <Route path="/manager-product">
+                <ManagerProduct />
+              </Route>
+            </>
+          )}
+
           <Route>
             <Navbar />
             <Sidebar />
