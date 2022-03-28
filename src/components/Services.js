@@ -12,8 +12,8 @@ const Services = () => {
           <p>
             Cùng sống, tìm hiểu và làm việc với cây xanh mỗi ngày, tình yêu với màu xanh ấy
             ngày càng lớn dần và trỗi dậy. Thông qua những sản phẩm xanh, thân thiện với môi trường,
-            mỗi người chúng ta tự tìm được chính mình, lắng nghe được những giây phút thư giãn hiếm hoi 
-            trong tâm hồn, những nhiệp điệu tươi vui của cuộc sống. 
+            mỗi người chúng ta tự tìm được chính mình, lắng nghe được những giây phút thư giãn hiếm hoi
+            trong tâm hồn, những nhiệp điệu tươi vui của cuộc sống.
           </p>
         </article>
         <div className='services-center'>
@@ -41,7 +41,7 @@ const Wrapper = styled.section`
   h3{
     font-size: 2rem;
     font-family: "Courier New", BrushScript, monospace;
-    
+
   }
   padding: 5rem 0;
 

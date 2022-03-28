@@ -6,13 +6,11 @@ import {
   SingleProduct,
   Cart,
   Checkout,
-  Error,
   About,
   Products,
   PrivateRoute,
   AuthWrapper,
   Blogs,
-  Services,
   LoginPage,
   Register,
   Admin,
@@ -25,7 +23,9 @@ function App() {
     <AuthWrapper>
       <Router>
         <Switch>
-          {localStorage.getItem("token") && (
+          {
+          localStorage.getItem("token") &&
+          (
             <>
               <Route path="/add-product">
                 <Admin />
@@ -68,9 +68,9 @@ function App() {
             <PrivateRoute path="/checkout">
               <Checkout />
             </PrivateRoute>
-            <Route path="*">
+            {/* <Route path="*">
               <Error />
-            </Route>
+            </Route> */}
           </Route>
         </Switch>
 

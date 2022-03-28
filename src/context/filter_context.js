@@ -19,13 +19,10 @@ const initialState = {
   sort: "price-lowest",
   filters: {
     text: "",
-    company: "all",
     category: "all",
-    color: "all",
     min_price: 0,
     max_price: 0,
     price: 0,
-    shipping: false,
   },
 };
 
@@ -49,8 +46,6 @@ export const FilterProvider = ({ children }) => {
     dispatch({ type: SET_LISTVIEW });
   };
   const updateSort = (e) => {
-    // just for demonstration;
-    // const name = e.target.name;
     const value = e.target.value;
     dispatch({ type: UPDATE_SORT, payload: value });
   };
@@ -58,17 +53,12 @@ export const FilterProvider = ({ children }) => {
     let name = e.target.name;
     let value = e.target.value;
     if (name === "category") {
-      value = e.target.textContent;
-    }
-    if (name === "color") {
-      value = e.target.dataset.color;
+      value = e.target.getAttribute('data-key');
     }
     if (name === "price") {
       value = Number(value);
     }
-    if (name === "shipping") {
-      value = e.target.checked;
-    }
+    console.log(value);
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
   const clearFilters = () => {

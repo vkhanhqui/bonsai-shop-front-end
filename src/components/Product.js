@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Product = ({ images, product_name, product_price, product_id }) => {
-  const [url, setUrl] = useState(null);
-  const fecthUrlImage = async (images) => {
-    const url = "http://" + images[0].image_path;
-    setUrl(url);
-  };
-  useEffect(() => {
-    fecthUrlImage(images);
-  }, [images]);
   return (
     <Wrapper>
       <div className="container">
-        <img src={url} alt={product_name} />
-        {/* <Link to={`/products/${product_id}`} className="link"> */}
+        <img src={`http://${images[0].image_path}`} alt={product_name} />
         <Link to={{ pathname: `/products/${product_id}` }} className="link">
           <FaSearch />
         </Link>

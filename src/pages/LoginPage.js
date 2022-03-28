@@ -26,10 +26,10 @@ const LoginPage = () => {
         },
       }
     );
-    console.log(response.data);
+    // console.log(response.data);
     localStorage.setItem("token", response.data.access_token);
     history.push("/");
-    window.location.reload();
+    // window.location.reload();
   };
   return (
     <main>
