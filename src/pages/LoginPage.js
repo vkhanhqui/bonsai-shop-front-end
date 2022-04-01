@@ -26,7 +26,7 @@ const LoginPage = () => {
         },
       }
     );
-    console.log(response.data);
+    // console.log(response.data);
     localStorage.setItem("token", response.data.access_token);
     if (username === "string" && password === "stringst") {
       localStorage.setItem("role", "admin");
@@ -34,7 +34,7 @@ const LoginPage = () => {
       localStorage.setItem("role", "user");
     }
     history.push("/");
-    window.location.reload();
+    // window.location.reload();
   };
   return (
     <main>
