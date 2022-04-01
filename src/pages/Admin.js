@@ -230,9 +230,10 @@ const Admin = () => {
               </Form.Item>{" "}
               <Form.Item label="Ảnh Sản Phẩm" name="image">
                 <Upload
-                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                  action="//jsonplaceholder.typicode.com/posts/"
                   listType="picture"
                   maxCount={3}
+                  accept=".jpg,.png,.jpeg"
                   multiple
                 >
                   <Button icon={<UploadOutlined />}> Upload(Max: 3) </Button>{" "}

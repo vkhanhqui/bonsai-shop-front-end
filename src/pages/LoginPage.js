@@ -28,6 +28,11 @@ const LoginPage = () => {
     );
     console.log(response.data);
     localStorage.setItem("token", response.data.access_token);
+    if (username === "string" && password === "stringst") {
+      localStorage.setItem("role", "admin");
+    } else {
+      localStorage.setItem("role", "user");
+    }
     history.push("/");
     window.location.reload();
   };
