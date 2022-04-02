@@ -11,7 +11,7 @@ import Blogs from "./Blogs";
 import Services from "./Services";
 import LoginPage from "./LoginPage";
 import Register from "./Register";
-import Admin from "./Admin";
+import AdminAddProduct from "./AdminAddProduct";
 import Overview from "./Overview";
 import ManagerProduct from "./ManagerProduct";
 export {
@@ -28,7 +28,7 @@ export {
   Services,
   LoginPage,
   Register,
-  Admin,
+  AdminAddProduct,
   Overview,
   ManagerProduct,
 };

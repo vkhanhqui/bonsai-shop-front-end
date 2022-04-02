@@ -13,7 +13,7 @@ import {
   Blogs,
   LoginPage,
   Register,
-  Admin,
+  AdminAddProduct,
   Overview,
   ManagerProduct,
 } from "./pages";
@@ -26,7 +26,7 @@ function App() {
           localStorage.getItem("role") === "admin" ? (
             <>
               <Route path="/add-product">
-                <Admin />
+                <AdminAddProduct />
               </Route>
               <Route path="/overview">
                 <Overview />
