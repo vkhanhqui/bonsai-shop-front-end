@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Form, Input, Button, Upload, Menu, notification } from "antd";
+import { Form, Select, Input, Button, Upload, Menu, notification } from "antd";
+
 import { FaUserMinus, FaUserPlus } from "react-icons/fa";
 import {
   AppstoreOutlined,
@@ -13,11 +14,20 @@ import { useProductsContext } from "../context/products_context";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import getCategories from "../context/category_context";
+
+const { Option } = Select;
+
 const Admin = () => {
   const { closeSidebar } = useProductsContext();
   const { SubMenu } = Menu;
   const [form] = Form.useForm();
   const history = useHistory();
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getCategories().then((res) => setCategories(res));
+  }, []);
 
   const openNotificationWithIcon = (type) => {
     notification[type]({
@@ -35,7 +45,7 @@ const Admin = () => {
   };
 
   const rootSubmenuKeys = ["sub1", "sub2", "sub4"];
-  const onFinish = async (values: any) => {
+  const onFinish = async (values) => {
     console.log("Success:", values);
     console.log("S:", values.images);
     const product_name = values.product_name;
@@ -72,7 +82,7 @@ const Admin = () => {
     }
   };
 
-  const onFinishFailed = (errorInfo: any) => {
+  const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
@@ -150,56 +160,38 @@ const Admin = () => {
           }}
           className="menu"
         >
-          <SubMenu key="sub1" icon={<MailOutlined />} title="Tổng quan">
-            <Menu.Item key="1"> Option 1 </Menu.Item>{" "}
-            <Menu.Item key="2"> Option 2 </Menu.Item>{" "}
-            <Menu.Item key="3"> Option 3 </Menu.Item>{" "}
-            <Menu.Item key="4"> Option 4 </Menu.Item>{" "}
-          </SubMenu>{" "}
-          <SubMenu
+          <Menu.Item key="sub1" icon={<MailOutlined />} title="Tổng quan">
+            Tổng quan
+          </Menu.Item>{" "}
+          <Menu.Item
             key="sub2"
             icon={<AppstoreOutlined />}
             title="Quản Lý Đơn Hàng"
           >
-            <Menu.Item key="5"> Option 5 </Menu.Item>{" "}
-            <Menu.Item key="6"> Option 6 </Menu.Item>{" "}
-            <SubMenu key="sub3" title="Submenu">
-              <Menu.Item key="7"> Option 7 </Menu.Item>{" "}
-              <Menu.Item key="8"> Option 8 </Menu.Item>{" "}
-            </SubMenu>{" "}
-          </SubMenu>{" "}
-          <SubMenu
+            Quản Lý Đơn Hàng
+          </Menu.Item>{" "}
+          <Menu.Item
             key="sub4"
             icon={<SettingOutlined />}
             title="Quản Lý Sản Phẩm"
           >
-            <Menu.Item key="9"> Option 9 </Menu.Item>{" "}
-            <Menu.Item key="10"> Option 10 </Menu.Item>{" "}
-            <Menu.Item key="11"> Option 11 </Menu.Item>{" "}
-            <Menu.Item key="12"> Option 12 </Menu.Item>{" "}
-          </SubMenu>{" "}
-          <SubMenu
+            Quản Lý Sản Phẩm
+          </Menu.Item>{" "}
+          <Menu.Item
             key="sub5"
             icon={<SettingOutlined />}
             title="Quản Lý Loại Sản Phẩm"
           >
-            <Menu.Item key="9"> Option 9 </Menu.Item>{" "}
-            <Menu.Item key="10"> Option 10 </Menu.Item>{" "}
-            <Menu.Item key="11"> Option 11 </Menu.Item>{" "}
-            <Menu.Item key="12"> Option 12 </Menu.Item>{" "}
-          </SubMenu>{" "}
-          <SubMenu
+            Quản Lý Loại Sản Phẩm
+          </Menu.Item>{" "}
+          <Menu.Item
             key="sub6"
             icon={<SettingOutlined />}
             title="Quản Lý Nhân Viên"
           >
-            <Menu.Item key="9"> Option 9 </Menu.Item>{" "}
-            <Menu.Item key="10"> Option 10 </Menu.Item>{" "}
-            <Menu.Item key="11"> Option 11 </Menu.Item>{" "}
-            <Menu.Item key="12"> Option 12 </Menu.Item>{" "}
-          </SubMenu>{" "}
+            Quản Lý Nhân Viên
+          </Menu.Item>{" "}
         </Menu>{" "}
-        {/* <img src={aboutImg} alt="nice desk" /> */}{" "}
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
             <h2> THÊM SẢN PHẨM </h2> <div className="underline"> </div>{" "}
@@ -223,7 +215,29 @@ const Admin = () => {
                 <Input placeholder="input placeholder" />
               </Form.Item>{" "}
               <Form.Item label="Loại Sản Phẩm" name="category_id">
-                <Input placeholder="input placeholder" />
+                <Select
+                  style={{
+                    width: 300,
+                  }}
+                >
+                  {categories.map((category) => {
+                    return (
+                      <Option value={category.category_id}>
+                        {category.category_name}
+                      </Option>
+
+                      // <button
+                      //   key={category.category_id}
+                      //   data-key={category.category_id}
+                      //   onClick={updateFilters}
+                      //   type="button"
+                      //   name="category"
+                      // >
+
+                      // </button>
+                    );
+                  })}
+                </Select>
               </Form.Item>{" "}
               <Form.Item label="Mô Tả Sản Phẩm" name="description">
                 <Input placeholder="input placeholder" />
@@ -254,7 +268,7 @@ const Admin = () => {
 const Wrapper = styled.section`
   display: grid;
   gap: 4rem;
-  
+
   }
   .nav-header {
     display: flex;

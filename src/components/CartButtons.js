@@ -27,7 +27,7 @@ const CartButton = () => {
       </Link>
       {localStorage.getItem("token") ? (
         <button type="button" className="auth-btn" onClick={Logout}>
-          Logout <FaUserMinus />
+          {localStorage.getItem("username")} <FaUserMinus />
         </button>
       ) : (
         <Link to="/login" className="cart-btn" onClick={closeSidebar}>

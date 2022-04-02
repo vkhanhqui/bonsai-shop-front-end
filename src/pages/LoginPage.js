@@ -1,40 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { PageHero } from "../components";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-// import { useUserContext } from "../context/user_context";
-import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
+import handleLogin from "../context/login_context";
 const LoginPage = () => {
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
+  const roles = {
+    1: "admin",
+    2: "staff",
+    3: "customer",
+  };
   const history = useHistory();
-  // const { user } = useUserContext();
-  const handleSubmit = async () => {
-    const username = usernameRef.current.value;
-    const password = passwordRef.current.value;
-    const response = await axios.post(
-      "http://localhost:8000/bonsai-backend/login/token",
-      {
-        body: JSON.stringify(
-          `grant_type&username=${username}&password=${password}&scope&client_secret=`
-        ),
-      },
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
+  const [login_info, setLoginInfo] = useState({
+    username: "",
+    password: "",
+  });
+  const [login, setLogin] = useState({});
+
+  useEffect(() => {
+    handleLogin(login_info.username, login_info.password).then((res) =>
+      setLogin(res)
     );
-    // console.log(response.data);
-    localStorage.setItem("token", response.data.access_token);
-    if (username === "string" && password === "stringst") {
-      localStorage.setItem("role", "admin");
-    } else {
-      localStorage.setItem("role", "user");
+  }, [login_info.username, login_info.password]);
+
+  const handleSubmit = () => {
+    setLoginInfo({
+      username: usernameRef.current.value,
+      password: passwordRef.current.value,
+    });
+    if (login) {
+      localStorage.setItem("token", login.access_token);
+      localStorage.setItem("username", login.username);
+      localStorage.setItem("role", roles[login.role_id]);
+      history.push("/");
+      window.location.reload();
     }
-    history.push("/");
-    // window.location.reload();
   };
   return (
     <main>
@@ -60,7 +61,7 @@ const LoginPage = () => {
           <div className="inputLogin">
             <input
               ref={passwordRef}
-              type="passw"
+              type="password"
               className="form-input"
               placeholder="Enter Password"
             />

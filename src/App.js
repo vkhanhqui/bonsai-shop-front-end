@@ -6,13 +6,11 @@ import {
   SingleProduct,
   Cart,
   Checkout,
-  Error,
   About,
   Products,
   PrivateRoute,
   AuthWrapper,
   Blogs,
-  Services,
   LoginPage,
   Register,
   Admin,
@@ -24,7 +22,7 @@ function App() {
     <AuthWrapper>
       <Router>
         <Switch>
-          {localStorage.getItem("token") &&
+          {localStorage.getItem("username") &&
           localStorage.getItem("role") === "admin" ? (
             <>
               <Route path="/add-product">

@@ -9,47 +9,26 @@ import "antd/dist/antd.css";
 import axios from "axios";
 
 const CartTotals = () => {
-  const { total_amount, shipping_fee, cart, clearCart } = useCartContext();
+  const { total_amount, cart, clearCart } = useCartContext();
   // const { myUser, loginWithRedirect } = useUserContext();
   const history = useHistory();
   const [address, setAddress] = useState([]);
   const [orderAddress, setOrderAddress] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [token, setToken] = useState("");
   const { Option } = Select;
 
   useEffect(() => {
     async function fetchData() {
-      const username = "string";
-      const password = "stringst";
-      const fetchTokenData = await axios.post(
-        "http://localhost:8000/bonsai-backend/login/token",
-        {
-          body: JSON.stringify(
-            `grant_type&username=${username}&password=${password}&scope&client_secret=`
-          ),
-        },
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
-
-      setToken(fetchTokenData.data.access_token);
       const res = await axios.get(
         "http://localhost:8000/bonsai-backend/addresses/get-all-addresses",
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
-      console.log("resne", res.data);
       setAddress(res.data);
     }
     fetchData();
   }, [isModalVisible]);
 
   const showModal = () => {
-    // console.log("cart", cart);
-
     setIsModalVisible(true);
   };
 
@@ -63,18 +42,16 @@ const CartTotals = () => {
         "http://localhost:8000/bonsai-backend/customers/confirm-bill",
 
         { address_id: orderAddress, items: arrayItem },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
       console.log("ketqua", res.data);
       clearCart();
       history.push("/");
-      // setAddress(res.data);
     }
     fetchData();
   }, [isModalVisible]);
   const handleOk = () => {
     setIsModalVisible(false);
-    // setConfirmBill(true);
   };
 
   const handleCancel = () => {
@@ -82,12 +59,8 @@ const CartTotals = () => {
   };
   function onChange(value) {
     setOrderAddress(value);
-    console.log(`selected ${value}`);
   }
 
-  function onSearch(val) {
-    console.log("search:", val);
-  }
   return (
     <>
       <Wrapper>
@@ -96,13 +69,13 @@ const CartTotals = () => {
             <h5>
               subtotal :<span>{formatPrice(total_amount)}</span>
             </h5>
-            <p>
+            {/* <p>
               shipping fee :<span>{formatPrice(shipping_fee)}</span>
-            </p>
+            </p> */}
             <hr />
             <h4>
               order total :
-              <span>{formatPrice(total_amount + shipping_fee)}</span>
+              <span>{formatPrice(total_amount)}</span>
             </h4>
           </article>
           {/* {myUser ? ( */}
@@ -121,18 +94,16 @@ const CartTotals = () => {
       </Wrapper>
       <>
         <Modal
-          title="Basic Modal"
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
         >
-          <p>Some contents... </p>
+          <p>Danh sách địa chỉ</p>
           <Select
             showSearch
             placeholder="Select a person"
             optionFilterProp="children"
             onChange={onChange}
-            onSearch={onSearch}
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
@@ -145,7 +116,7 @@ const CartTotals = () => {
               );
             })}
           </Select>
-          ,
+
         </Modal>
       </>
     </>
