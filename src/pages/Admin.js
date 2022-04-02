@@ -9,20 +9,28 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import { UploadOutlined } from "@ant-design/icons";
-import axios from "axios";
 import { useProductsContext } from "../context/products_context";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import getCategories from "../context/category_context";
+import createProduct from "../context/create_product_context";
 
 const { Option } = Select;
+
+const normFile = (e) => {
+  // console.log("Upload event:", e);
+
+  if (Array.isArray(e)) {
+    return e;
+  }
+
+  return e && e.fileList;
+};
 
 const Admin = () => {
   const { closeSidebar } = useProductsContext();
   const { SubMenu } = Menu;
   const [form] = Form.useForm();
-  const history = useHistory();
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -46,39 +54,33 @@ const Admin = () => {
 
   const rootSubmenuKeys = ["sub1", "sub2", "sub4"];
   const onFinish = async (values) => {
-    console.log("Success:", values);
-    console.log("S:", values.images);
     const product_name = values.product_name;
     const product_price = values.product_price;
     const category_id = values.category_id;
     const description = values.description;
-    const token = localStorage.getItem("token");
-    if (!token) {
-      errorNotfication("error");
-      history.push("/login");
-    } else {
-      const formData = new FormData();
-
-      for (let i = 0; i < values.image.fileList.length; i++) {
-        formData.append("files", values.image.fileList[i].originFileObj);
+    const images = values.images;
+    const formData = new FormData();
+    try {
+      for (let i = 0; i < images.length; i++) {
+        formData.append("files", images[i].originFileObj);
       }
-      const res = axios.post(
-        `http://localhost:8000/bonsai-backend/products/create-product?product_name=${product_name}&product_price=${product_price}&category_id=${category_id}&description=${description}`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
+      const response = createProduct(
+        localStorage.getItem("token"),
+        product_name,
+        product_price,
+        category_id,
+        description,
+        formData
       );
-      if (res) {
+      if (response) {
         form.resetFields();
         openNotificationWithIcon("success");
       } else {
-        openNotificationWithIcon("error");
         form.resetFields();
+        errorNotfication("error");
       }
+    } catch {
+      errorNotfication("error");
     }
   };
 
@@ -116,22 +118,22 @@ const Admin = () => {
               height: 250,
               marginLeft: 70,
             }}
-          />{" "}
-        </Link>{" "}
+          />
+        </Link>
         {localStorage.getItem("token") ? (
           <button
             type="button"
             className="auth-btn"
             onClick={Logout}
             style={{
-              "font-size": 27,
+              fontSize: 27,
               color: "black",
               marginLeft: 770,
               backgroundColor: "#8FBC8F",
               border: "none",
             }}
           >
-            Logout <FaUserMinus />
+            {localStorage.getItem("username")} <FaUserMinus />
           </button>
         ) : (
           <Link
@@ -142,8 +144,8 @@ const Admin = () => {
           >
             Login <FaUserPlus />
           </Link>
-        )}{" "}
-      </div>{" "}
+        )}
+      </div>
       <Wrapper className="page section section-center">
         <Menu
           mode="inline"
@@ -161,41 +163,45 @@ const Admin = () => {
           className="menu"
         >
           <Menu.Item key="sub1" icon={<MailOutlined />} title="Tổng quan">
-            Tổng quan
-          </Menu.Item>{" "}
+            <Link to="/overview" className="cart-btn">
+              Tổng quan
+            </Link>
+          </Menu.Item>
           <Menu.Item
             key="sub2"
             icon={<AppstoreOutlined />}
             title="Quản Lý Đơn Hàng"
           >
-            Quản Lý Đơn Hàng
-          </Menu.Item>{" "}
+            <Link to="/manager-product" className="cart-btn">
+              Quản Lý Đơn Hàng
+            </Link>
+          </Menu.Item>
           <Menu.Item
             key="sub4"
             icon={<SettingOutlined />}
             title="Quản Lý Sản Phẩm"
           >
             Quản Lý Sản Phẩm
-          </Menu.Item>{" "}
+          </Menu.Item>
           <Menu.Item
             key="sub5"
             icon={<SettingOutlined />}
             title="Quản Lý Loại Sản Phẩm"
           >
             Quản Lý Loại Sản Phẩm
-          </Menu.Item>{" "}
+          </Menu.Item>
           <Menu.Item
             key="sub6"
             icon={<SettingOutlined />}
             title="Quản Lý Nhân Viên"
           >
             Quản Lý Nhân Viên
-          </Menu.Item>{" "}
-        </Menu>{" "}
+          </Menu.Item>
+        </Menu>
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
-            <h2> THÊM SẢN PHẨM </h2> <div className="underline"> </div>{" "}
-          </div>{" "}
+            <h2> THÊM SẢN PHẨM </h2> <div className="underline"> </div>
+          </div>
           <div>
             <Form
               name="basic"
@@ -210,10 +216,10 @@ const Admin = () => {
             >
               <Form.Item label="Tên Sản Phẩm" name="product_name">
                 <Input placeholder="input placeholder" />
-              </Form.Item>{" "}
+              </Form.Item>
               <Form.Item label="Giá Sản Phẩm" name="product_price">
                 <Input placeholder="input placeholder" />
-              </Form.Item>{" "}
+              </Form.Item>
               <Form.Item label="Loại Sản Phẩm" name="category_id">
                 <Select
                   style={{
@@ -222,46 +228,44 @@ const Admin = () => {
                 >
                   {categories.map((category) => {
                     return (
-                      <Option value={category.category_id}>
+                      <Option
+                        key={category.category_id}
+                        value={category.category_id}
+                      >
                         {category.category_name}
                       </Option>
-
-                      // <button
-                      //   key={category.category_id}
-                      //   data-key={category.category_id}
-                      //   onClick={updateFilters}
-                      //   type="button"
-                      //   name="category"
-                      // >
-
-                      // </button>
                     );
                   })}
                 </Select>
-              </Form.Item>{" "}
+              </Form.Item>
               <Form.Item label="Mô Tả Sản Phẩm" name="description">
                 <Input placeholder="input placeholder" />
-              </Form.Item>{" "}
-              <Form.Item label="Ảnh Sản Phẩm" name="image">
+              </Form.Item>
+              <Form.Item
+                label="Ảnh Sản Phẩm"
+                name="images"
+                valuePropName="fileList"
+                getValueFromEvent={normFile}
+              >
                 <Upload
-                  action="//jsonplaceholder.typicode.com/posts/"
+                  action="//localhost:8000/bonsai-backend/files/upload-image"
                   listType="picture"
                   maxCount={3}
                   accept=".jpg,.png,.jpeg"
                   multiple
                 >
-                  <Button icon={<UploadOutlined />}> Upload(Max: 3) </Button>{" "}
-                </Upload>{" "}
-              </Form.Item>{" "}
+                  <Button icon={<UploadOutlined />}> Upload(Max: 3) </Button>
+                </Upload>
+              </Form.Item>
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  Submit{" "}
-                </Button>{" "}
-              </Form.Item>{" "}
-            </Form>{" "}
-          </div>{" "}
-        </article>{" "}
-      </Wrapper>{" "}
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
+        </article>
+      </Wrapper>
     </main>
   );
 };
