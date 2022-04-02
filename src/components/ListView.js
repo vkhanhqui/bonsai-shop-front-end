@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
 import { Link } from "react-router-dom";
 const ListView = ({ products }) => {
-
   return (
     <Wrapper>
       {products.map((product) => {
@@ -11,9 +10,13 @@ const ListView = ({ products }) => {
           product;
         return (
           <article key={product_id}>
-            <img src={`http://${images[0].image_path}`} alt={product_name} />
+            <Link to={`/products/${product_id}`} className="link">
+              <img src={`http://${images[0].image_path}`} alt={product_name} />
+            </Link>
             <div>
+            <Link to={`/products/${product_id}`} className="link">
               <h4>{product_name}</h4>
+            </Link>
               <h5 className="price">{formatPrice(product_price)}</h5>
               <p>{description.substring(0, 150)}...</p>
               <Link to={`/products/${product_id}`} className="btn">

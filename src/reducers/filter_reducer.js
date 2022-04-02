@@ -34,25 +34,11 @@ const filter_reducer = (state, action) => {
     let tempProducts = [];
     if (sort === "price-lowest") {
       tempProducts = filtered_products.sort((a, b) => {
-        // if (a.price < b.price) {
-        //   return -1
-        // }
-        // if (a.price > b.price) {
-        //   return 1
-        // }
-        // return 0
         return a.price - b.price;
       });
     }
     if (sort === "price-highest") {
       tempProducts = filtered_products.sort((a, b) => {
-        // if (b.price < a.price) {
-        //   return -1
-        // }
-        // if (b.price > a.price) {
-        //   return 1
-        // }
-        // return 0
         return b.price - a.price;
       });
     }
@@ -71,6 +57,7 @@ const filter_reducer = (state, action) => {
   }
   if (action.type === UPDATE_FILTERS) {
     const { name, value } = action.payload;
+    console.log(value);
     return { ...state, filters: { ...state.filters, [name]: value } };
   }
   if (action.type === FILTER_PRODUCTS) {
@@ -112,12 +99,6 @@ const filter_reducer = (state, action) => {
       ...state,
       filters: {
         ...state.filters,
-        text: "",
-        company: "all",
-        category: "all",
-        color: "all",
-        price: state.filters.max_price,
-        shipping: false,
       },
     };
   }

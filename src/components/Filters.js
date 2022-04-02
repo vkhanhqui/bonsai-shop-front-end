@@ -6,15 +6,8 @@ import { useFilterContext } from "../context/filter_context";
 
 const Filters = () => {
   const {
-    filters: {
-      text,
-      category,
-      min_price,
-      max_price,
-      price,
-    },
     updateFilters,
-    all_products,
+    searchFilters,
     clearFilters,
   } = useFilterContext();
 
@@ -31,10 +24,9 @@ useEffect(()=>{
           <div className="form-control">
             <input
               type="text"
-              name="text"
-              value={text}
+              name="search_text"
               placeholder="search"
-              onChange={updateFilters}
+              onChange={searchFilters}
               className="search-input"
             />
           </div>

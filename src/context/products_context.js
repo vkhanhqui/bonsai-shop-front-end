@@ -39,17 +39,14 @@ export const ProductsProvider = ({ children }) => {
   const fetchProducts = async (url) => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
-      const response = await axios.post(
-        url,
-        {
-          "category_id": 0,
-          "sort_price": "",
-          "sort_name": "",
-          "range_price_from": "",
-          "range_price_to": "",
-          "page": 1
-        }
-      );
+      const response = await axios.post(url, {
+        category_id: 0,
+        sort_price: "",
+        sort_name: "",
+        range_price_from: "",
+        range_price_to: "",
+        page: 1,
+      });
       const products = response.data;
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
     } catch (error) {

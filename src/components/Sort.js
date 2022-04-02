@@ -38,10 +38,10 @@ const Sort = () => {
           onChange={updateSort}
           className='sort-input'
         >
-          <option value='price-lowest'>price (lowest)</option>
-          <option value='price-highest'>price (highest)</option>
-          <option value='name-a'>name (a - z)</option>
-          <option value='name-z'>name (z - a)</option>
+          <option value='p-asc'>price (lowest)</option>
+          <option value='p-desc'>price (highest)</option>
+          <option value='n-asc'>name (a - z)</option>
+          <option value='n-desc'>name (z - a)</option>
         </select>
       </form>
     </Wrapper>

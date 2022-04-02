@@ -97,9 +97,9 @@ function App() {
                   <PrivateRoute path="/checkout">
                     <Checkout />
                   </PrivateRoute>
-                  <Route path="/*">
+                  {/* <Route path="/*">
                     <Error />
-                  </Route>
+                  </Route> */}
                 </Route>
               </Router>
             </>
