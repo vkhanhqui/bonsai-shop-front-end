@@ -11,7 +11,7 @@ const ListView = ({ products }) => {
         return (
           <article key={product_id}>
             <Link to={`/products/${product_id}`} className="link">
-              <img src={`http://${images[0].image_path}`} alt={product_name} />
+              <img src={`${images[0].image_path}`} alt={product_name} />
             </Link>
             <div>
             <Link to={`/products/${product_id}`} className="link">

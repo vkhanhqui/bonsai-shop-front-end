@@ -16,6 +16,7 @@ import {
   AdminAddProduct,
   Overview,
   ManagerProduct,
+  AdminModProduct,
 } from "./pages";
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
             <>
               <Route path="/add-product">
                 <AdminAddProduct />
+              </Route>
+              <Route path="/mod-product">
+                <AdminModProduct />
               </Route>
               <Route path="/overview">
                 <Overview />

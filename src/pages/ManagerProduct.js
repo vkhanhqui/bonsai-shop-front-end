@@ -5,37 +5,44 @@ import { Link } from "react-router-dom";
 import getProducts from "../context/products_filter";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
+import { formatPrice } from "../utils/helpers";
 
 const ManagerProduct = () => {
   const [products, setProducts] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    getProducts(currentPage).then((res) => setProducts(res));
-  }, [currentPage]);
+    getProducts(0, "", "", "", currentPage).then((res) => setProducts(res));
+  }, [0, "", "", "", currentPage]);
+  let data_products = products.products?.map((obj) => ({
+    ...obj,
+    key: obj.product_id,
+  }));
 
   const onChange = (e) => {
     setCurrentPage(e.current);
+    products.products?.map((obj) => ({ ...obj, key: obj.product_id }));
   };
 
   const columns = [
     {
-      title: "STT",
-      dataIndex: "product_id",
-      key: "product_id",
+      title: "Số thứ tự",
+      dataIndex: "stt",
+      key: "stt",
       align: "center",
     },
     {
-      title: "Product Name",
+      title: "Tên sản phẩm",
       dataIndex: "product_name",
       key: "product_name",
       align: "center",
     },
     {
-      title: "Product price",
+      title: "Giá",
       dataIndex: "product_price",
       key: "product_price",
       align: "center",
+      render: (text, record) => formatPrice(record.product_price),
     },
     // {
     //   title: "Description",
@@ -44,23 +51,43 @@ const ManagerProduct = () => {
     //   align: "center",
     // },
     {
-      title: "Image",
+      title: "Ảnh",
       key: "images",
       align: "center",
       dataIndex: "images",
-      render: (t, r) => (
+      render: (text, record) => (
         <img
           style={{
-            width: "200px",
-            height: "200px",
+            width: "100px",
+            height: "100px",
           }}
-          src={`http://${r.images[0].image_path}`}
-          alt={`${r.images[0].image_path}`}
+          src={`${record.images[0].image_path}`}
+          alt={`${record.images[0].image_path}`}
         />
       ),
     },
+    {
+      title: "Thao tác",
+      key: "action",
+      render: (text, record) => (
+        <Link
+          to={{
+            pathname: "/mod-product",
+            state:{
+              product_id: record.product_id,
+              product_name: record.product_name,
+              product_price: record.product_price,
+              description: record.description,
+              category_id: record.category_id,
+              images: record.images,
+            }
+          }}
+        >
+          Sửa
+        </Link>
+      ),
+    },
   ];
-
   return (
     <main>
       <AdminHeader />
@@ -91,9 +118,9 @@ const ManagerProduct = () => {
           </Button>
           <Table
             onChange={onChange}
-            dataSource={products.products}
+            dataSource={data_products}
             columns={columns}
-            pagination={{ defaultPageSize: 10, total: products.total}}
+            pagination={{ defaultPageSize: 10, total: products.total }}
           />
           ;
         </article>

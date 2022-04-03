@@ -12,6 +12,7 @@ import Services from "./Services";
 import LoginPage from "./LoginPage";
 import Register from "./Register";
 import AdminAddProduct from "./AdminAddProduct";
+import AdminModProduct from "./AdminModProduct";
 import Overview from "./Overview";
 import ManagerProduct from "./ManagerProduct";
 export {
@@ -31,4 +32,5 @@ export {
   AdminAddProduct,
   Overview,
   ManagerProduct,
+  AdminModProduct,
 };
