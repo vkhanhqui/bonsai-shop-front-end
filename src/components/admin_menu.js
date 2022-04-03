@@ -46,12 +46,12 @@ const AdminMenu = () => {
         icon={<AppstoreOutlined />}
         title="Quản Lý Đơn Hàng"
       >
-        <Link to="/manager-product" className="cart-btn">
-          Quản Lý Đơn Hàng
-        </Link>
+        Quản Lý Đơn Hàng
       </Menu.Item>
       <Menu.Item key="sub4" icon={<SettingOutlined />} title="Quản Lý Sản Phẩm">
-        Quản Lý Sản Phẩm
+        <Link to="/manager-product" className="cart-btn">
+          Quản Lý Sản Phẩm
+        </Link>
       </Menu.Item>
       <Menu.Item
         key="sub5"

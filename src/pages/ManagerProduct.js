@@ -7,11 +7,16 @@ import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
 
 const ManagerProduct = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    getProducts().then((res) => setProducts(res));
-  }, []);
+    getProducts(currentPage).then((res) => setProducts(res));
+  }, [currentPage]);
+
+  const onChange = (e) => {
+    setCurrentPage(e.current);
+  };
 
   const columns = [
     {
@@ -32,11 +37,27 @@ const ManagerProduct = () => {
       key: "product_price",
       align: "center",
     },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    //   key: "description",
+    //   align: "center",
+    // },
     {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
+      title: "Image",
+      key: "images",
       align: "center",
+      dataIndex: "images",
+      render: (t, r) => (
+        <img
+          style={{
+            width: "200px",
+            height: "200px",
+          }}
+          src={`http://${r.images[0].image_path}`}
+          alt={`${r.images[0].image_path}`}
+        />
+      ),
     },
   ];
 
@@ -68,7 +89,13 @@ const ManagerProduct = () => {
           >
             <Link to="add-product">Thêm mới</Link>
           </Button>
-          <Table dataSource={products} columns={columns} />;
+          <Table
+            onChange={onChange}
+            dataSource={products.products}
+            columns={columns}
+            pagination={{ defaultPageSize: 10, total: products.total}}
+          />
+          ;
         </article>
       </Wrapper>
     </main>

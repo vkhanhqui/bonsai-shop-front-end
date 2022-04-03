@@ -19,22 +19,18 @@ const initialState = {
 const FilterContext = React.createContext();
 
 export const FilterProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
   const [categoryId, setCategoryId] = useState(0);
   const [sortName, setSortName] = useState("");
   const [sortPrice, setSortPrice] = useState("");
   const [searchText, setSearchText] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    getProducts(categoryId, sortName, sortPrice, searchText).then((res) =>
-      setProducts(res)
+    getProducts(categoryId, sortName, sortPrice, searchText, currentPage).then(
+      (res) => dispatch({ type: LOAD_PRODUCTS, payload: res })
     );
-  }, [categoryId, sortName, sortPrice, searchText]);
-
+  }, [categoryId, sortName, sortPrice, searchText, currentPage]);
   const [state, dispatch] = useReducer(reducer, initialState);
-  useEffect(() => {
-    dispatch({ type: LOAD_PRODUCTS, payload: products });
-  }, [products]);
 
   const setGridView = () => {
     dispatch({ type: SET_GRIDVIEW });
