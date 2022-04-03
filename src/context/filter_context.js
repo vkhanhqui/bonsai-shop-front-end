@@ -4,9 +4,6 @@ import {
   LOAD_PRODUCTS,
   SET_GRIDVIEW,
   SET_LISTVIEW,
-  UPDATE_SORT,
-  UPDATE_FILTERS,
-  CLEAR_FILTERS,
 } from "../actions";
 import getProducts from "./products_filter";
 
@@ -14,6 +11,7 @@ const initialState = {
   filtered_products: [],
   all_products: [],
   grid_view: true,
+  total_products: 0,
 };
 
 const FilterContext = React.createContext();
@@ -26,11 +24,15 @@ export const FilterProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    getProducts(categoryId, sortName, sortPrice, searchText, currentPage).then(
+    getProducts(categoryId, sortName, sortPrice, searchText, currentPage, 9).then(
       (res) => dispatch({ type: LOAD_PRODUCTS, payload: res })
     );
-  }, [categoryId, sortName, sortPrice, searchText, currentPage]);
+  }, [categoryId, sortName, sortPrice, searchText, currentPage, 9]);
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const onChangePagination = (e) => {
+    setCurrentPage(e.current);
+  };
 
   const setGridView = () => {
     dispatch({ type: SET_GRIDVIEW });
@@ -47,8 +49,6 @@ export const FilterProvider = ({ children }) => {
       setSortName(value.split("n-")[1]);
       setSortPrice("");
     }
-
-    dispatch({ type: UPDATE_SORT, payload: value });
   };
 
   const searchFilters = (e) => {
@@ -58,21 +58,16 @@ export const FilterProvider = ({ children }) => {
 
   const updateFilters = (e) => {
     let name = e.target.name;
-    let value = e.target.value;
     if (name === "category") {
       setCategoryId(e.target.getAttribute("data-key"));
     }
-    if (name === "price") {
-      value = Number(value);
-    }
-    dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
   const clearFilters = () => {
     setSortName("");
     setSortPrice("");
     setSearchText("");
     setCategoryId(0);
-    dispatch({ type: CLEAR_FILTERS });
+    setCurrentPage(1);
   };
   return (
     <FilterContext.Provider
@@ -84,6 +79,7 @@ export const FilterProvider = ({ children }) => {
         updateFilters,
         searchFilters,
         clearFilters,
+        onChangePagination,
       }}
     >
       {children}

@@ -18,6 +18,8 @@ import {
   AdminManageProduct,
   AdminModProduct,
   AdminManageBill,
+  AdminManageCategory,
+  AdminManageStaff,
 } from "./pages";
 function App() {
   return (
@@ -41,6 +43,12 @@ function App() {
               </Route>
               <Route path="/manage-bill">
                 <AdminManageBill />
+              </Route>
+              <Route path="/manage-category">
+                <AdminManageCategory />
+              </Route>
+              <Route path="/manage-staff">
+                <AdminManageStaff />
               </Route>
               <Route>
                 <Navbar />

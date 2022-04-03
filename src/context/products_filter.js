@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getProducts = (categoryId, sortName, sortPrice, searchText, currentPage) => {
+const getProducts = (categoryId, sortName, sortPrice, searchText, currentPage, limit) => {
   return axios
     .post("http://localhost:8000/bonsai-backend/products/get-all-products", {
       category_id: categoryId,
@@ -10,6 +10,7 @@ const getProducts = (categoryId, sortName, sortPrice, searchText, currentPage) =
       range_price_to: "",
       search_text: searchText,
       page: currentPage,
+      limit: limit,
     })
     .then((res) => res.data)
     .catch((err) => console.log(err));

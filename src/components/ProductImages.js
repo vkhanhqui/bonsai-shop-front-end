@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 const ProductImages = ({ images = [[]] }) => {
-  const baseUrl = "http://";
-  const urlImage = baseUrl + images[0].image_path;
-  const [main, setMain] = useState(urlImage);
+  const [main, setMain] = useState(images[0].image_path);
 
   return (
     <Wrapper>
@@ -12,11 +10,11 @@ const ProductImages = ({ images = [[]] }) => {
         {images.map((image, index) => {
           return (
             <img
-              src={baseUrl + image["image_path"]}
+              src={image["image_path"]}
               alt=""
               key={index}
               className={`${image.url === main.url ? "active" : null}`}
-              onClick={() => setMain(baseUrl + image["image_path"])}
+              onClick={() => setMain(image["image_path"])}
             />
           );
         })}

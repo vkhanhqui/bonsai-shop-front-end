@@ -16,6 +16,9 @@ import AdminModProduct from "./AdminModProduct";
 import Overview from "./Overview";
 import AdminManageProduct from "./AdminManageProduct";
 import AdminManageBill from "./AdminManageBill";
+import AdminManageCategory from "./AdminManageCategory";
+import AdminManageStaff from "./AdminManageStaff";
+
 export {
   Home,
   SingleProduct,
@@ -35,4 +38,6 @@ export {
   AdminManageProduct,
   AdminModProduct,
   AdminManageBill,
+  AdminManageCategory,
+  AdminManageStaff,
 };

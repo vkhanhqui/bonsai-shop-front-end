@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
+import { useFilterContext } from "../context/filter_context";
+import { Pagination } from "antd";
 import { Link } from "react-router-dom";
-const ListView = ({ products }) => {
+
+const ListView = ({ products, total }) => {
+  const { onChangePagination } = useFilterContext();
   return (
     <Wrapper>
       {products.map((product) => {
@@ -26,6 +30,13 @@ const ListView = ({ products }) => {
           </article>
         );
       })}
+
+<Pagination
+        onChange={onChangePagination}
+        defaultCurrent={1}
+        total={total}
+        style={{ margin: "auto", width: 300, marginTop: 50 }}
+      />
     </Wrapper>
   );
 };

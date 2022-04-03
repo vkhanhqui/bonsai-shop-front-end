@@ -60,14 +60,18 @@ const AdminMenu = () => {
         icon={<SettingOutlined />}
         title="Quản Lý Loại Sản Phẩm"
       >
-        Quản Lý Loại Sản Phẩm
+        <Link to="/manage-category" className="cart-btn">
+          Quản Lý Loại Sản Phẩm
+        </Link>
       </Menu.Item>
       <Menu.Item
         key="sub6"
         icon={<SettingOutlined />}
         title="Quản Lý Nhân Viên"
       >
-        Quản Lý Nhân Viên
+        <Link to="/manage-staff" className="cart-btn">
+          Quản Lý Nhân Viên
+        </Link>
       </Menu.Item>
     </Menu>
   );

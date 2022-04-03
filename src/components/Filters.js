@@ -67,7 +67,7 @@ useEffect(()=>{
           {/* end of price */}
         </form>
         <button type="button" className="clear-btn" onClick={clearFilters}>
-          clear filters
+          Clear filters
         </button>
       </div>
     </Wrapper>

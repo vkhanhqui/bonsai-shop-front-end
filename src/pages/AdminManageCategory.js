@@ -2,27 +2,16 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Table, Button } from "antd";
 import { Link } from "react-router-dom";
-import getProducts from "../context/products_filter";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
-import { formatPrice } from "../utils/helpers";
+import getCategories from "../context/category_context";
 
-const AdminManageProduct = () => {
-  const [products, setProducts] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
+const AdminManageCategory = () => {
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    getProducts(0, "", "", "", currentPage, 10).then((res) => setProducts(res));
-  }, [0, "", "", "", currentPage, 10]);
-  let data_products = products.products?.map((obj) => ({
-    ...obj,
-    key: obj.product_id,
-  }));
-
-  const onChange = (e) => {
-    setCurrentPage(e.current);
-    products.products?.map((obj) => ({ ...obj, key: obj.product_id }));
-  };
+    getCategories(localStorage.getItem("token")).then((res) => setCategories(res));
+  }, []);
 
   const columns = [
     {
@@ -32,39 +21,10 @@ const AdminManageProduct = () => {
       align: "center",
     },
     {
-      title: "Tên sản phẩm",
-      dataIndex: "product_name",
-      key: "product_name",
+      title: "Tên loại",
+      dataIndex: "category_name",
+      key: "category_name",
       align: "center",
-    },
-    {
-      title: "Giá",
-      dataIndex: "product_price",
-      key: "product_price",
-      align: "center",
-      render: (text, record) => formatPrice(record.product_price),
-    },
-    // {
-    //   title: "Description",
-    //   dataIndex: "description",
-    //   key: "description",
-    //   align: "center",
-    // },
-    {
-      title: "Ảnh",
-      key: "images",
-      align: "center",
-      dataIndex: "images",
-      render: (text, record) => (
-        <img
-          style={{
-            width: "100px",
-            height: "100px",
-          }}
-          src={`${record.images[0].image_path}`}
-          alt={`${record.images[0].image_path}`}
-        />
-      ),
     },
     {
       title: "Thao tác",
@@ -72,14 +32,9 @@ const AdminManageProduct = () => {
       render: (text, record) => (
         <Link
           to={{
-            pathname: "/mod-product",
+            pathname: "/mod-category",
             state:{
-              product_id: record.product_id,
-              product_name: record.product_name,
-              product_price: record.product_price,
-              description: record.description,
               category_id: record.category_id,
-              images: record.images,
             }
           }}
         >
@@ -94,9 +49,7 @@ const AdminManageProduct = () => {
       <Wrapper className="page section section-center">
         <AdminMenu />
         <article>
-          <div className="title"
-          style={{ marginLeft: 50 }}
-          >
+          <div className="title" style={{ marginLeft: 50 }}>
             <h2
               style={{
                 background: "#CFAF92",
@@ -107,7 +60,7 @@ const AdminManageProduct = () => {
                 padding: "20px",
               }}
             >
-              Quản Lý Sản Phẩm
+              Quản Lý Loại Sản Phẩm
             </h2>
             <div className="underline"></div>
           </div>
@@ -119,10 +72,9 @@ const AdminManageProduct = () => {
             <Link to="add-product">Thêm mới</Link>
           </Button>
           <Table
-            onChange={onChange}
-            dataSource={data_products}
+            dataSource={categories}
             columns={columns}
-            pagination={{ defaultPageSize: 10, total: products.total }}
+            pagination={{ defaultPageSize: 10 }}
           />
           ;
         </article>
@@ -171,4 +123,4 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
   }
 `;
-export default AdminManageProduct;
+export default AdminManageCategory;
