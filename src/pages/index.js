@@ -14,7 +14,8 @@ import Register from "./Register";
 import AdminAddProduct from "./AdminAddProduct";
 import AdminModProduct from "./AdminModProduct";
 import Overview from "./Overview";
-import ManagerProduct from "./ManagerProduct";
+import AdminManageProduct from "./AdminManageProduct";
+import AdminManageBill from "./AdminManageBill";
 export {
   Home,
   SingleProduct,
@@ -31,6 +32,7 @@ export {
   Register,
   AdminAddProduct,
   Overview,
-  ManagerProduct,
+  AdminManageProduct,
   AdminModProduct,
+  AdminManageBill,
 };

@@ -7,7 +7,7 @@ import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
 import { formatPrice } from "../utils/helpers";
 
-const ManagerProduct = () => {
+const AdminManageProduct = () => {
   const [products, setProducts] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -94,7 +94,9 @@ const ManagerProduct = () => {
       <Wrapper className="page section section-center">
         <AdminMenu />
         <article>
-          <div className="title" style={{ marginLeft: 50 }}>
+          <div className="title"
+          style={{ marginLeft: 50 }}
+          >
             <h2
               style={{
                 background: "#CFAF92",
@@ -169,4 +171,4 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
   }
 `;
-export default ManagerProduct;
+export default AdminManageProduct;

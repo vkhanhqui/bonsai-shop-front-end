@@ -27,7 +27,7 @@ const AdminMenu = () => {
       openKeys={openKeys}
       onOpenChange={onOpenChange}
       style={{
-        width: 500,
+        width: 250,
         height: 600,
         marginLeft: -215,
         marginTop: -80,
@@ -46,10 +46,12 @@ const AdminMenu = () => {
         icon={<AppstoreOutlined />}
         title="Quản Lý Đơn Hàng"
       >
-        Quản Lý Đơn Hàng
+        <Link to="/manage-bill" className="cart-btn">
+          Quản Lý Đơn Hàng
+        </Link>
       </Menu.Item>
       <Menu.Item key="sub4" icon={<SettingOutlined />} title="Quản Lý Sản Phẩm">
-        <Link to="/manager-product" className="cart-btn">
+        <Link to="/manage-product" className="cart-btn">
           Quản Lý Sản Phẩm
         </Link>
       </Menu.Item>
