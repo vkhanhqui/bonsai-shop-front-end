@@ -31,7 +31,7 @@ export const FilterProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const onChangePagination = (e) => {
-    setCurrentPage(e.current);
+    setCurrentPage(e);
   };
 
   const setGridView = () => {

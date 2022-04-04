@@ -40,10 +40,8 @@ const SingleProductPage = () => {
     product_name,
     product_price,
     description,
-    stock,
     star_number,
     reviews,
-    id: sku,
     images,
   } = product;
   return (
