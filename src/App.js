@@ -51,8 +51,8 @@ function App() {
                 <AdminManageStaff />
               </Route>
               <Route>
-                <Navbar />
-                <Sidebar />
+                {/* <Navbar />
+                <Sidebar /> */}
                 <Route exact path="/">
                   <Home />
                 </Route>
