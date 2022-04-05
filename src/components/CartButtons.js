@@ -14,7 +14,9 @@ const CartButton = () => {
   const Logout = () => {
     clearCart();
     localStorage.removeItem("token");
-    history.pushState("/login");
+    localStorage.removeItem("role");
+    localStorage.removeItem("username");
+    history.push("/login");
   };
   return (
     <Wrapper className="cart-btn-wrapper">
