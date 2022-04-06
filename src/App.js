@@ -29,56 +29,58 @@ function App() {
           {localStorage.getItem("username") &&
           localStorage.getItem("role") === "admin" ? (
             <>
-              <Route path="/add-product">
-                <AdminAddProduct />
-              </Route>
-              <Route path="/mod-product">
-                <AdminModProduct />
-              </Route>
-              <Route path="/overview">
-                <Overview />
-              </Route>
-              <Route path="/manage-product">
-                <AdminManageProduct />
-              </Route>
-              <Route path="/manage-bill">
-                <AdminManageBill />
-              </Route>
-              <Route path="/manage-category">
-                <AdminManageCategory />
-              </Route>
-              <Route path="/manage-staff">
-                <AdminManageStaff />
-              </Route>
-              <Route>
-                {/* <Navbar />
-                <Sidebar /> */}
-                <Route exact path="/">
-                  <Home />
+              <Switch>
+                <Route path="/add-product">
+                  <AdminAddProduct />
                 </Route>
-                <Route path="/about">
-                  <About />
+                <Route path="/mod-product">
+                  <AdminModProduct />
                 </Route>
-                <Route path="/cart">
-                  <Cart />
+                <Route path="/overview">
+                  <Overview />
                 </Route>
-                <Route path="/login">
-                  <LoginPage />
+                <Route path="/manage-product">
+                  <AdminManageProduct />
                 </Route>
-                <Route exact path="/products">
-                  <Products />
+                <Route path="/manage-bill">
+                  <AdminManageBill />
                 </Route>
-                <Route exact path="/blogs">
-                  <Blogs />
+                <Route path="/manage-category">
+                  <AdminManageCategory />
                 </Route>
-                <Route exact path="/register">
-                  <Register />
+                <Route path="/manage-staff">
+                  <AdminManageStaff />
                 </Route>
-                <Route path="/products/:id" children={<SingleProduct />} />
-                <PrivateRoute path="/checkout">
-                  <Checkout />
-                </PrivateRoute>
-              </Route>
+                <Route path="/">
+                  <Navbar />
+                  <Sidebar />
+                  <Route exact path="/">
+                    <Home />
+                  </Route>
+                  <Route path="/about">
+                    <About />
+                  </Route>
+                  <Route path="/cart">
+                    <Cart />
+                  </Route>
+                  <Route path="/login">
+                    <LoginPage />
+                  </Route>
+                  <Route exact path="/products">
+                    <Products />
+                  </Route>
+                  <Route exact path="/blogs">
+                    <Blogs />
+                  </Route>
+                  <Route exact path="/register">
+                    <Register />
+                  </Route>
+                  <Route path="/products/:id" children={<SingleProduct />} />
+                  <PrivateRoute path="/checkout">
+                    <Checkout />
+                  </PrivateRoute>
+                </Route>
+              </Switch>
             </>
           ) : (
             <>
