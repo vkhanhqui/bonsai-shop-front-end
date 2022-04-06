@@ -4,34 +4,66 @@ import { useCartContext } from "../context/cart_context";
 import { formatPrice } from "../utils/helpers";
 import { Modal, Select } from "antd";
 import { useHistory } from "react-router-dom";
+import { Form, Input, Button, Upload, notification } from "antd";
 
 import "antd/dist/antd.css";
 import axios from "axios";
+import getAddress from "../context/get_address_context";
+import Add_address from "../pages/AddAddress";
+   
 
 const CartTotals = () => {
-  const { total_amount, cart, clearCart } = useCartContext();
+  const { total_amount, shipping_fee, cart, clearCart } = useCartContext();
   // const { myUser, loginWithRedirect } = useUserContext();
   const history = useHistory();
   const [address, setAddress] = useState([]);
   const [orderAddress, setOrderAddress] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible1, setIsModalVisible1] = useState(false);
+  const [token, setToken] = useState("");
   const { Option } = Select;
 
   useEffect(() => {
     async function fetchData() {
+      const username = "string";
+      const password = "stringst";
+      const fetchTokenData = await axios.post(
+        "http://localhost:8000/bonsai-backend/login/token",
+        {
+          body: JSON.stringify(
+            `grant_type&username=${username}&password=${password}&scope&client_secret=`
+          ),
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+
+      setToken(fetchTokenData.data.access_token);
       const res = await axios.get(
         "http://localhost:8000/bonsai-backend/addresses/get-all-addresses",
-        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
+      console.log("resne", res.data);
       setAddress(res.data);
     }
+//
+
+
+    //
     fetchData();
   }, [isModalVisible]);
 
   const showModal = () => {
+    // console.log("cart", cart);
+
     setIsModalVisible(true);
   };
-
+  const showModal1 =()=>{
+    setIsModalVisible1(true);
+  }
   useEffect(() => {
     async function fetchData() {
       const arrayItem = cart.map((item) => {
@@ -42,25 +74,43 @@ const CartTotals = () => {
         "http://localhost:8000/bonsai-backend/customers/confirm-bill",
 
         { address_id: orderAddress, items: arrayItem },
-        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log("ketqua", res.data);
       clearCart();
       history.push("/");
+      // setAddress(res.data);
     }
     fetchData();
   }, [isModalVisible]);
   const handleOk = () => {
     setIsModalVisible(false);
+    // setConfirmBill(true);
   };
-
+  const handleOk1 = ()=> {
+    setIsModalVisible1(false);
+    this.SaveNew();
+  }
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+  const handleCancel1 = ()=>{
+    setIsModalVisible1(false);
+    
+  }
   function onChange(value) {
     setOrderAddress(value);
+    console.log(`selected ${value}`);
   }
 
+  function onSearch(val) {
+    console.log("search:", val);
+  }
+
+
+//-------------------
+
+//-------------------------------------
   return (
     <>
       <Wrapper>
@@ -69,13 +119,13 @@ const CartTotals = () => {
             <h5>
               subtotal :<span>{formatPrice(total_amount)}</span>
             </h5>
-            {/* <p>
+            <p>
               shipping fee :<span>{formatPrice(shipping_fee)}</span>
-            </p> */}
+            </p>
             <hr />
             <h4>
               order total :
-              <span>{formatPrice(total_amount)}</span>
+              <span>{formatPrice(total_amount + shipping_fee)}</span>
             </h4>
           </article>
           {/* {myUser ? ( */}
@@ -88,26 +138,37 @@ const CartTotals = () => {
       </button>
     )} */}
           <button className="btn" onClick={showModal}>
-            Payment
+            order
           </button>
         </div>
       </Wrapper>
       <>
         <Modal
+          title="Basic Modal"
           visible={isModalVisible}
           onOk={handleOk}
+          
           onCancel={handleCancel}
         >
-          <p>Danh sách địa chỉ</p>
+          <p>Some contents... </p>
+          <button className="btn" onClick={showModal1}>
+            Add Address
+          </button>
+          <p></p>
+          <createAddress/>
+         
           <Select
             showSearch
-            placeholder="Select a person"
+            placeholder="Select a address"
             optionFilterProp="children"
             onChange={onChange}
+            onSearch={onSearch}
+            
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
           >
+            <getAddress />
             {address.map((value) => {
               return (
                 <Option key={value.address_id} value={value.address_id}>
@@ -116,7 +177,16 @@ const CartTotals = () => {
               );
             })}
           </Select>
-
+          ,
+        </Modal>
+        <Modal
+          title="Add Address"
+          visible={isModalVisible1}
+          onOk={handleOk1}
+         
+          onCancel={handleCancel1}
+        >
+         <Add_address />
         </Modal>
       </>
     </>
@@ -152,6 +222,14 @@ const Wrapper = styled.section`
     margin-top: 1rem;
     text-align: center;
     font-weight: 700;
+  }
+
+  .text_input {
+    color: red;
+    margin-left: 1000px;
+  }
+  fname{
+    color: red;
   }
 `;
 
