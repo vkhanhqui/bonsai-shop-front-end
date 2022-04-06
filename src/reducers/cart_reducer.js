@@ -29,7 +29,7 @@ const cart_reducer = (state, action) => {
         name: product.product_name,
         color,
         amount,
-        image: "http://" + product.images[0].image_path,
+        image: product.images[0].image_path,
         description: product.description,
         price: product.product_price,
         max: product.stock,

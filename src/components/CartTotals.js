@@ -10,7 +10,7 @@ import "antd/dist/antd.css";
 import axios from "axios";
 import getAddress from "../context/get_address_context";
 import Add_address from "../pages/AddAddress";
-   
+
 
 const CartTotals = () => {
   const { total_amount, shipping_fee, cart, clearCart } = useCartContext();
@@ -96,7 +96,7 @@ const CartTotals = () => {
   };
   const handleCancel1 = ()=>{
     setIsModalVisible1(false);
-    
+
   }
   function onChange(value) {
     setOrderAddress(value);
@@ -116,16 +116,16 @@ const CartTotals = () => {
       <Wrapper>
         <div>
           <article>
-            <h5>
+            {/* <h5>
               subtotal :<span>{formatPrice(total_amount)}</span>
             </h5>
             <p>
               shipping fee :<span>{formatPrice(shipping_fee)}</span>
             </p>
-            <hr />
+            <hr /> */}
             <h4>
               order total :
-              <span>{formatPrice(total_amount + shipping_fee)}</span>
+              <span>{formatPrice(total_amount)}</span>
             </h4>
           </article>
           {/* {myUser ? ( */}
@@ -147,7 +147,7 @@ const CartTotals = () => {
           title="Basic Modal"
           visible={isModalVisible}
           onOk={handleOk}
-          
+
           onCancel={handleCancel}
         >
           <p>Some contents... </p>
@@ -156,14 +156,14 @@ const CartTotals = () => {
           </button>
           <p></p>
           <createAddress/>
-         
+
           <Select
             showSearch
             placeholder="Select a address"
             optionFilterProp="children"
             onChange={onChange}
             onSearch={onSearch}
-            
+
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
@@ -183,7 +183,7 @@ const CartTotals = () => {
           title="Add Address"
           visible={isModalVisible1}
           onOk={handleOk1}
-         
+
           onCancel={handleCancel1}
         >
          <Add_address />

@@ -69,7 +69,7 @@ const AdminManageBill = () => {
       dataIndex: "email",
       key: "email",
       align: "center",
-      render: (text, record) => `${record.email}`,
+      render: (text, record) => `${record.customer.email}`,
     },
     {
       title: "Số điện thoại",
