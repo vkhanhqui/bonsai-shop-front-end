@@ -20,7 +20,13 @@ import {
   AdminManageBill,
   AdminManageCategory,
   AdminManageStaff,
+  AdminAddCategory,
+  AdminModCategory,
+  AdminAddStaff
 } from "./pages";
+
+
+
 function App() {
   return (
     <AuthWrapper>
@@ -33,9 +39,19 @@ function App() {
                 <Route path="/add-product">
                   <AdminAddProduct />
                 </Route>
-                <Route path="/mod-product">
-                  <AdminModProduct />
+
+                <Route path="/add-staff">
+                  <AdminAddStaff />
                 </Route>
+
+                <Route path="/add-category">
+                  <AdminAddCategory/>
+                </Route>
+
+                <Route path="/mod-category">
+                  <AdminModCategory/>
+                </Route>
+                
                 <Route path="/overview">
                   <Overview />
                 </Route>

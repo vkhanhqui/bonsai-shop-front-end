@@ -18,7 +18,9 @@ import AdminManageProduct from "./AdminManageProduct";
 import AdminManageBill from "./AdminManageBill";
 import AdminManageCategory from "./AdminManageCategory";
 import AdminManageStaff from "./AdminManageStaff";
-
+import AdminAddCategory from "./AdminAddCategory";
+import AdminModCategory from "./AdminModCategory";
+import AdminAddStaff from "./AdminAddStaff";
 export {
   Home,
   SingleProduct,
@@ -40,4 +42,7 @@ export {
   AdminManageBill,
   AdminManageCategory,
   AdminManageStaff,
+  AdminAddCategory,
+  AdminModCategory,
+  AdminAddStaff
 };

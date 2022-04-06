@@ -69,7 +69,7 @@ const AdminManageCategory = () => {
             size="large"
             style={{ marginLeft: "900px", marginBottom: "20px" }}
           >
-            <Link to="add-product">Thêm mới</Link>
+            <Link to="add-category">Thêm mới</Link>
           </Button>
           <Table
             dataSource={categories}

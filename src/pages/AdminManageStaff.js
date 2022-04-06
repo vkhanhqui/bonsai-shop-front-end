@@ -83,7 +83,7 @@ const AdminManageStaff = () => {
             size="large"
             style={{ marginLeft: "900px", marginBottom: "20px" }}
           >
-            <Link to="add-product">Thêm mới</Link>
+            <Link to="add-staff">Thêm mới</Link>
           </Button>
           <Table
             dataSource={staffs}
