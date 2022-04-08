@@ -6,10 +6,8 @@ import getCategories from "../context/category_context";
 import createProduct from "../context/create_product_context";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
-import { useLocation } from "react-router-dom";
-import updateProduct from "../context/update_product"
-import updateCategory from "../context/update_category";
-
+import createStaff from "../context/create_staff";
+import getStaffs from "../context/get_staffs_context";
 const { Option } = Select;
 
 const normFile = (e) => {
@@ -22,37 +20,38 @@ const normFile = (e) => {
   return e && e.fileList;
 };
 
-const AdminModCategory = () => {
-  const data = useLocation().state;
+const AdminDelStaff = () => {
   const [form] = Form.useForm();
   const [categories, setCategories] = useState([]);
-
   useEffect(() => {
-    getCategories().then((res) => setCategories(res));
+    getStaffs(localStorage.getItem("token")).then((res) => setStaffs(res));
   }, []);
+;
 
   const openNotificationWithIcon = (type) => {
     notification[type]({
-      message: "Sửa Sản Phẩm Thành Công !!!",
+      message: "Thêm Sản Phẩm Thành Công !!!",
       description:
-        "Sản phẩm đã được sửa thành công. Bỏ qua thông báo này để tiếp tục !!",
+        "Sản phẩm đã được thêm thành công. Bỏ qua thông báo này để tiếp tục !!",
     });
   };
   const errorNotfication = (type) => {
     notification[type]({
-      message: "Sửa Sản Phẩm Thất Bại!!!",
+      message: "Thêm Sản Phẩm Thất Bại!!!",
       description:
-        "Sản phẩm đã được sửa thất bại. Bỏ qua thông báo này để tiếp tục !!",
+        "Sản phẩm đã được thêm thất bại. Bỏ qua thông báo này để tiếp tục !!",
     });
   };
 
   const onFinish = async (values) => {
-    const category_id = values.category_id;
-    const category_name = values.category_name;
+
+    const user_id = values.user_id;
+
     try {
-      const response = updateCategory(
-        category_id,
-        category_name
+      
+      const response = deleteStaffs(
+        token
+       
       );
       if (response) {
         form.resetFields();
@@ -76,57 +75,54 @@ const AdminModCategory = () => {
       <Wrapper className="page section section-center">
         <AdminMenu />
         <article>
-      
           <div className="title" style={{ marginLeft: 50 }}>
-         
-            
+            <h2> sua NHÂN VIÊN </h2> <div className="underline"> </div>
           </div>
-          
           <div>
             <Form
               name="basic"
               labelCol={{ span: 8 }}
               wrapperCol={{ span: 16 }}
-              initialValues={{
+              initialValues={{ 
                 remember: true,
-                category_id: data.category_id,
-                category_name : data.category_name
-              }}
+                user_id: data.user_id,
+                role_id: data.role_id,
+                birthday : data .birthday,
+                email: data.email,
+                last_name: data.last_name,
+                first_name: data.first_name,
+                passwork: data.passwork,
+                username: data.username
+               }}
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}
-              autoComplete="on"
+              autoComplete="off"
               style={{ marginLeft: -300 }}
               form={form}
             >
-               <h2> XEM LOẠI SẢN PHẨM </h2> <div className="underline"> </div>
-        <Form.Item label="Mã loại sản phẩm" name="category_id">
-                <Input placeholder="input placeholder"required={true} readOnly={true} />
+              <Form.Item label="Staff id" name="user_id">
+                <Input placeholder="input placeholder" />
               </Form.Item>
-              <Form.Item label="Loại Sản Phẩm" name="category_id">
-              <Select
-                  style={{
-                    width: 300,
-                  }}
-                >
-                  {categories.map((category) => {
-                    return (
-                      <Option
-                        key={category.category_id}
-                        value={category.category_id}
-                      >
-                        {category.category_name}
-                      </Option>
-                    );
-                  })}
-                </Select>
+              <Form.Item label="Staff id" name="role_id">
+                <Input placeholder="input placeholder" />
               </Form.Item>
-              <h2> SỬA LOẠI SẢN PHẨM </h2> <div className="underline"> </div>
-              <Form.Item label="Mã loại sản phẩm" name="category_id">
-                <Input placeholder="input placeholder"required={true} readOnly={true} />
+              <Form.Item label="First Name" name="first_name">
+                <Input placeholder="input placeholder" />
               </Form.Item>
-              <Form.Item label="Loại Sản Phẩm" name="category_name">
-              <Input placeholder="input placeholder"/>
-               
+              <Form.Item label="Last Name" name="last_name">
+                <Input placeholder="input placeholder" />
+              </Form.Item>
+              <Form.Item label="Birthday" name="birthday">
+                <Input placeholder="input placeholder" />
+              </Form.Item>
+              <Form.Item label="Email" name="email">
+                <Input placeholder="input placeholder" />
+              </Form.Item>
+              <Form.Item label="UserName" name="username">
+                <Input placeholder="input placeholder" />
+              </Form.Item>
+              <Form.Item label="Passwork" name="passwork">
+                <Input placeholder="input placeholder" />
               </Form.Item>
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
@@ -179,4 +175,5 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
   }
 `;
-export default AdminModCategory;
+export default AdminDelStaff;
+

@@ -21,6 +21,7 @@ import AdminManageStaff from "./AdminManageStaff";
 import AdminAddCategory from "./AdminAddCategory";
 import AdminModCategory from "./AdminModCategory";
 import AdminAddStaff from "./AdminAddStaff";
+import AdminDelStaff from "./AdminDelStaff";
 export {
   Home,
   SingleProduct,
@@ -44,5 +45,6 @@ export {
   AdminManageStaff,
   AdminAddCategory,
   AdminModCategory,
-  AdminAddStaff
+  AdminAddStaff, 
+  AdminDelStaff
 };

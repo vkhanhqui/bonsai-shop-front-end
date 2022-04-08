@@ -11,7 +11,7 @@ import {
   PrivateRoute,
   AuthWrapper,
   Blogs,
-  LoginPage,
+  LoginPage, Error,
   Register,
   AdminAddProduct,
   Overview,
@@ -22,7 +22,9 @@ import {
   AdminManageStaff,
   AdminAddCategory,
   AdminModCategory,
-  AdminAddStaff
+  AdminAddStaff,
+  AdminDelStaff
+  
 } from "./pages";
 
 
@@ -47,17 +49,28 @@ function App() {
                 <Route path="/add-category">
                   <AdminAddCategory/>
                 </Route>
-
+                <Route path="/get-bill-detail">
+                  <AdminManageProduct/>
+                </Route>
                 <Route path="/mod-category">
                   <AdminModCategory/>
                 </Route>
                 
+                <Route path="/mod-product">
+                  <AdminModProduct/>
+                </Route>
                 <Route path="/overview">
                   <Overview />
                 </Route>
+              
                 <Route path="/manage-product">
                   <AdminManageProduct />
                 </Route>
+                
+                  <Route path="/delete-staff">
+                  <AdminDelStaff />
+                </Route>
+
                 <Route path="/manage-bill">
                   <AdminManageBill />
                 </Route>
@@ -129,9 +142,9 @@ function App() {
                   <PrivateRoute path="/checkout">
                     <Checkout />
                   </PrivateRoute>
-                  {/* <Route path="/*">
+                  <Route path="/*">
                     <Error />
-                  </Route> */}
+                  </Route>
                 </Route>
               </Router>
             </>

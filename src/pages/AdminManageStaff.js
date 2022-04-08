@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
 import getStaffs from "../context/get_staffs_context";
-
+import deleteStaffs from "../context/delete_staff";
 const AdminManageStaff = () => {
   const [staffs, setStaffs] = useState([]);
 
@@ -44,15 +44,17 @@ const AdminManageStaff = () => {
       title: "Thao tác",
       key: "action",
       render: (text, record) => (
+
         <Link
           to={{
-            pathname: "/mod-category",
+            pathname: "delete-staff",
             state:{
               user_id: record.user_id,
+              
             }
           }}
         >
-          Sửa
+         XÓA
         </Link>
       ),
     },

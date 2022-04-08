@@ -31,7 +31,7 @@ const handleConfirmBill = (record) => {
     return (
       <Link
         to={{
-          pathname: "/confirm-bill",
+          pathname: "/get-bill-detail",
           state: {
             bill_id: record.bill_id,
           },

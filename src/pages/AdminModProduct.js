@@ -111,7 +111,7 @@ const AdminModProduct = () => {
               form={form}
             >
               <Form.Item label="Mã sản phẩm" name="product_id">
-                <Input placeholder="input placeholder" />
+                <Input placeholder="input placeholder" required={true} readOnly={true} />
               </Form.Item>
               <Form.Item label="Tên Sản Phẩm" name="product_name">
                 <Input placeholder="input placeholder" />
