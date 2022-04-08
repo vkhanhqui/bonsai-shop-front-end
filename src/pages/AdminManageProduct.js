@@ -67,26 +67,48 @@ const AdminManageProduct = () => {
       ),
     },
     {
-      title: "Thao tác",
+     
       key: "action",
       render: (text, record) => (
-        <Link
-          to={{
-            pathname: "/mod-product",
-            state:{
-              product_id: record.product_id,
-              product_name: record.product_name,
-              product_price: record.product_price,
-              description: record.description,
-              category_id: record.category_id,
-              images: record.images,
-            }
-          }}
-        >
-          Sửa
-        </Link>
+         <Link
+         to={{
+           pathname: "/mod-product",
+           state:{
+             product_id: record.product_id,
+             product_name: record.product_name,
+             product_price: record.product_price,
+             description: record.description,
+             category_id: record.category_id,
+             images: record.images,
+           }
+         }}
+       >
+         Sửa
+       </Link>
       ),
     },
+    {
+     
+      key: "action",
+      render: (text, record) => (
+         <Link
+         to={{
+           pathname: "/del-product",
+           state:{
+             product_id: record.product_id,
+             product_name: record.product_name,
+             product_price: record.product_price,
+             description: record.description,
+             category_id: record.category_id,
+             images: record.images,
+           }
+         }}
+       >
+         Xóa
+       </Link>
+      ),
+    },
+   
   ];
   return (
     <main>

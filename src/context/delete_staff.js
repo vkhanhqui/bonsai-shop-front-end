@@ -1,24 +1,21 @@
 import axios from "axios";
 
+const deleteStaffs = (
+  user_id 
+  
+  ) => {
 
-const deleteStaffs = (access_token
-  ) =>{
-    
+     const token =localStorage.token;
+   
   return axios
-    .delete(
-        `http://localhost:8000/bonsai-backend/admins/delete-staff/${access_token}`,
-      {
+    .delete(`http://localhost:8000/bonsai-backend/admins/delete-staff/${user_id}`, {
+      headers: {
+        accept: 'application/json',
+        Authorization:   `Bearer ${token}`,
+        'Content-Type': 'application/json'
       },
-      {
-        headers: {
-          accept: 'application/json',
-          Authorization:   `Bearer ${access_token}`,
-          'Content-Type': 'application/json'
-        }
-      }
-    )
-
+    })
     .then((res) => res.data)
-    .catch((err) => null);
+    .catch((err) => console.log(err));
 };
-export default deleteStaffs
+export default deleteStaffs;

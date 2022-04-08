@@ -11,6 +11,7 @@ const AdminManageCategory = () => {
 
   useEffect(() => {
     getCategories(localStorage.getItem("token")).then((res) => setCategories(res));
+    
   }, []);
 
   const columns = [
@@ -27,7 +28,6 @@ const AdminManageCategory = () => {
       align: "center",
     },
     {
-      title: "Thao tác",
       key: "action",
       render: (text, record) => (
         <Link
@@ -39,6 +39,21 @@ const AdminManageCategory = () => {
           }}
         >
           Sửa
+        </Link>
+      ),
+    },
+    {
+      key: "action",
+      render: (text, record) => (
+        <Link
+          to={{
+            pathname: "/del-category",
+            state:{
+              category_id: record.category_id,
+            }
+          }}
+        >
+          Xóa
         </Link>
       ),
     },

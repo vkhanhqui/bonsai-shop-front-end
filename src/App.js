@@ -11,7 +11,7 @@ import {
   PrivateRoute,
   AuthWrapper,
   Blogs,
-  LoginPage, Error,
+  LoginPage,
   Register,
   AdminAddProduct,
   Overview,
@@ -23,9 +23,17 @@ import {
   AdminAddCategory,
   AdminModCategory,
   AdminAddStaff,
+  DetailsBlog,
+  DetailsBlog1,
+  DetailsBlog2,
+  DetailsBlog3,
+  DetailsBlog4,
+  Error,
+  AdminDeleteProduct,
+  AdminDeleteCategory,
   AdminDelStaff
-  
 } from "./pages";
+
 
 
 
@@ -41,36 +49,39 @@ function App() {
                 <Route path="/add-product">
                   <AdminAddProduct />
                 </Route>
+                <Route path="/del-product">
+                  <AdminDeleteProduct />
+                </Route>
+                
+                <Route path="/del-staff">
+                  <AdminDelStaff />
+                </Route>
+
+                <Route path="/del-category">
+                  <AdminDeleteCategory />
+                </Route>
 
                 <Route path="/add-staff">
                   <AdminAddStaff />
+                </Route>
+                <Route path="/mod-product">
+                  <AdminModProduct />
                 </Route>
 
                 <Route path="/add-category">
                   <AdminAddCategory/>
                 </Route>
-                <Route path="/get-bill-detail">
-                  <AdminManageProduct/>
-                </Route>
+
                 <Route path="/mod-category">
                   <AdminModCategory/>
                 </Route>
                 
-                <Route path="/mod-product">
-                  <AdminModProduct/>
-                </Route>
                 <Route path="/overview">
                   <Overview />
                 </Route>
-              
                 <Route path="/manage-product">
                   <AdminManageProduct />
                 </Route>
-                
-                  <Route path="/delete-staff">
-                  <AdminDelStaff />
-                </Route>
-
                 <Route path="/manage-bill">
                   <AdminManageBill />
                 </Route>
@@ -92,6 +103,24 @@ function App() {
                   <Route path="/cart">
                     <Cart />
                   </Route>
+                  <Route path='/details'>
+            <DetailsBlog/>
+          </Route>
+        
+          
+          <Route path='/details1'>
+            <DetailsBlog1/>
+          </Route>
+
+          <Route path='/details2'>
+            <DetailsBlog2/>
+          </Route>
+          <Route path='/details3'>
+            <DetailsBlog3/>
+          </Route>
+          <Route path='/details4'>
+            <DetailsBlog4/>
+          </Route>
                   <Route path="/login">
                     <LoginPage />
                   </Route>
@@ -142,9 +171,9 @@ function App() {
                   <PrivateRoute path="/checkout">
                     <Checkout />
                   </PrivateRoute>
-                  <Route path="/*">
+                <Route path="/*">
                     <Error />
-                  </Route>
+                  </Route> 
                 </Route>
               </Router>
             </>

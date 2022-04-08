@@ -8,6 +8,7 @@ import img2 from '../assets/traubacamthach.jpg'
 import img3 from '../assets/dabupdo.jpg'
 import img4 from '../assets/dolar.jpg'
 import img5 from '../assets/BLOG7.jpg'
+import { Link } from 'react-router-dom'
 const Blogs = () => {
   return (
     <main>
@@ -17,7 +18,11 @@ const Blogs = () => {
         <img src={aboutImg} alt='nice desk' />
         <article>
           <div className='title'>
-          <a href="../blog1.js"><h2>HƯỚNG DẪN CHĂM SÓC SEN ĐÁ</h2></a>
+          <Link to='/details' className='blogdetails'>
+   
+           HƯỚNG DẪN CHĂM SÓC SEN ĐÁ 
+          
+         </Link>
             <div className='underline'></div>
           </div>
           <p>
@@ -30,7 +35,11 @@ const Blogs = () => {
         <img src={aboutImgs} alt='nice desk' />
         <article>
           <div className='title'>
-              <a href ="URL"><h2>BẠN ĐÃ PHƠI NẮNG CHO CÂY ĐÚNG CÁCH CHƯA ?</h2></a>
+          <Link to='/details4' className='blogdetails'>
+   
+   BẠN ĐÃ PHƠI NẮNG CHO CÂY ĐÚNG CÁCH CHƯA ?
+  
+ </Link>
             <div className='underline'></div>
           </div>
           <p>
@@ -42,7 +51,11 @@ const Blogs = () => {
         <article>
           <div className='title'>
 
-            <a href ="URL"><h2>NGƯỜI MỚI CHƠI NÊN CHĂM CÂY GÌ ?</h2></a>
+          <Link to='/details2' className='blogdetails'>
+   
+   NGƯỜI MỚI CHƠI NÊN CHĂM CÂY GÌ ?
+  
+ </Link>
             <div className='underline'></div>
           </div>
           <p>
@@ -55,7 +68,11 @@ const Blogs = () => {
         <article>
           <div className='title'>
             
-            <a href ="URL"><h2>TRẦU BÀ CẨM THẠCH</h2></a>
+          <Link to='/details1' className='blogdetails'>
+   
+        HƯỚNG DẪN CHĂM SÓC TRẦU BÀ CẨM THẠCH
+  
+        </Link>
             <div className='underline'></div>
           </div>
           <p>
@@ -68,7 +85,11 @@ const Blogs = () => {
         <article>
           <div className='title'>
             
-            <a href ="URL"><h2>HƯỚNG DẪN CHĂM SÓC CÂY ĐA BÚP ĐỎ</h2></a>
+          <Link to='/details3' className='blogdetails'>
+   
+   HƯỚNG DẪN CHĂM SÓC CÂY ĐA BÚP ĐỎ
+  
+ </Link>
             <div className='underline'></div>
           </div>
           <p>
@@ -81,7 +102,11 @@ const Blogs = () => {
         <article>
           <div className='title'>
             
-            <a href ="URL"><h2>ĐÔ LA HỒNG</h2></a>
+          <Link to='/' className='blogdetails'>
+   
+   ĐÔ LA HỒNG
+  
+ </Link>
             <div className='underline'></div>
           </div>
           <p>
@@ -94,7 +119,11 @@ const Blogs = () => {
         <img src={img5} alt='nice desk' />
         <article>
           <div className='title'>
-          <a href ="URL"><h2>11 BÍ "KÍP" CỦA NGHỆ THUẬT TẶNG QUÀ</h2></a>
+          <Link to='/' className='blogdetails'>
+   
+   11 BÍ "KÍP" CỦA NGHỆ THUẬT TẶNG QUÀ
+  
+ </Link>
             <div className='underline'></div>
           </div>
           <p>
@@ -120,11 +149,17 @@ const Wrapper = styled.section`
   }
 
   h2{
-      font-family:"Courier New", BrushScript, monospace;
+    font-family:"Courier New", BrushScript, monospace;
     
     color: rgb(0,100,0);
   }
- 
+  .blogdetails{
+    font-family:"Courier New", BrushScript, monospace;
+    
+    color: rgb(0,100,0);
+    font-size: 30px;
+    
+ }
   p {
     line-height: 2;
     max-width: 70rem;

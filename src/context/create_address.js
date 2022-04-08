@@ -1,5 +1,5 @@
 import axios from "axios";
-import Add_address from "../pages/AddAddress";
+import Add_address from "../pages/AdminAddAddress";
 
 const createAddress = (phone_number,districts,city,full_address
   ) =>{

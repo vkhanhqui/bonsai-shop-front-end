@@ -21,7 +21,14 @@ import AdminManageStaff from "./AdminManageStaff";
 import AdminAddCategory from "./AdminAddCategory";
 import AdminModCategory from "./AdminModCategory";
 import AdminAddStaff from "./AdminAddStaff";
-import AdminDelStaff from "./AdminDelStaff";
+import DetailsBlog from './DetailsBlog';
+import DetailsBlog1 from './DetailsBlog1';
+import DetailsBlog2 from './DetailsBlog2';
+import DetailsBlog3 from './DetailsBlog3';
+import DetailsBlog4 from './DetailsBlog4';
+import AdminDeleteProduct from './AdminDeleteProduct';
+import AdminDeleteCategory from './AdminDeleteCategory';
+import AdminDelStaff from './AdminDelStaff'
 export {
   Home,
   SingleProduct,
@@ -45,6 +52,14 @@ export {
   AdminManageStaff,
   AdminAddCategory,
   AdminModCategory,
-  AdminAddStaff, 
+  AdminAddStaff,
+  DetailsBlog,
+  DetailsBlog1,
+  DetailsBlog2,
+  DetailsBlog3,
+  DetailsBlog4,
+  AdminDeleteProduct,
+  AdminDeleteCategory,
   AdminDelStaff
+
 };

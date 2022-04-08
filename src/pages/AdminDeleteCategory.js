@@ -6,10 +6,11 @@ import getCategories from "../context/category_context";
 import createProduct from "../context/create_product_context";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
-import createStaff from "../context/create_staff";
-import deleteStaff from "../context/delete_staff";
 import { useLocation } from "react-router-dom";
-import getStaffs from "../context/get_staffs_context";
+import updateProduct from "../context/update_product"
+import deleteProduct from "../context/delete_product";
+import deleteCategory from "../context/delete_category";
+
 const { Option } = Select;
 
 const normFile = (e) => {
@@ -22,45 +23,37 @@ const normFile = (e) => {
   return e && e.fileList;
 };
 
-const AdminDelStaff = () => {
-  const [staffs, setStaffs] = useState([]);
-  const [form] = Form.useForm();
-  
+const AdminDeleteCategory = () => {
   const data = useLocation().state;
+  const [form] = Form.useForm();
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    getStaffs(localStorage.getItem("token")).then((res) => setStaffs(res));
+    getCategories().then((res) => setCategories(res));
   }, []);
 
   const openNotificationWithIcon = (type) => {
     notification[type]({
-      message: "Thêm Sản Phẩm Thành Công !!!",
+      message: "Xóa loại sản phẩm thành công",
       description:
-        "Sản phẩm đã được thêm thành công. Bỏ qua thông báo này để tiếp tục !!",
+        "Loại sản phẩm đã được xóa thành công. Bỏ qua thông báo này để tiếp tục !!",
     });
   };
   const errorNotfication = (type) => {
     notification[type]({
-      message: "Thêm Sản Phẩm Thất Bại!!!",
+      message: "Xóa Loại Sản Phẩm Thất Bại!!!",
       description:
-        "Sản phẩm đã được thêm thất bại. Bỏ qua thông báo này để tiếp tục !!",
+        "Loại sản phẩm đã được xóa thất bại. Bỏ qua thông báo này để tiếp tục !!",
     });
   };
 
   const onFinish = async (values) => {
-    const user_id = values.user_id;
-    const birthday = values.birthday;
-    const email = values.email;
-    const last_name = values.last_name;
-    const first_name = values.first_name;
-    const passwork = values.passwork;
-    const username = values.username;
-    const formData = new FormData();
+    const category_id = values.category_id;
+    
     try {
       
-      const response = deleteStaff(
-        user_id,
-     
+      const response = deleteCategory(
+        category_id
       );
       if (response) {
         form.resetFields();
@@ -85,7 +78,7 @@ const AdminDelStaff = () => {
         <AdminMenu />
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
-            <h2> THÊM NHÂN VIÊN </h2> <div className="underline"> </div>
+            <h2> XOÁ LOẠI SẢN PHẨM </h2> <div className="underline"> </div>
           </div>
           <div>
             <Form
@@ -94,13 +87,9 @@ const AdminDelStaff = () => {
               wrapperCol={{ span: 16 }}
               initialValues={{
                 remember: true,
+              
+                category_id: data.category_id,
                 
-                birthday: data.birthday,
-                email: data.email,
-                last_name: data.last_name,
-                first_name: data.first_name,
-                
-                username: data.username
               }}
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}
@@ -108,27 +97,16 @@ const AdminDelStaff = () => {
               style={{ marginLeft: -300 }}
               form={form}
             >
-              <Form.Item label="First Name" name="first_name">
-                <Input placeholder="input placeholder" />
+              <Form.Item label="Mã loại sản phẩm" name="category_id" >
+                <Input placeholder="input placeholder" required = {true} readOnly = {true}  />
               </Form.Item>
-              <Form.Item label="Last Name" name="last_name">
-                <Input placeholder="input placeholder" />
+              <Form.Item label="Tên Sản Phẩm" name="product_name">
+                <Input placeholder="input placeholder" required = {true} readOnly = {true}/>
               </Form.Item>
-              <Form.Item label="Birthday" name="birthday">
-                <Input placeholder="input placeholder" />
-              </Form.Item>
-              <Form.Item label="Email" name="email">
-                <Input placeholder="input placeholder" />
-              </Form.Item>
-              <Form.Item label="UserName" name="username">
-                <Input placeholder="input placeholder" />
-              </Form.Item>
-              <Form.Item label="Password" name="passwork">
-                <Input placeholder="input placeholder" />
-              </Form.Item>
+              
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  Submit
+                 DELETE
                 </Button>
               </Form.Item>
             </Form>
@@ -177,5 +155,4 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
   }
 `;
-export default AdminDelStaff;
-
+export default AdminDeleteCategory;

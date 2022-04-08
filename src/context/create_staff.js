@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const createStaff = (
+ 
         birthday,
         email,
         last_name,
@@ -13,7 +14,7 @@ const createStaff = (
     .post(
         `http://localhost:8000/bonsai-backend/admins/create-staff`,
       {
-        
+       
         "birthday": birthday,
         "email": email,
         "last_name": last_name,

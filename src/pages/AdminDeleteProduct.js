@@ -8,6 +8,7 @@ import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
 import { useLocation } from "react-router-dom";
 import updateProduct from "../context/update_product"
+import deleteProduct from "../context/delete_product";
 
 const { Option } = Select;
 
@@ -57,13 +58,8 @@ const AdminModProduct = () => {
       for (let i = 0; i < images.length; i++) {
         formData.append("files", images[i].originFileObj);
       }
-      const response = updateProduct(
+      const response = deleteProduct(
         product_id,
-        product_name,
-        product_price,
-        category_id,
-        description,
-        
       );
       if (response) {
         form.resetFields();
@@ -88,7 +84,7 @@ const AdminModProduct = () => {
         <AdminMenu />
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
-            <h2> SỬA SẢN PHẨM </h2> <div className="underline"> </div>
+            <h2> XOÁ SẢN PHẨM </h2> <div className="underline"> </div>
           </div>
           <div>
             <Form
@@ -114,16 +110,18 @@ const AdminModProduct = () => {
                 <Input placeholder="input placeholder" required = {true} readOnly = {true}  />
               </Form.Item>
               <Form.Item label="Tên Sản Phẩm" name="product_name">
-                <Input placeholder="input placeholder" />
+                <Input placeholder="input placeholder" required = {true} readOnly = {true}/>
               </Form.Item>
               <Form.Item label="Giá Sản Phẩm" name="product_price">
-                <Input placeholder="input placeholder" />
+                <Input placeholder="input placeholder" required = {true} readOnly = {true} />
               </Form.Item>
               <Form.Item label="Loại Sản Phẩm" name="category_id">
                 <Select
                   style={{
                     width: 300,
                   }}
+                  required = {true} 
+                  readOnly = {true}
                 >
                   {categories.map((category) => {
                     return (
@@ -139,8 +137,10 @@ const AdminModProduct = () => {
               </Form.Item>
               <Form.Item label="Mô Tả Sản Phẩm" name="description">
                 <Input
-                  placeholder="input placeholder"
-                  style={{ height: 200 }}
+                  placeholder="input placeholder"required = {true} readOnly = {true}
+                  style={{ height: 200 }
+                  
+                }
                 />
               </Form.Item>
               <Form.Item
@@ -148,6 +148,8 @@ const AdminModProduct = () => {
                 name="images"
                 valuePropName="fileList"
                 getValueFromEvent={normFile}
+                required = {true} 
+                readOnly = {true}
               >
                 <Upload
                   action="//localhost:8000/bonsai-backend/files/upload-image"
@@ -161,7 +163,7 @@ const AdminModProduct = () => {
               </Form.Item>
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  Submit
+                 DELETE
                 </Button>
               </Form.Item>
             </Form>

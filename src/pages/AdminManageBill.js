@@ -6,6 +6,7 @@ import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
 import { formatPrice } from "../utils/helpers";
 import getBills from "../context/get_bills_context";
+
 const handleBillStatus = (bill_status) => {
   if (bill_status === "Customer confirmed") {
     return "Đơn hàng mới";
@@ -31,7 +32,7 @@ const handleConfirmBill = (record) => {
     return (
       <Link
         to={{
-          pathname: "/get-bill-detail",
+          pathname: "/confirm-bill",
           state: {
             bill_id: record.bill_id,
           },

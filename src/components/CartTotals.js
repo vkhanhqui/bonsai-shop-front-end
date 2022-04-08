@@ -9,7 +9,12 @@ import { Form, Input, Button, Upload, notification } from "antd";
 import "antd/dist/antd.css";
 import axios from "axios";
 import getAddress from "../context/get_address_context";
-import Add_address from "../pages/AddAddress";
+
+
+import Add_address from "../pages/AdminAddAddress";
+   
+
+
 
 
 const CartTotals = () => {
@@ -70,12 +75,18 @@ const CartTotals = () => {
         return { number_product: item.amount, product_id: item.id };
       });
       console.log("array", arrayItem);
+
       const res = await axios.post(
         "http://localhost:8000/bonsai-backend/customers/confirm-bill",
 
-        { address_id: orderAddress, items: arrayItem },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { address_id: orderAddress, 
+          items: arrayItem 
+        },
+        { headers: 
+          { 
+            Authorization: `Bearer ${token}` } }
       );
+
       console.log("ketqua", res.data);
       clearCart();
       history.push("/");
@@ -83,13 +94,14 @@ const CartTotals = () => {
     }
     fetchData();
   }, [isModalVisible]);
+  
   const handleOk = () => {
     setIsModalVisible(false);
-    // setConfirmBill(true);
+    //setConfirmBill(true);
   };
   const handleOk1 = ()=> {
     setIsModalVisible1(false);
-    this.SaveNew();
+    
   }
   const handleCancel = () => {
     setIsModalVisible(false);
