@@ -3,21 +3,22 @@ import styled from "styled-components";
 import { useCartContext } from "../context/cart_context";
 import { formatPrice } from "../utils/helpers";
 import { Modal, Select } from "antd";
-import { useHistory } from "react-router-dom";
 
 import "antd/dist/antd.css";
 import customerConfirmBill from "../context/customer_confirm_bill";
 import Add_address from "../pages/AdminAddAddress";
 import getAddresses from "../context/get_all_addresses";
+import vnPayment from "../context/vn_payment";
 
 const CartTotals = () => {
   const { total_amount, cart, clearCart } = useCartContext();
-  const history = useHistory();
   const [address, setAddress] = useState([]);
   const [orderAddress, setOrderAddress] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalVisible1, setIsModalVisible1] = useState(false);
+  const [isModalVisiblePayment, setIsModalVisiblePayment] = useState(false);
   const { Option } = Select;
+  const [paymentUrl, setPaymentUrl] = useState("");
 
   useEffect(() => {
     getAddresses().then((res) => setAddress(res));
@@ -35,9 +36,16 @@ const CartTotals = () => {
     const arrayItem = cart.map((item) => {
       return { number_product: item.amount, product_id: item.id };
     });
-    customerConfirmBill(orderAddress, arrayItem);
-    clearCart();
-    history.push("/");
+    let confirmBillResp = await customerConfirmBill(orderAddress, arrayItem);
+    // vnpay
+    let payment_url = await vnPayment(
+      total_amount,
+      parseInt(confirmBillResp.message)
+    );
+    setPaymentUrl(payment_url);
+    setIsModalVisiblePayment(true);
+    // clearCart();
+    // history.push("/");
   };
   const handleOk1 = () => {
     setIsModalVisible1(false);
@@ -51,7 +59,12 @@ const CartTotals = () => {
   function onChange(value) {
     setOrderAddress(value);
   }
-
+  const handleOkConfirmPayment = () => {
+    window.location.href = paymentUrl;
+  }
+  const handleCancelConfirmPayment = () => {
+    setIsModalVisiblePayment(false);
+  }
   return (
     <>
       <Wrapper>
@@ -104,6 +117,15 @@ const CartTotals = () => {
           onCancel={handleCancel1}
         >
           <Add_address />
+        </Modal>
+
+        <Modal
+        title="Payment URL"
+        visible={isModalVisiblePayment}
+        okText="Xác nhận thanh toán"
+        onOk={handleOkConfirmPayment}
+        onCancel={handleCancelConfirmPayment}
+        >
         </Modal>
       </>
     </>

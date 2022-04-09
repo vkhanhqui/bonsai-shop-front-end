@@ -52,7 +52,7 @@ function App() {
                 <Route path="/del-product">
                   <AdminDeleteProduct />
                 </Route>
-                
+
                 <Route path="/del-staff">
                   <AdminDelStaff />
                 </Route>
@@ -75,7 +75,7 @@ function App() {
                 <Route path="/mod-category">
                   <AdminModCategory/>
                 </Route>
-                
+
                 <Route path="/overview">
                   <Overview />
                 </Route>
@@ -106,8 +106,8 @@ function App() {
                   <Route path='/details'>
             <DetailsBlog/>
           </Route>
-        
-          
+
+
           <Route path='/details1'>
             <DetailsBlog1/>
           </Route>
@@ -173,7 +173,7 @@ function App() {
                   </PrivateRoute>
                 <Route path="/*">
                     <Error />
-                  </Route> 
+                  </Route>
                 </Route>
               </Router>
             </>

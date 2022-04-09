@@ -1,11 +1,21 @@
 import React from "react";
-import { FeaturedProducts, Hero, Services, Contact } from "../components";
+import { Hero, Contact } from "../components";
+import { useLocation, useHistory } from "react-router-dom";
+
 const HomePage = () => {
+  const history = useHistory();
+
+  const search = useLocation().search;
+  const isVNPaySuccess = new URLSearchParams(search).get("isVNPaySuccess");
+  if (isVNPaySuccess === 'true') {
+    localStorage.removeItem('cart');
+    history.push("/");
+    window.location.reload();
+  }
+
   return (
     <main>
       <Hero />
-      {/* <FeaturedProducts /> */}
-      {/* <Services /> */}
       <Contact />
     </main>
   );
