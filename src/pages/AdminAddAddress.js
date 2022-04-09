@@ -23,7 +23,7 @@ const Add_address = () => {
           "Địa chỉ đã được thêm thất bại. Bỏ qua thông báo này để tiếp tục !!",
       });
     };
-  
+
     const onFinish = async (values) => {
       const phone_number = values.phone_number;
       const district = values.district;
@@ -32,12 +32,12 @@ const Add_address = () => {
       const formData = new FormData();
       try {
         const response = createAddr(
-         
+
           phone_number,
           district,
           city,
           full_address,
-      
+
         );
         if (response) {
           form.resetFields();
@@ -50,7 +50,7 @@ const Add_address = () => {
         errorNotfication("error");
       }
     };
-  
+
     const onFinishFailed = (errorInfo) => {
       console.log("Failed:", errorInfo);
     };
