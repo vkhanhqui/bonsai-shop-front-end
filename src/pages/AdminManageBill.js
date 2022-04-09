@@ -6,45 +6,48 @@ import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
 import { formatPrice } from "../utils/helpers";
 import getBills from "../context/get_bills_context";
+import adminConfirmBill from "../context/admin_confirm_bill";
 
-const handleBillStatus = (bill_status) => {
-  if (bill_status === "Customer confirmed") {
-    return "Đơn hàng mới";
-  } else if (bill_status === "Admin confirmed") {
-    return "Đã duyệt";
-  }
-};
-const handleConfirmBill = (record) => {
-  if (record.bill_status === "Admin confirmed") {
-    return (
-      <Link
-        to={{
-          pathname: "/get-bill-detail",
-          state: {
-            bill_id: record.bill_id,
-          },
-        }}
-      >
-        <p>Xem chi tiết</p>
-      </Link>
-    );
-  } else if (record.bill_status === "Customer confirmed") {
-    return (
-      <Link
-        to={{
-          pathname: "/confirm-bill",
-          state: {
-            bill_id: record.bill_id,
-          },
-        }}
-      >
-        <p>Xác nhận đơn hàng</p>
-      </Link>
-    );
-  }
-};
 const AdminManageBill = () => {
   const [bills, setBills] = useState([]);
+
+  const handleBillStatus = (bill_status) => {
+    if (bill_status === "Customer confirmed") {
+      return "Đơn hàng mới";
+    } else if (bill_status === "Admin confirmed") {
+      return "Đã duyệt";
+    }
+  };
+
+  const handleConfirm = async (bill_id) => {
+    adminConfirmBill(localStorage.getItem("token"), bill_id).then((res) => {
+      getBills(localStorage.getItem("token")).then((res) => setBills(res));
+    });
+
+  };
+
+  const handleConfirmBill = (record) => {
+    if (record.bill_status === "Admin confirmed") {
+      return (
+        <Link
+          to={{
+            pathname: "/get-bill-detail",
+            state: {
+              bill_id: record.bill_id,
+            },
+          }}
+        >
+          <p>Xem chi tiết</p>
+        </Link>
+      );
+    } else if (record.bill_status === "Customer confirmed") {
+      return (
+        <Link onClick={() => handleConfirm(record.bill_id)}>
+          <p>Xác nhận đơn hàng</p>
+        </Link>
+      );
+    }
+  };
 
   useEffect(() => {
     getBills(localStorage.getItem("token")).then((res) => setBills(res));
