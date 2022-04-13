@@ -28,7 +28,9 @@ const CartTotals = () => {
   }, []);
 
 
- 
+ function showW () {
+   window.location='/detail-bill';
+ }
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -53,9 +55,7 @@ const CartTotals = () => {
     // history.push("/");
   };
   const handleOk1 = () => {
-<Link to='/products' className='btn'>
-            fill it
-          </Link>
+
   };
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -90,7 +90,7 @@ const CartTotals = () => {
         <Modal
           title="Basic Modal"
           visible={isModalVisible}
-          onOk={HandleOk}
+          onOk={showW}
           onCancel={handleCancel}
         >
           <p>Some contents... </p>

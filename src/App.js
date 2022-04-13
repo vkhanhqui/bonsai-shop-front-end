@@ -31,7 +31,8 @@ import {
   Error,
   AdminDeleteProduct,
   AdminDeleteCategory,
-  AdminDelStaff
+  AdminDelStaff,
+  DetailBill
 } from "./pages";
 
 
@@ -107,7 +108,9 @@ function App() {
             <DetailsBlog/>
           </Route>
 
-
+          <Route path='/detail-bill'>
+            <DetailBill/>
+          </Route>
           <Route path='/details1'>
             <DetailsBlog1/>
           </Route>

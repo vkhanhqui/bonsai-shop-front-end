@@ -28,7 +28,8 @@ import DetailsBlog3 from './DetailsBlog3';
 import DetailsBlog4 from './DetailsBlog4';
 import AdminDeleteProduct from './AdminDeleteProduct';
 import AdminDeleteCategory from './AdminDeleteCategory';
-import AdminDelStaff from './AdminDelStaff'
+import AdminDelStaff from './AdminDelStaff';
+import DetailBill from "./DetailBill";
 export {
   Home,
   SingleProduct,
@@ -60,6 +61,7 @@ export {
   DetailsBlog4,
   AdminDeleteProduct,
   AdminDeleteCategory,
-  AdminDelStaff
+  AdminDelStaff,
+  DetailBill
 
 };
