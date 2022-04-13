@@ -28,9 +28,7 @@ const CartTotals = () => {
   }, []);
 
 
- function showW () {
-   window.location='/detail-bill';
- }
+
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -90,7 +88,7 @@ const CartTotals = () => {
         <Modal
           title="Basic Modal"
           visible={isModalVisible}
-          onOk={showW}
+          onOk={HandleOk}
           onCancel={handleCancel}
         >
           <p>Some contents... </p>
@@ -106,6 +104,7 @@ const CartTotals = () => {
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
+            
           >
             {address.map((value) => {
               return (
@@ -129,52 +128,22 @@ const CartTotals = () => {
         <Modal
         title="Payment URL"
         visible={isModalVisiblePayment}
-        okText="Xác nhận thanh toán"
-        onOk={handleOkConfirmPayment}
+        //okText="Xác nhận thanh toán"
+        //onOk={handleOkConfirmPayment}
         onCancel={handleCancelConfirmPayment}
         >
-            Product Name:
-            {
-              cart.map((item)=>{
-                return(
-                  item.name
-                );
-                  
-              }
-              )
-            }
+            
             <p></p>
-            Product so luong:
-            {
-              cart.map((item)=>{
-                return(
-                  item.amount
-                );
-                  
-              }
-              )
-            }
-            <p></p>
-            Product image:
-            <img src ="
-              cart.map((item)=>{
-                return(
-                  item.image
-                );
-                  
-              }
-              )
-            }
-            " alt= "khong ra ne"></img>
-            <p></p>
-             Address:
-             {address.map((value) => {
-              return (
-                value.full_address
-              );
-            })}
-            <p></p>
+            
             Total: {total_amount}
+            <p></p>
+            <button className="btn" onClick={showModal1}>
+            Thanh toán COD
+          </button>
+          <p></p>
+          <button className="btn" onClick={handleOkConfirmPayment}>
+            Thanh toán VNPAY
+          </button>
         </Modal>
       </>
     </>
