@@ -3,13 +3,15 @@ import styled from "styled-components";
 import { useCartContext } from "../context/cart_context";
 import { formatPrice } from "../utils/helpers";
 import { Modal, Select } from "antd";
-
+import getBills from "../context/get_bills_context";
+import { useLocation } from "react-router-dom";
 import "antd/dist/antd.css";
 import customerConfirmBill from "../context/customer_confirm_bill";
 import Add_address from "../pages/AdminAddAddress";
 import getAddresses from "../context/get_all_addresses";
 import vnPayment from "../context/vn_payment";
-
+import { Form, Input, Button, Upload, notification } from "antd";
+import {Link} from "react-router-dom";
 const CartTotals = () => {
   const { total_amount, cart, clearCart } = useCartContext();
   const [address, setAddress] = useState([]);
@@ -19,11 +21,14 @@ const CartTotals = () => {
   const [isModalVisiblePayment, setIsModalVisiblePayment] = useState(false);
   const { Option } = Select;
   const [paymentUrl, setPaymentUrl] = useState("");
-
+  
   useEffect(() => {
     getAddresses().then((res) => setAddress(res));
+    
   }, []);
 
+
+ 
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -48,7 +53,9 @@ const CartTotals = () => {
     // history.push("/");
   };
   const handleOk1 = () => {
-    setIsModalVisible1(false);
+<Link to='/products' className='btn'>
+            fill it
+          </Link>
   };
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -126,6 +133,48 @@ const CartTotals = () => {
         onOk={handleOkConfirmPayment}
         onCancel={handleCancelConfirmPayment}
         >
+            Product Name:
+            {
+              cart.map((item)=>{
+                return(
+                  item.name
+                );
+                  
+              }
+              )
+            }
+            <p></p>
+            Product so luong:
+            {
+              cart.map((item)=>{
+                return(
+                  item.amount
+                );
+                  
+              }
+              )
+            }
+            <p></p>
+            Product image:
+            <img src ="
+              cart.map((item)=>{
+                return(
+                  item.image
+                );
+                  
+              }
+              )
+            }
+            " alt= "khong ra ne"></img>
+            <p></p>
+             Address:
+             {address.map((value) => {
+              return (
+                value.full_address
+              );
+            })}
+            <p></p>
+            Total: {total_amount}
         </Modal>
       </>
     </>

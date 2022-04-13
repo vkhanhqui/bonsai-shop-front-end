@@ -27,12 +27,8 @@ const normFile = (e) => {
 const AdminModCategory = () => {
   const data = useLocation().state;
   const [form] = Form.useForm();
-  const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    getCategories().then((res) => setCategories(res));
-   
-  }, []);
+
 
   const openNotificationWithIcon = (type) => {
     notification[type]({
@@ -49,9 +45,9 @@ const AdminModCategory = () => {
     });
   };
 
-  const onFinish = async (values) => {
-    const category_id = values.category_id;
-    const category_name = values.category_name;
+  const onFinish = async (value) => {
+    const category_id = value.category_id;
+    const category_name = value.category_name;
     try {
       const response = updateCategory(
         category_id,
@@ -95,7 +91,7 @@ const AdminModCategory = () => {
               }}
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}
-              autoComplete="on"
+              autoComplete="off"
               style={{ marginLeft: -300 }}
               form={form}
             >

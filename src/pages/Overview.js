@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
+import Chart from "../components/Chart"
+import Charts from "../components/PieCharts"
 
 const Overview = () => {
 
@@ -26,6 +28,10 @@ const Overview = () => {
             </h2>
             <div className="underline"></div>
           </div>
+          <p>DOANH THU</p>
+          <Chart />
+          <p>LOẠI SẢN PHẨM</p>
+          <Charts />
           <p>
             Green Life là một dự án nhỏ cung cấp cho cộng đồng yêu cây cảnh, yêu
             thích những không gian xanh, sạch. Tại website này, bạn sẽ tìm thấy

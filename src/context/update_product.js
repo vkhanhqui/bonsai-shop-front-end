@@ -4,7 +4,7 @@ const updateProduct = (
   product_id,
   product_name,
   product_price,
-  category_id,
+  
   description,
 ) => {
     const token = localStorage.token; 

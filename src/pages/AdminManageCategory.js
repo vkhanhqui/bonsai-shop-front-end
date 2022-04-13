@@ -8,12 +8,16 @@ import getCategories from "../context/category_context";
 
 const AdminManageCategory = () => {
   const [categories, setCategories] = useState([]);
-
+  
+  
   useEffect(() => {
     getCategories(localStorage.getItem("token")).then((res) => setCategories(res));
     
   }, []);
-
+  const onChange = (e) => {
+    
+    categories.categories?.map((obj) => ({ ...obj, key: obj.category_id }));
+  };
   const columns = [
     {
       title: "Số thứ tự",
@@ -87,6 +91,7 @@ const AdminManageCategory = () => {
             <Link to="add-category">Thêm mới</Link>
           </Button>
           <Table
+            onChange={onChange}
             dataSource={categories}
             columns={columns}
             pagination={{ defaultPageSize: 10 }}
