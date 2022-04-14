@@ -27,8 +27,10 @@ const normFile = (e) => {
 const AdminModCategory = () => {
   const data = useLocation().state;
   const [form] = Form.useForm();
-
-
+  useEffect(() => {
+    getCategories().then((res) => setCategories(res));
+  }, []);
+  const [categories, setCategories] = useState([]);
 
   const openNotificationWithIcon = (type) => {
     notification[type]({
@@ -77,7 +79,7 @@ const AdminModCategory = () => {
         <AdminMenu />
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
-            <h2> SỬA LOẠI SẢN PHẨM </h2> <div className="underline"> </div>
+           
           </div>
           <div>
             <Form
@@ -94,7 +96,33 @@ const AdminModCategory = () => {
               autoComplete="off"
               style={{ marginLeft: -300 }}
               form={form}
-            >
+              
+            > <h2>CHI TIẾT LOẠI SẢN PHẨM </h2> <div className="underline"> </div>
+            <Form.Item label="Mã loại sản phẩm" name="category_id">
+              <Input placeholder="input placeholder" required = {true} readOnly = {true}  />
+            </Form.Item>
+            <Form.Item label="Loại Sản Phẩm" name="category_id">
+                <Select
+                  style={{
+                    width: 300,
+                  }}
+                  required = {true} 
+                  readOnly = {true}
+                >
+                  {categories.map((category) => {
+                    return (
+                      <Option
+                        key={category.category_id}
+                        value={category.category_id}
+                      >
+                        {category.category_name}
+                      </Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+            
+            <h2> SỬA LOẠI SẢN PHẨM </h2> <div className="underline"> </div>
               <Form.Item label="Mã loại sản phẩm" name="category_id">
                 <Input placeholder="input placeholder" required = {true} readOnly = {true}  />
               </Form.Item>

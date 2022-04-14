@@ -100,8 +100,25 @@ const AdminDeleteCategory = () => {
               <Form.Item label="Mã loại sản phẩm" name="category_id" >
                 <Input placeholder="input placeholder" required = {true} readOnly = {true}  />
               </Form.Item>
-              <Form.Item label="Tên Sản Phẩm" name="product_name">
-                <Input placeholder="input placeholder" required = {true} readOnly = {true}/>
+              <Form.Item label="Loại Sản Phẩm" name="category_id">
+                <Select
+                  style={{
+                    width: 300,
+                  }}
+                  required = {true} 
+                  readOnly = {true}
+                >
+                  {categories.map((category) => {
+                    return (
+                      <Option
+                        key={category.category_id}
+                        value={category.category_id}
+                      >
+                        {category.category_name}
+                      </Option>
+                    );
+                  })}
+                </Select>
               </Form.Item>
               
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
