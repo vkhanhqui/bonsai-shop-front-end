@@ -113,8 +113,9 @@ const CartTotals = () => {
         <Modal
           title="Add Address"
           visible={isModalVisible1}
-          onOk={handleOk1}
-          onCancel={handleCancel1}
+          
+           onCancel={handleCancel1}
+          footer={null}
         >
           <Add_address />
         </Modal>

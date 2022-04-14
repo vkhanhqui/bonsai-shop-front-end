@@ -33,15 +33,7 @@ const Overview = () => {
           <p>LOẠI SẢN PHẨM</p>
           <Charts />
           <p>
-            Green Life là một dự án nhỏ cung cấp cho cộng đồng yêu cây cảnh, yêu
-            thích những không gian xanh, sạch. Tại website này, bạn sẽ tìm thấy
-            những thông tin về sản phẩm, dịch vụ chăm sóc tinh thần của bạn,
-            chúng tôi luôn mang đến những sự chỉn chu trong từng sản phẩm. Green
-            Life không chỉ là một cửa hàng cây cảnh, mà còn là nơi dừng chân sau
-            những xô bồ của cuộc sống vội vã Nếu bạn yêu thích sự nhẹ nhàng,
-            sang trọng, đơn giản, Đừng ngần ngại hãy liên hệ với Green Life, hãy
-            để chúng tôi quan tâm đến bạn. Green Life xin cảm ơn sự đồng hành và
-            tin tưởng của quý khách trong thời gian vừa qua.
+           
           </p>
         </article>
       </Wrapper>
