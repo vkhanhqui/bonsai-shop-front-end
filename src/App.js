@@ -97,6 +97,7 @@ function App() {
                 <Route path="/">
                   <Navbar />
                   <Sidebar />
+                  <Switch>
                   <Route exact path="/">
                     <Home />
                   </Route>
@@ -142,6 +143,10 @@ function App() {
                   <PrivateRoute path="/checkout">
                     <Checkout />
                   </PrivateRoute>
+                  <Route path="/*">
+                    <Error />
+                  </Route>
+                  </Switch>
                 </Route>
               </Switch>
             </>
@@ -151,6 +156,7 @@ function App() {
                 <Route>
                   <Navbar />
                   <Sidebar />
+                  <Switch>
                   <Route exact path="/">
                     <Home />
                   </Route>
@@ -179,6 +185,8 @@ function App() {
                 <Route path="/*">
                     <Error />
                   </Route>
+                  
+              </Switch>
                 </Route>
               </Router>
             </>

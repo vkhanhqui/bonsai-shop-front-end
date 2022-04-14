@@ -1,9 +1,10 @@
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-import { Hero, Contact } from "../components";
+import { Hero, Contact, FeaturedProducts } from "../components";
 import { useLocation, useHistory } from "react-router-dom";
 
+import { Services } from "../components";
 const HomePage = () => {
   const history = useHistory();
 
@@ -39,6 +40,8 @@ const HomePage = () => {
       />
       <ToastContainer />
       <Hero />
+      <FeaturedProducts/>
+      <Services/>
       <Contact />
     </main>
   );
