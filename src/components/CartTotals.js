@@ -3,15 +3,12 @@ import styled from "styled-components";
 import { useCartContext } from "../context/cart_context";
 import { formatPrice } from "../utils/helpers";
 import { Modal, Select } from "antd";
-import getBills from "../context/get_bills_context";
-import { useLocation } from "react-router-dom";
 import "antd/dist/antd.css";
 import customerConfirmBill from "../context/customer_confirm_bill";
 import Add_address from "../pages/AdminAddAddress";
 import getAddresses from "../context/get_all_addresses";
 import vnPayment from "../context/vn_payment";
-import { Form, Input, Button, Upload, notification } from "antd";
-import {Link} from "react-router-dom";
+import { Button } from "antd";
 const CartTotals = () => {
   const { total_amount, cart, clearCart } = useCartContext();
   const [address, setAddress] = useState([]);
@@ -20,14 +17,10 @@ const CartTotals = () => {
   const [isModalVisible1, setIsModalVisible1] = useState(false);
   const [isModalVisiblePayment, setIsModalVisiblePayment] = useState(false);
   const { Option } = Select;
-  const [paymentUrl, setPaymentUrl] = useState("");
-  
+
   useEffect(() => {
     getAddresses().then((res) => setAddress(res));
-    
   }, []);
-
-
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -38,23 +31,30 @@ const CartTotals = () => {
 
   const HandleOk = async () => {
     setIsModalVisible(false);
+    setIsModalVisiblePayment(true);
+  };
+
+  const HandleOkPayment = async (is_vnpay) => {
     const arrayItem = cart.map((item) => {
       return { number_product: item.amount, product_id: item.id };
     });
-    let confirmBillResp = await customerConfirmBill(orderAddress, arrayItem);
-    // vnpay
-    let payment_url = await vnPayment(
-      total_amount,
-      parseInt(confirmBillResp.message)
+    let confirmBillResp = await customerConfirmBill(
+      orderAddress,
+      arrayItem,
+      total_amount
     );
-    setPaymentUrl(payment_url);
-    setIsModalVisiblePayment(true);
-    // clearCart();
-    // history.push("/");
+    if (is_vnpay === true) {
+      // vnpay
+      let payment_url = await vnPayment(
+        total_amount,
+        parseInt(confirmBillResp.message)
+      );
+      window.location.href = payment_url;
+    }else{
+      window.location.href = "http://localhost:3000?isVNPaySuccess=true";
+    }
   };
-  const handleOk1 = () => {
-
-  };
+  const handleOk1 = () => {};
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -64,12 +64,9 @@ const CartTotals = () => {
   function onChange(value) {
     setOrderAddress(value);
   }
-  const handleOkConfirmPayment = () => {
-    window.location.href = paymentUrl;
-  }
   const handleCancelConfirmPayment = () => {
     setIsModalVisiblePayment(false);
-  }
+  };
   return (
     <>
       <Wrapper>
@@ -86,14 +83,13 @@ const CartTotals = () => {
       </Wrapper>
       <>
         <Modal
-          title="Basic Modal"
+          title="Danh sách địa chỉ có sẵn"
           visible={isModalVisible}
           onOk={HandleOk}
           onCancel={handleCancel}
         >
-          <p>Some contents... </p>
           <button className="btn" onClick={showModal1}>
-            Add Address
+            Hoặc thêm địa chỉ mới
           </button>
           <p></p>
           <Select
@@ -104,7 +100,6 @@ const CartTotals = () => {
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
-            
           >
             {address.map((value) => {
               return (
@@ -114,7 +109,6 @@ const CartTotals = () => {
               );
             })}
           </Select>
-          ,
         </Modal>
         <Modal
           title="Add Address"
@@ -126,25 +120,24 @@ const CartTotals = () => {
         </Modal>
 
         <Modal
-        title="Payment URL"
-        visible={isModalVisiblePayment}
-        //okText="Xác nhận thanh toán"
-        //onOk={handleOkConfirmPayment}
-        onCancel={handleCancelConfirmPayment}
-        footer={[<Button key="Cancel" type="cancel"  onClick={handleCancelConfirmPayment}>
-        Cancel
-        </Button>,]}
+          title="Chọn phương thức thanh toán"
+          visible={isModalVisiblePayment}
+          onCancel={handleCancelConfirmPayment}
+          footer={[
+            <Button
+              key="Cancel"
+              type="cancel"
+              onClick={handleCancelConfirmPayment}
+            >
+              Cancel
+            </Button>,
+          ]}
         >
-            
-            <p></p>
-            
-            Total: {total_amount}
-            <p></p>
-            <button className="btn" onClick={showModal1}>
+          <button className="btn" onClick={() => HandleOkPayment(false)}>
             Thanh toán COD
           </button>
           <p></p>
-          <button className="btn" onClick={handleOkConfirmPayment}>
+          <button className="btn" onClick={() => HandleOkPayment(true)}>
             Thanh toán VNPAY
           </button>
         </Modal>

@@ -1,4 +1,6 @@
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+
 import { Hero, Contact } from "../components";
 import { useLocation, useHistory } from "react-router-dom";
 
@@ -7,14 +9,35 @@ const HomePage = () => {
 
   const search = useLocation().search;
   const isVNPaySuccess = new URLSearchParams(search).get("isVNPaySuccess");
-  if (isVNPaySuccess === 'true') {
-    localStorage.removeItem('cart');
+  if (isVNPaySuccess === "true") {
+    toast("Thanh toán thành công!!!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    localStorage.removeItem("cart");
     history.push("/");
-    window.location.reload();
+    setTimeout(() => window.location.reload(), 2000);
   }
 
   return (
     <main>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <ToastContainer />
       <Hero />
       <Contact />
     </main>
