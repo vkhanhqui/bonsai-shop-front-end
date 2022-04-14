@@ -46,21 +46,7 @@ const AdminManageCategory = () => {
         </Link>
       ),
     },
-    {
-      key: "action",
-      render: (text, record) => (
-        <Link
-          to={{
-            pathname: "/del-category",
-            state:{
-              category_id: record.category_id,
-            }
-          }}
-        >
-          Xóa
-        </Link>
-      ),
-    },
+    
   ];
   return (
     <main>

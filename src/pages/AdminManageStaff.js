@@ -40,22 +40,7 @@ const AdminManageStaff = () => {
       render: (text, record) =>
         `${record.last_name} ${record.first_name}`,
     },
-    {
-      title: "Thao tác",
-      key: "action",
-      render: (text, record) => (
-        <Link
-          to={{
-            pathname: "/del-staff",
-            state:{
-              staff_id: record.staff_id,
-            }
-          }}
-        >
-          Xóa
-        </Link>
-      ),
-    },
+    
   ];
   return (
     <main>

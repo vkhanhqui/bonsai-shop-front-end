@@ -131,6 +131,9 @@ const CartTotals = () => {
         //okText="Xác nhận thanh toán"
         //onOk={handleOkConfirmPayment}
         onCancel={handleCancelConfirmPayment}
+        footer={[<Button key="Cancel" type="cancel"  onClick={handleCancelConfirmPayment}>
+        Cancel
+        </Button>,]}
         >
             
             <p></p>
