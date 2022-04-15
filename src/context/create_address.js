@@ -10,9 +10,9 @@ const createAddress = (phone_number,districts,city,full_address
       {
         
         "phone_number":phone_number,
-      "district": districts,
-      "city":city,
-      "full_address":full_address,
+        "district": districts,
+        "city":city,
+        "full_address":full_address,
       },
       {
         headers: {

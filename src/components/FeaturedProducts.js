@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Loading from "./Loading";
 import Product from "./Product";
 import { Home } from "../pages";
+import BestSeller from "./BestSeller";
 const FeaturedProducts = () => {
   const {
     products_loading: loading,
@@ -23,11 +24,13 @@ const FeaturedProducts = () => {
         <h2>Best Seller</h2>
         <div className="underline"></div>
       </div>
+
       <div className="section-center featured">
-        {featured.slice(0, 3).map((product) => {
-          return <Product key={product.product_id} {...product} />;
-        })}
+       
+        <BestSeller />
+       
       </div>
+
       <Link to="/products" className="btn">
         all products
       </Link>
