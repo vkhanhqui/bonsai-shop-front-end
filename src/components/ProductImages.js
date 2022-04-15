@@ -25,10 +25,11 @@ const ProductImages = ({ images = [[]] }) => {
 
 const Wrapper = styled.section`
   .main {
-    height: 600px;
+    height: auto;
   }
   img {
     width: 100%;
+  
     display: block;
     border-radius: var(--radius);
     object-fit: cover;

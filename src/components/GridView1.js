@@ -21,7 +21,8 @@ const GridView1 = ({ products}) => {
 
 const Wrapper = styled.section`
   img {
-    height: 175px;
+    min-height: 320px;
+    height:auto;
   }
 
   .products-container {
