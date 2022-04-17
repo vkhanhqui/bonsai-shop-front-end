@@ -1,61 +1,139 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Form, Select, Input, Button, Upload, notification } from "antd";
-import getCategories from "../context/category_context";
+import { Table, Button } from "antd";
+import { Link } from "react-router-dom";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
 import { formatPrice } from "../utils/helpers";
-import { useLocation } from "react-router-dom";
-import GetBillDetail from "../context/get_detailBill_context";
+import getBills from "../context/get_bills_context";
+import adminConfirmBill from "../context/admin_confirm_bill";
 import AmountButtons from "../components/AmountButtons";
-const { Option } = Select;
+import { useCartContext } from "../context/cart_context";
+import { useProductsContext } from "../context/products_context";
+import GetBillDetail from "../context/get_detailBill_context"
+const DetailBill = ( id, image, name, price, amount) => {
+  const [bills,setBills] = useState([]);
+  const { product } = useProductsContext();
+  const { total_amount, cart, clearCart } = useCartContext();
+  const handleBillStatus = (bill_status) => {
+    if (bill_status === "Customer confirmed") {
+      return "Đơn hàng mới";
+    } else if (bill_status === "Admin confirmed") {
+      return "Đã duyệt";
+    }
+  };
 
-const normFile = (e) => {
-  // console.log("Upload event:", e);
+  const handleConfirm = async (bill_id) => {
+    GetBillDetail(localStorage.getItem("token"), bill_id).then((res) => {
+      getBills(localStorage.getItem("token")).then((res) => setBills(res));
+    });
 
-  if (Array.isArray(e)) {
-    return e;
-  }
+  };
 
-  return e && e.fileList;
-};
+  const handleConfirmBill = (record) => {
+    if (record.bill_status === "Admin confirmed") {
+      return (
+        <Link
+          to={{
+            pathname: "/detail-bill/",
+            state: {
+              bill_id: record.bill_id,
+            },
+          }}
+        >
+          <p>Xem chi tiết</p>
+        </Link>
+      );
+    } else if (record.bill_status === "Customer confirmed") {
+      return (
+        <Link onClick={() => handleConfirm(record.bill_id)}>
+          <p>Xác nhận đơn hàng</p>
+        </Link>
+      );
+    }
+  };
 
-const AdmingetBill = (
-  {id, image, name, color, price, amount}
-) => {
-  const data = useLocation().state;
-  const [form] = Form.useForm();
- 
-  const [bills, setBills] = useState([]);
   useEffect(() => {
-    GetBillDetail(localStorage.getItem("token")).then((res) => setBills(res));
+    getBills(localStorage.getItem("token")).then((res) => setBills(res));
   }, []);
+  const response = GetBillDetail(
+ 
+  );
 
+    const columns = [
+      {
+        title: "Số Thứ Tự",
+        dataIndex: "stt",
+        key: "stt",
+        align: "center",
+      },
+      {
+        title: "Sản Phẩm", 
+        dataIndex: "customer",
+        key: "customer",
+        align: "center",
+      
+      },
+      {
+        title: "Giá",
+        dataIndex: "total_price",
+        key: "total_price",
+        align: "center",
+       
+      },
+      {
+        title: "Số Lượng",
+        dataIndex: "total_price",
+        key: "total_price",
+        align: "center",
+       
+      },
+   
+      {
+        title: "Tổng cộng",
+        dataIndex: "total_price",
+        key: "total_price",
+        align: "center",
+       
+      },
+     
+     
+    ];
 
   return (
     <main>
-      <AdminMenu/>
-      <Wrapper>
-      <div className="title">
-        <img src={image} alt={name} />
-        <div>
-          <h5 className="name">{name}</h5>
-          {/* <p className='color'>
-            color :
-            <span style={{ background: color }} />
-          </p> */}
-          <h5 className="price-small">{formatPrice(price)}</h5>
-        </div>
-      </div>
-      <h5 className="price">{formatPrice(price)}</h5>
-      <AmountButtons amount={amount} 
-      // increase={increase} decrease={decrease}
-       />
-      <h5 className="subtotal">{formatPrice(price * amount)}</h5>
-      {/* <button className="remove-btn" onClick={() => removeItem(id)}>
-        <FaTrash />
-      </button> */}
-    </Wrapper>
+      <AdminHeader />
+      <Wrapper className="page section section-center">
+        <AdminMenu />
+        <article>
+          <div className="title" style={{ marginLeft: 50 }}>
+            <h2
+              style={{
+                background: "#CFAF92",
+                width: "1000px",
+                height: "70px",
+                marginLeft: "-50px",
+                marginTop: "-50px",
+                padding: "20px",
+              }}
+            >
+              Chi Tiết Đơn Hàng
+            </h2>
+            <div className="underline"></div>
+          </div>
+         
+          <Table
+           // dataSource={bills}
+            columns={columns}
+            pagination={{ defaultPageSize: 10 }}
+          />
+          <div>
+          <h4>
+              order total :<span>{formatPrice(total_amount)}</span>
+            </h4>
+          </div>
+        </article>
+      </Wrapper>
     </main>
   );
 };
@@ -77,13 +155,15 @@ const Wrapper = styled.section`
   h2 {
     font-family: "Courier New", BrushScript, monospace;
     color: hsl(22, 47%, 19%);
+
   }
 
   p {
     line-height: 2;
     font-size: 20px;
     max-width: 45em;
-    margin: 0 auto;
+    ${"" /* margin-left:-150px; */}
+    text-align: left;
     margin-top: 2rem;
     color: var(--clr-grey-5);
   }
@@ -98,4 +178,4 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
   }
 `;
-export default AdmingetBill;
+export default DetailBill;
