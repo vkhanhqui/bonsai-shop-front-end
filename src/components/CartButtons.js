@@ -6,6 +6,7 @@ import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
 // import { useUserContext } from "../context/user_context";
 import { useHistory } from "react-router-dom";
+import Dropdown from "./Dropdown";
 const CartButton = () => {
   const { closeSidebar } = useProductsContext();
   const { total_items, clearCart } = useCartContext();
@@ -32,9 +33,9 @@ const CartButton = () => {
           {localStorage.getItem("username")} <FaUserMinus />
         </button>
       ) : (
-        <Link to="/login" className="cart-btn" onClick={closeSidebar}>
-          Login <FaUserPlus />
-        </Link>
+        
+          <Dropdown />
+        
       )}
     </Wrapper>
   );
