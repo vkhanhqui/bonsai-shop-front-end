@@ -115,9 +115,7 @@ function App() {
             <DetailsBlog/>
           </Route>
 
-          <Route path='/detail-bill'>
-            <DetailBill/>
-          </Route>
+          
           <Route path='/details1'>
             <DetailsBlog1/>
           </Route>
@@ -167,6 +165,9 @@ function App() {
                   <Route path="/about">
                     <About />
                   </Route>
+                  <Route path='/detail-bill'>
+            <DetailBill/>
+          </Route>
                   <Route path="/cart">
                     <Cart />
                   </Route>

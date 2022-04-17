@@ -102,9 +102,9 @@ const DetailBill = ( id, image, name, price, amount) => {
 
   return (
     <main>
-      <AdminHeader />
+      
       <Wrapper className="page section section-center">
-        <AdminMenu />
+        
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
             <h2
@@ -130,6 +130,9 @@ const DetailBill = ( id, image, name, price, amount) => {
           <div>
           <h4>
               order total :<span>{formatPrice(total_amount)}</span>
+            </h4>
+            <h4>
+              Method Payment :<span>{"......"}</span>
             </h4>
           </div>
         </article>

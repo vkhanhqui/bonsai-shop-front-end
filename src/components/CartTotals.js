@@ -9,6 +9,7 @@ import Add_address from "../pages/AdminAddAddress";
 import getAddresses from "../context/get_all_addresses";
 import vnPayment from "../context/vn_payment";
 import { Button } from "antd";
+import { Link } from "react-router-dom";
 const CartTotals = () => {
   const { total_amount, cart, clearCart } = useCartContext();
   const [address, setAddress] = useState([]);
@@ -134,9 +135,13 @@ const CartTotals = () => {
             </Button>,
           ]}
         >
-          <button className="btn" onClick={() => HandleOkPayment(false)}>
-            Thanh toán COD
-          </button>
+         <Link
+          to="/detail-bill"
+          className="btn"
+          
+        >
+          Thanh toán COD
+        </Link>
           <p></p>
           <button className="btn" onClick={() => HandleOkPayment(true)}>
             Thanh toán VNPAY
