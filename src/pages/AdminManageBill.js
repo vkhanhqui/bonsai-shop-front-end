@@ -8,7 +8,7 @@ import { formatPrice } from "../utils/helpers";
 import getBills from "../context/get_bills_context";
 import adminConfirmBill from "../context/admin_confirm_bill";
 
-const AdminManageBill = () => {
+const BillPage = () => {
   const [bills, setBills] = useState([]);
 
   const handleBillStatus = (bill_status) => {
@@ -192,4 +192,4 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
   }
 `;
-export default AdminManageBill;
+export default BillPage;

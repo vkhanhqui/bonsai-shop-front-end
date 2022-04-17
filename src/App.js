@@ -56,7 +56,8 @@ function App() {
                 <Route path="/del-product">
                   <AdminDeleteProduct />
                 </Route>
-                <Route path="/get-bill-detail">
+              
+                <Route path="/get-bill-detail/">
                   <BillPage />
                 </Route>
                 <Route path="/del-staff">
