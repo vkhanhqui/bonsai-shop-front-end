@@ -1,158 +1,78 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useFilterContext } from '../context/filter_context'
-import { getUniqueValues, formatPrice } from '../utils/helpers'
-import { FaCheck } from 'react-icons/fa'
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import getCategories from "../context/category_context";
+import { useFilterContext } from "../context/filter_context";
+// import { formatPrice } from "../utils/helpers";
 
 const Filters = () => {
   const {
-    filters: {
-      text,
-      category,
-      company,
-      color,
-      min_price,
-      price,
-      max_price,
-      shipping,
-    },
     updateFilters,
-    all_products,
+    searchFilters,
     clearFilters,
-  } = useFilterContext()
+  } = useFilterContext();
 
-  const categories = getUniqueValues(all_products, 'category')
-  const companies = getUniqueValues(all_products, 'company')
-  const colors = getUniqueValues(all_products, 'colors')
+const [categories, setCategories] = useState([]);
+
+useEffect(()=>{
+  getCategories().then(res=>setCategories(res))
+},[])
   return (
     <Wrapper>
-      <div className='content'>
+      <div className="content">
         <form onSubmit={(e) => e.preventDefault()}>
           {/* search input */}
-          <div className='form-control'>
+          <div className="form-control">
             <input
-              type='text'
-              name='text'
-              value={text}
-              placeholder='search'
-              onChange={updateFilters}
-              className='search-input'
+              type="text"
+              name="search_text"
+              placeholder="Tìm kiếm"
+              onChange={searchFilters}
+              className="search-input"
             />
           </div>
           {/* end of search input */}
           {/* category */}
-          <div className='form-control'>
-            <h5>category</h5>
+          <div className="form-control">
+            <h5>Loại sản phẩm</h5>
             <div>
-              {categories.map((c, index) => {
+              {categories.map(category => {
                 return (
                   <button
-                    key={index}
+                    key={category.category_id}
+                    data-key={category.category_id}
                     onClick={updateFilters}
-                    type='button'
-                    name='category'
-                    className={`${
-                      category === c.toLowerCase() ? 'active' : null
-                    }`}
+                    type="button"
+                    name="category"
                   >
-                    {c}
+                    {category.category_name}
                   </button>
-                )
+                );
               })}
             </div>
           </div>
           {/* end of category */}
-          {/* company */}
-          <div className='form-control'>
-            <h5>company</h5>
-            <select
-              name='company'
-              value={company}
-              onChange={updateFilters}
-              className='company'
-            >
-              {companies.map((c, index) => {
-                return (
-                  <option key={index} value={c}>
-                    {c}
-                  </option>
-                )
-              })}
-            </select>
-          </div>
-          {/* end of company */}
-          {/* colors */}
-          <div className='form-control'>
-            <h5>colors</h5>
-            <div className='colors'>
-              {colors.map((c, index) => {
-                if (c === 'all') {
-                  return (
-                    <button
-                      key={index}
-                      name='color'
-                      onClick={updateFilters}
-                      data-color='all'
-                      className={`${
-                        color === 'all' ? 'all-btn active' : 'all-btn'
-                      }`}
-                    >
-                      all
-                    </button>
-                  )
-                }
-                return (
-                  <button
-                    key={index}
-                    name='color'
-                    style={{ background: c }}
-                    className={`${
-                      color === c ? 'color-btn active' : 'color-btn'
-                    }`}
-                    data-color={c}
-                    onClick={updateFilters}
-                  >
-                    {color === c ? <FaCheck /> : null}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-          {/* end of colors */}
           {/* price */}
-          <div className='form-control'>
+          {/* <div className="form-control">
             <h5>price</h5>
-            <p className='price'>{formatPrice(price)}</p>
+            <p className="price">{formatPrice(price)}</p>
             <input
-              type='range'
-              name='price'
+              type="range"
+              name="price"
               onChange={updateFilters}
               min={min_price}
               max={max_price}
               value={price}
             />
-          </div>
+          </div> */}
           {/* end of price */}
-          {/* shipping */}
-          <div className='form-control shipping'>
-            <label htmlFor='shipping'>free shipping</label>
-            <input
-              type='checkbox'
-              name='shipping'
-              id='shipping'
-              checked={shipping}
-              onChange={updateFilters}
-            />
-          </div>
-          {/* end of  shipping */}
         </form>
-        <button type='button' className='clear-btn' onClick={clearFilters}>
-          clear filters
+        <button type="button" className="clear-btn" onClick={clearFilters}>
+          Clear filters
         </button>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.section`
   .form-control {
@@ -251,6 +171,6 @@ const Wrapper = styled.section`
       top: 1rem;
     }
   }
-`
+`;
 
-export default Filters
+export default Filters;

@@ -1,45 +1,44 @@
-import React from 'react'
-import { FaShoppingCart, FaUserMinus, FaUserPlus } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { useProductsContext } from '../context/products_context'
-import { useCartContext } from '../context/cart_context'
-import { useUserContext } from '../context/user_context'
+import React from "react";
+import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { useProductsContext } from "../context/products_context";
+import { useCartContext } from "../context/cart_context";
+// import { useUserContext } from "../context/user_context";
+import { useHistory } from "react-router-dom";
 const CartButton = () => {
-  const { closeSidebar } = useProductsContext()
-  const { total_items, clearCart } = useCartContext()
-  const { loginWithRedirect, myUser, logout } = useUserContext()
+  const { closeSidebar } = useProductsContext();
+  const { total_items, clearCart } = useCartContext();
+  const history = useHistory();
+  // const { loginWithRedirect, myUser, logout } = useUserContext();
+  const Logout = () => {
+    clearCart();
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("username");
+    history.push("/login");
+  };
   return (
-    <Wrapper className='cart-btn-wrapper'>
-      <Link to='/cart' className='cart-btn' onClick={closeSidebar}>
+    <Wrapper className="cart-btn-wrapper">
+      <Link to="/cart" className="cart-btn" onClick={closeSidebar}>
         Cart
-        <span className='cart-container'>
+        <span className="cart-container">
           <FaShoppingCart />
-          <span className='cart-value'>{total_items}</span>
+          <span className="cart-value">{total_items}</span>
         </span>
       </Link>
-      
-      {myUser ? (
-        <button
-          type='button'
-          className='auth-btn'
-          onClick={() => {
-            clearCart()
-            localStorage.removeItem('user')
-            logout({ returnTo: window.location.origin })
-          }}
-        >
-          Logout <FaUserMinus />
+      {localStorage.getItem("token") ? (
+        <button type="button" className="auth-btn" onClick={Logout}>
+          {localStorage.getItem("username")} <FaUserMinus />
         </button>
       ) : (
-        <Link to='/login' className='cart-btn' onClick={closeSidebar}>
-        Login  <FaUserPlus />
-      </Link>
-      
+        <Link to="/login" className="cart-btn" onClick={closeSidebar}>
+          Login <FaUserPlus />
+        </Link>
       )}
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   display: grid;
@@ -93,5 +92,5 @@ const Wrapper = styled.div`
       margin-left: 5px;
     }
   }
-`
-export default CartButton
+`;
+export default CartButton;

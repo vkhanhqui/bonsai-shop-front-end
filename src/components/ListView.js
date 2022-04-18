@@ -1,29 +1,45 @@
-import React from 'react'
-import styled from 'styled-components'
-import { formatPrice } from '../utils/helpers'
-import { Link } from 'react-router-dom'
-const ListView = ({ products }) => {
+import React from "react";
+import styled from "styled-components";
+import { formatPrice } from "../utils/helpers";
+import { useFilterContext } from "../context/filter_context";
+import { Pagination } from "antd";
+import { Link } from "react-router-dom";
+
+const ListView = ({ products, total }) => {
+  const { onChangePagination } = useFilterContext();
   return (
     <Wrapper>
       {products.map((product) => {
-        const { id, image, name, price, description } = product
+        const { images, product_name, product_price, product_id, description } =
+          product;
         return (
-          <article key={id}>
-            <img src={image} alt={name} />
+          <article key={product_id}>
+            <Link to={`/products/${product_id}`} className="link">
+              <img src={`${images[0].image_path}`} alt={product_name} />
+            </Link>
             <div>
-              <h4>{name}</h4>
-              <h5 className='price'>{formatPrice(price)}</h5>
+            <Link to={`/products/${product_id}`} className="link">
+              <h4>{product_name}</h4>
+            </Link>
+              <h5 className="price">{formatPrice(product_price)}</h5>
               <p>{description.substring(0, 150)}...</p>
-              <Link to={`/products/${id}`} className='btn'>
+              <Link to={`/products/${product_id}`} className="btn">
                 Details
               </Link>
             </div>
           </article>
-        )
+        );
       })}
+
+<Pagination
+        onChange={onChangePagination}
+        defaultCurrent={1}
+        total={total}
+        style={{ margin: "auto", width: 300, marginTop: 50 }}
+      />
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.section`
   display: grid;
@@ -61,6 +77,6 @@ const Wrapper = styled.section`
       align-items: center;
     }
   }
-`
+`;
 
-export default ListView
+export default ListView;
