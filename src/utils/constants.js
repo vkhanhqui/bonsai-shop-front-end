@@ -3,17 +3,12 @@ import { Gi3DMeeple, GiArrowWings, GiBlackBook } from "react-icons/gi";
 export const links = [
   {
     id: 1,
-    text: "home",
+    text: "Trang chủ",
     url: "/",
   },
   {
-    id: 2,
-    text: "About",
-    url: "/about",
-  },
-  {
     id: 3,
-    text: "products",
+    text: "Sản phẩm",
     url: "/products",
   },
   // {
@@ -21,11 +16,15 @@ export const links = [
   // text: "Services",
   // url: "/services",
   // },
-
   {
     id: 5,
     text: "Blogs",
     url: "/blogs",
+  },
+  {
+    id: 2,
+    text: "Về chúng tôi",
+    url: "/about",
   },
   {
     id: 6,

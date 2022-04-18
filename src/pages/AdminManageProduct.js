@@ -67,7 +67,7 @@ const AdminManageProduct = () => {
       ),
     },
     {
-     
+
       key: "action",
       render: (text, record) => (
          <Link
@@ -88,7 +88,7 @@ const AdminManageProduct = () => {
       ),
     },
     {
-     
+
       key: "action",
       render: (text, record) => (
          <Link
@@ -108,7 +108,7 @@ const AdminManageProduct = () => {
        </Link>
       ),
     },
-   
+
   ];
   return (
     <main>

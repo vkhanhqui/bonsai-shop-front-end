@@ -17,14 +17,14 @@ const CartItems = () => {
       <hr />
       <div className='link-container'>
         <Link to='/products' className='link-btn'>
-          continue shopping
+          Tiếp tục mua sắm
         </Link>
         <button
           type='button'
           className='link-btn clear-btn'
           onClick={clearCart}
         >
-          clear shopping cart
+          Xoá giỏ hàng
         </button>
       </div>
       <CartTotals />

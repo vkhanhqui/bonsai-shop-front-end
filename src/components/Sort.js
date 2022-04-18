@@ -27,10 +27,10 @@ const Sort = () => {
           <BsList />
         </button>
       </div>
-      <p>{products.length} products found</p>
+      <p>Tìm thấy {products.length} sản phẩm</p>
       <hr />
       <form>
-        <label htmlFor='sort'>sort by</label>
+        <label htmlFor='sort'>Sắp xếp theo</label>
         <select
           name='sort'
           id='sort'
@@ -38,10 +38,10 @@ const Sort = () => {
           onChange={updateSort}
           className='sort-input'
         >
-          <option value='p-asc'>price (lowest)</option>
-          <option value='p-desc'>price (highest)</option>
-          <option value='n-asc'>name (a - z)</option>
-          <option value='n-desc'>name (z - a)</option>
+          <option value='p-asc'>Giá (thấp nhất)</option>
+          <option value='p-desc'>Giá (cao nhất)</option>
+          <option value='n-asc'>Tên (a - z)</option>
+          <option value='n-desc'>Tên (z - a)</option>
         </select>
       </form>
     </Wrapper>

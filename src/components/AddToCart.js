@@ -68,7 +68,7 @@ const AddToCart = ({ oldProduct }) => {
           className="btn"
           onClick={() => addToCart(id, mainColor, amount, product)}
         >
-          add to cart
+          Thêm vào giỏ
         </Link>
       </div>
     </Wrapper>
@@ -116,7 +116,7 @@ const Wrapper = styled.section`
 
   .btn {
     margin-top: 1rem;
-    width: 140px;
+    width: 145px;
   }
 `;
 export default AddToCart;

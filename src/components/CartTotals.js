@@ -9,7 +9,6 @@ import Add_address from "../pages/AdminAddAddress";
 import getAddresses from "../context/get_all_addresses";
 import vnPayment from "../context/vn_payment";
 import { Button } from "antd";
-import { Link } from "react-router-dom";
 const CartTotals = () => {
   const { total_amount, cart, clearCart } = useCartContext();
   const [address, setAddress] = useState([]);
@@ -74,11 +73,11 @@ const CartTotals = () => {
         <div>
           <article>
             <h4>
-              order total :<span>{formatPrice(total_amount)}</span>
+              Tổng cộng :<span>{formatPrice(total_amount)}</span>
             </h4>
           </article>
           <button className="btn" onClick={showModal}>
-            order
+            Đặt hàng
           </button>
         </div>
       </Wrapper>
@@ -114,9 +113,8 @@ const CartTotals = () => {
         <Modal
           title="Add Address"
           visible={isModalVisible1}
-          
-           onCancel={handleCancel1}
-          footer={null}
+          onOk={handleOk1}
+          onCancel={handleCancel1}
         >
           <Add_address />
         </Modal>
@@ -135,13 +133,9 @@ const CartTotals = () => {
             </Button>,
           ]}
         >
-         <Link
-          to="/detail-bill"
-          className="btn"
-          
-        >
-          Thanh toán COD
-        </Link>
+          <button className="btn" onClick={() => HandleOkPayment(false)}>
+            Thanh toán COD
+          </button>
           <p></p>
           <button className="btn" onClick={() => HandleOkPayment(true)}>
             Thanh toán VNPAY

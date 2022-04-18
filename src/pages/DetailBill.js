@@ -57,7 +57,7 @@ const DetailBill = ( id, image, name, price, amount) => {
     getBills(localStorage.getItem("token")).then((res) => setBills(res));
   }, []);
   const response = GetBillDetail(
- 
+
   );
 
     const columns = [
@@ -68,43 +68,43 @@ const DetailBill = ( id, image, name, price, amount) => {
         align: "center",
       },
       {
-        title: "Sản Phẩm", 
+        title: "Sản Phẩm",
         dataIndex: "customer",
         key: "customer",
         align: "center",
-      
+
       },
       {
         title: "Giá",
         dataIndex: "total_price",
         key: "total_price",
         align: "center",
-       
+
       },
       {
         title: "Số Lượng",
         dataIndex: "total_price",
         key: "total_price",
         align: "center",
-       
+
       },
-   
+
       {
         title: "Tổng cộng",
         dataIndex: "total_price",
         key: "total_price",
         align: "center",
-       
+
       },
-     
-     
+
+
     ];
 
   return (
     <main>
-      
+
       <Wrapper className="page section section-center">
-        
+
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
             <h2
@@ -121,7 +121,7 @@ const DetailBill = ( id, image, name, price, amount) => {
             </h2>
             <div className="underline"></div>
           </div>
-         
+
           <Table
            // dataSource={bills}
             columns={columns}
@@ -129,7 +129,7 @@ const DetailBill = ( id, image, name, price, amount) => {
           />
           <div>
           <h4>
-              order total :<span>{formatPrice(total_amount)}</span>
+          Tổng cộng :<span>{formatPrice(total_amount)}</span>
             </h4>
             <h4>
               Method Payment :<span>{"......"}</span>

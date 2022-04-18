@@ -33,7 +33,8 @@ const BillPage = () => {
           to={{
             pathname: "/get-bill-detail",
             state: {
-              bill_id: record.bill_id,
+              bill_managements: record.bill_managements,
+              total_price: record.total_price
             },
           }}
         >

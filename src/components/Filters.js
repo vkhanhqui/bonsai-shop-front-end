@@ -25,7 +25,7 @@ useEffect(()=>{
             <input
               type="text"
               name="search_text"
-              placeholder="search"
+              placeholder="Tìm kiếm"
               onChange={searchFilters}
               className="search-input"
             />
@@ -33,7 +33,7 @@ useEffect(()=>{
           {/* end of search input */}
           {/* category */}
           <div className="form-control">
-            <h5>category</h5>
+            <h5>Loại sản phẩm</h5>
             <div>
               {categories.map(category => {
                 return (

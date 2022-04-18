@@ -1,104 +1,66 @@
-import React, { useEffect, useState } from "react";
+import React, { } from "react";
 import styled from "styled-components";
-import { Table, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Table } from "antd";
 import AdminHeader from "../components/admin_header";
+import { useLocation } from "react-router-dom";
 import AdminMenu from "../components/admin_menu";
 import { formatPrice } from "../utils/helpers";
-import getBills from "../context/get_bills_context";
-import adminConfirmBill from "../context/admin_confirm_bill";
-import AmountButtons from "../components/AmountButtons";
-import { useCartContext } from "../context/cart_context";
-import { useProductsContext } from "../context/products_context";
-import GetBillDetail from "../context/get_detailBill_context"
-const AdminManageBill = ( id, image, name, price, amount) => {
-  const [bills,setBills] = useState([]);
-  const { product } = useProductsContext();
-  const { total_amount, cart, clearCart } = useCartContext();
-  const handleBillStatus = (bill_status) => {
-    if (bill_status === "Customer confirmed") {
-      return "Đơn hàng mới";
-    } else if (bill_status === "Admin confirmed") {
-      return "Đã duyệt";
-    }
+const AdminManageBill = () => {
+  const data = useLocation().state;
+  const bill_managements = data.bill_managements;
+  const total_price = data.total_price;
+  const calculatePrice = (price, number) => {
+    return new Intl.NumberFormat("it-IT", {
+      style: "currency",
+      currency: "VND",
+    }).format(price * number);
   };
-
-  const handleConfirm = async (bill_id) => {
-    adminConfirmBill(localStorage.getItem("token"), bill_id).then((res) => {
-      getBills(localStorage.getItem("token")).then((res) => setBills(res));
-    });
-
-  };
-
-  const handleConfirmBill = (record) => {
-    if (record.bill_status === "Admin confirmed") {
-      return (
-        <Link
-          to={{
-            pathname: "/get-bill-detail/",
-            state: {
-              bill_id: record.bill_id,
-            },
+  console.log(total_price);
+  const columns = [
+    {
+      title: "Sản Phẩm",
+      dataIndex: "product_name",
+      key: "product_name",
+      align: "center",
+    },
+    {
+      title: "Giá",
+      dataIndex: "product_price",
+      key: "product_price",
+      align: "center",
+      render: (text, record) => formatPrice(record.product_price),
+    },
+    {
+      title: "Số Lượng",
+      dataIndex: "number_product",
+      key: "number_product",
+      align: "center",
+    },
+    {
+      title: "Tổng cộng",
+      dataIndex: "product_price",
+      key: "product_price",
+      align: "center",
+      render: (text, record) =>
+        calculatePrice(record.product_price, record.number_product),
+    },
+    {
+      title: "Ảnh",
+      key: "images",
+      align: "center",
+      dataIndex: "images",
+      render: (text, record) => (
+        <img
+          style={{
+            width: "100px",
+            height: "100px",
           }}
-        >
-          <p>Xem chi tiết</p>
-        </Link>
-      );
-    } else if (record.bill_status === "Customer confirmed") {
-      return (
-        <Link onClick={() => handleConfirm(record.bill_id)}>
-          <p>Xác nhận đơn hàng</p>
-        </Link>
-      );
-    }
-  };
-
-  useEffect(() => {
-    getBills(localStorage.getItem("token")).then((res) => setBills(res));
-  }, []);
-  const response = GetBillDetail(
- 
-  );
-
-    const columns = [
-      {
-        title: "Số Thứ Tự",
-        dataIndex: "stt",
-        key: "stt",
-        align: "center",
-      },
-      {
-        title: "Sản Phẩm", 
-        dataIndex: "customer",
-        key: "customer",
-        align: "center",
-      
-      },
-      {
-        title: "Giá",
-        dataIndex: "total_price",
-        key: "total_price",
-        align: "center",
-       
-      },
-      {
-        title: "Số Lượng",
-        dataIndex: "total_price",
-        key: "total_price",
-        align: "center",
-       
-      },
-   
-      {
-        title: "Tổng cộng",
-        dataIndex: "total_price",
-        key: "total_price",
-        align: "center",
-       
-      },
-     
-     
-    ];
+          src={`${record.image_path}`}
+          alt={`${record.image_path}`}
+        />
+      ),
+    },
+  ];
 
   return (
     <main>
@@ -121,15 +83,14 @@ const AdminManageBill = ( id, image, name, price, amount) => {
             </h2>
             <div className="underline"></div>
           </div>
-         
-          <Table
-           // dataSource={bills}
-            columns={columns}
-            pagination={{ defaultPageSize: 10 }}
-          />
-          <div>
-          <h4>
-              order total :<span>{formatPrice(total_amount)}</span>
+
+          <Table dataSource={bill_managements} columns={columns} pagination={false} />
+          <div style={{
+            float: "right",
+            padding: "50px"
+          }}>
+            <h4>
+              Tổng cộng : <span>{formatPrice(total_price)}</span>
             </h4>
           </div>
         </article>
