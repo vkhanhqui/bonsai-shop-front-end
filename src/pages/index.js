@@ -30,8 +30,9 @@ import AdminDeleteProduct from './AdminDeleteProduct';
 import AdminDeleteCategory from './AdminDeleteCategory';
 import AdminDelStaff from './AdminDelStaff';
 import DetailBill from "./DetailBill";
+import CustomerBill from "./CustomerManageBill";
 export {
-  Home,
+  Home,CustomerBill,
   SingleProduct,
   Cart,
   About,

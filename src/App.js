@@ -34,7 +34,8 @@ import {
   AdminDeleteProduct,
   AdminDeleteCategory,
   AdminDelStaff,
-  DetailBill
+  DetailBill,
+  CustomerBill
 } from "./pages";
 
 import BillPage from "./pages/BillPage";
@@ -59,7 +60,8 @@ function App() {
               
                 <Route path="/get-bill-detail/">
                   <BillPage />
-                </Route>
+                  </Route>
+                 
                 <Route path="/del-staff">
                   <AdminDelStaff />
                 </Route>
@@ -161,7 +163,9 @@ function App() {
                   <Switch>
                   <Route exact path="/">
                     <Home />
-                  </Route>
+                  </Route> <Route path="/get-bill/">
+                  <CustomerBill />
+                </Route>
                   <Route path="/about">
                     <About />
                   </Route>

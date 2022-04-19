@@ -5,23 +5,19 @@ import { Link } from "react-router-dom";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
 import { formatPrice } from "../utils/helpers";
-import getBills from "../context/get_bills_context";
+import getBillCustomer from "../context/get_bill_customer";
 import adminConfirmBill from "../context/admin_confirm_bill";
 
-const BillPage = () => {
+const CustomerBill = () => {
   const [bills, setBills] = useState([]);
 
   const handleBillStatus = (bill_status) => {
-    if (bill_status === "Customer confirmed") {
-      return "Đơn hàng mới";
-    } else if (bill_status === "Admin confirmed") {
-      return "Đã duyệt";
-    }
+   
   };
 
   const handleConfirm = async (bill_id) => {
     adminConfirmBill(localStorage.getItem("token"), bill_id).then((res) => {
-      getBills(localStorage.getItem("token")).then((res) => setBills(res));
+      getBillCustomer(localStorage.getItem("token")).then((res) => setBills(res));
     });
 
   };
@@ -51,7 +47,7 @@ const BillPage = () => {
   };
 
   useEffect(() => {
-    getBills(localStorage.getItem("token")).then((res) => setBills(res));
+    getBillCustomer(localStorage.getItem("token")).then((res) => setBills(res));
   }, []);
 
   const columns = [
@@ -134,7 +130,13 @@ const BillPage = () => {
             </h2>
             <div className="underline"></div>
           </div>
-         
+          <Button
+            type="primary"
+            size="large"
+            style={{ marginLeft: "900px", marginBottom: "20px" }}
+          >
+            <Link to="add-product">Thêm mới</Link>
+          </Button>
           <Table
             dataSource={bills}
             columns={columns}
@@ -187,4 +189,4 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
   }
 `;
-export default BillPage;
+export default CustomerBill;
