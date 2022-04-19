@@ -7,6 +7,7 @@ import { links } from "../utils/constants";
 import CartButtons from "./CartButtons";
 import { useProductsContext } from "../context/products_context";
 import { useUserContext } from "../context/user_context";
+import { Dropdown } from "antd";
 const Nav = () => {
   const { openSidebar } = useProductsContext();
   const { myUser } = useUserContext();
@@ -40,6 +41,7 @@ const Nav = () => {
         <button type="button" className="nav-toggle" onClick={myUser}>
           <FaBars />
         </button>
+        
       </div>
     </NavContainer>
   );

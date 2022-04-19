@@ -6,6 +6,12 @@ import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
 // import { useUserContext } from "../context/user_context";
 import { useHistory } from "react-router-dom";
+import Dropdown from 'react-dropdown';
+import { DropdownButton} from 'react-bootstrap';
+import { CDropdown, CDropdownToggle, CDropdownItem, CDropdownMenu } from "@coreui/react";
+import Popper from "popper.js";
+import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
+
 const CartButton = () => {
   const { closeSidebar } = useProductsContext();
   const { total_items, clearCart } = useCartContext();
@@ -18,6 +24,11 @@ const CartButton = () => {
     localStorage.removeItem("username");
     history.push("/login");
   };
+  const handleCLick = () => {
+    <Link to="/cart" className="cart-btn">
+        
+      </Link>
+  }
   return (
     <Wrapper className="cart-btn-wrapper">
       <Link to="/cart" className="cart-btn" onClick={closeSidebar}>
@@ -28,13 +39,47 @@ const CartButton = () => {
         </span>
       </Link>
       {localStorage.getItem("token") ? (
-        <button type="button" className="auth-btn" onClick={Logout}>
-          {localStorage.getItem("username")} <FaUserMinus />
-        </button>
+       // <button type="button" className="auth-btn" onClick={Logout}>
+       //   {localStorage.getItem("username")} <FaUserMinus />
+       // </button>
+       
+    //    <select type="button" className="auth-btn">
+            
+    //         <option value="username">{localStorage.getItem("username")}</option>
+    //         <option value="ls đơn hàng" onChange={handleCLick}>ls đơn hàng
+            
+    //         </option>
+    //         <option value="Đăng xuất" onClick={Logout}>Đăng xuất</option>         
+    //  </select>
+    <MDBDropdown>
+    <MDBDropdownToggle tag='a' className='btn btn-primary'>
+      {localStorage.getItem("username")}
+    </MDBDropdownToggle>
+    <MDBDropdownMenu>
+      <MDBDropdownItem>
+        <MDBDropdownLink href="/detail-bill">Lịch sử mua hàng</MDBDropdownLink>
+      </MDBDropdownItem>
+      <MDBDropdownItem>
+        <MDBDropdownLink href="#" onClick={Logout}>Đăng xuất</MDBDropdownLink>
+      </MDBDropdownItem>
+    </MDBDropdownMenu>
+  </MDBDropdown>
+     
       ) : (
-        <Link to="/login" className="cart-btn" onClick={closeSidebar}>
-          Login <FaUserPlus />
-        </Link>
+        <MDBDropdown>
+    <MDBDropdownToggle tag='a' className='btn btn-primary'>
+      Tài Khoản <FaUserPlus/>
+    </MDBDropdownToggle>
+    <MDBDropdownMenu>
+      <MDBDropdownItem>
+        <MDBDropdownLink href="/register">Đăng ký</MDBDropdownLink>
+      </MDBDropdownItem>
+      <MDBDropdownItem>
+        <MDBDropdownLink href="/login">Đăng nhập</MDBDropdownLink>
+      </MDBDropdownItem>
+    </MDBDropdownMenu>
+  </MDBDropdown>
+        
       )}
     </Wrapper>
   );
@@ -45,7 +90,9 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   width: 225px;
-
+  MDBDropdownLink{
+    color: red;
+  } 
   .cart-btn {
     color: var(--clr-grey-1);
     font-size: 1.5rem;
