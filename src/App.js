@@ -170,8 +170,8 @@ function App() {
                     <About />
                   </Route>
                   <Route path='/detail-bill'>
-            <DetailBill/>
-          </Route>
+                    <DetailBill/>
+                  </Route>
                   <Route path="/cart">
                     <Cart />
                   </Route>
