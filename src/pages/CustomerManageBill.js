@@ -4,52 +4,37 @@ import { Table, Button } from "antd";
 import { Link } from "react-router-dom";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
-import { formatPrice } from "../utils/helpers";
+import getStaffs from "../context/get_staffs_context";
 import getBillCustomer from "../context/get_bill_customer";
-import adminConfirmBill from "../context/admin_confirm_bill";
-
-const CustomerBill = () => {
+import getBills from "../context/get_bills_context";
+import GetBillDetail from "../context/get_detailBill_context";
+import { useLocation } from "react-router-dom";
+const CustomerManageBill= () => {
   const [bills, setBills] = useState([]);
-
-  const handleBillStatus = (bill_status) => {
-   
-  };
-
-  const handleConfirm = async (bill_id) => {
-    adminConfirmBill(localStorage.getItem("token"), bill_id).then((res) => {
-      getBillCustomer(localStorage.getItem("token")).then((res) => setBills(res));
-    });
-
-  };
+  const data = useLocation().state;
+  const products = data.products;
+  useEffect(() => {
+    getBillCustomer(localStorage.getItem("token")).then((res) => setBills(res));
+  }, []);
 
   const handleConfirmBill = (record) => {
-    if (record.bill_status === "Admin confirmed") {
       return (
         <Link
           to={{
-            pathname: "/get-bill-detail",
+            pathname: "/detail-bill",
             state: {
-              bill_managements: record.bill_managements,
-              total_price: record.total_price
+              
+              bill_id: record.bill_id,
             },
           }}
         >
           <p>Xem chi tiết</p>
         </Link>
       );
-    } else if (record.bill_status === "Customer confirmed") {
-      return (
-        <Link onClick={() => handleConfirm(record.bill_id)}>
-          <p>Xác nhận đơn hàng</p>
-        </Link>
-      );
-    }
+    
   };
 
-  useEffect(() => {
-    getBillCustomer(localStorage.getItem("token")).then((res) => setBills(res));
-  }, []);
-
+  
   const columns = [
     {
       title: "Số thứ tự",
@@ -58,62 +43,41 @@ const CustomerBill = () => {
       align: "center",
     },
     {
-      title: "Khách hàng",
-      dataIndex: "customer",
-      key: "customer",
-      align: "center",
-      render: (text, record) =>
-        `${record.customer.last_name} ${record.customer.first_name}`,
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-      align: "center",
-      render: (text, record) => `${record.customer.email}`,
-    },
-    {
-      title: "Số điện thoại",
-      dataIndex: "phone",
-      key: "phone",
-      align: "center",
-      render: (text, record) => `${record.phone_number}`,
-    },
-    {
-      title: "Địa chỉ",
-      dataIndex: "address",
-      key: "address",
-      align: "center",
-      render: (text, record) =>
-        `${record.full_address}, ${record.district}, ${record.city}`,
-    },
-    {
-      title: "Tổng cộng",
-      dataIndex: "total_price",
-      key: "total_price",
-      align: "center",
-      render: (text, record) => formatPrice(record.total_price),
-    },
-    {
-      title: "Trạng thái",
+      title: "Trạng thái đơn hàng",
       dataIndex: "bill_status",
       key: "bill_status",
       align: "center",
-      render: (text, record) => handleBillStatus(record.bill_status),
+    },
+    {
+      title: "Bill ID",
+      dataIndex: "total_price",
+      key: "total_price",
+      align: "center",
+    },
+    {
+      title: "Bill ID",
+      dataIndex: "bill_id",
+      key: "bill_id",
+      align: "center",
+    },
+    {
+      title: "Thời gian đặt hàng",
+      dataIndex: "created_at",
+      key: "created_at",
+      align: "center",
     },
     {
       title: "Thao tác",
-      dataIndex: "bill_status",
-      align: "center",
       key: "action",
       render: (text, record) => handleConfirmBill(record),
-    },
+      },
+    
   ];
   return (
     <main>
-      <AdminHeader />
+     
       <Wrapper className="page section section-center">
-        <AdminMenu />
+        
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
             <h2
@@ -126,19 +90,13 @@ const CustomerBill = () => {
                 padding: "20px",
               }}
             >
-              Quản Lý Đơn Hàng
+             LỊCH SỬ ĐẶT HÀNG
             </h2>
             <div className="underline"></div>
           </div>
-          <Button
-            type="primary"
-            size="large"
-            style={{ marginLeft: "900px", marginBottom: "20px" }}
-          >
-            <Link to="add-product">Thêm mới</Link>
-          </Button>
+          
           <Table
-            dataSource={bills}
+            dataSource={products}
             columns={columns}
             pagination={{ defaultPageSize: 10 }}
           />
@@ -189,4 +147,5 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
   }
 `;
-export default CustomerBill;
+export default CustomerManageBill
+

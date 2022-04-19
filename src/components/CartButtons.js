@@ -57,7 +57,7 @@ const CartButton = () => {
     </MDBDropdownToggle>
     <MDBDropdownMenu>
       <MDBDropdownItem>
-        <MDBDropdownLink href="/detail-bill">Lịch sử mua hàng</MDBDropdownLink>
+        <MDBDropdownLink href="/get-bill">Lịch sử mua hàng</MDBDropdownLink>
       </MDBDropdownItem>
       <MDBDropdownItem>
         <MDBDropdownLink href="#" onClick={Logout}>Đăng xuất</MDBDropdownLink>
@@ -71,10 +71,10 @@ const CartButton = () => {
       Tài Khoản <FaUserPlus/>
     </MDBDropdownToggle>
     <MDBDropdownMenu>
-      <MDBDropdownItem>
+      <MDBDropdownItem className="dropdown-item">
         <MDBDropdownLink href="/register">Đăng ký</MDBDropdownLink>
       </MDBDropdownItem>
-      <MDBDropdownItem>
+      <MDBDropdownItem className="dropdown-item">
         <MDBDropdownLink href="/login">Đăng nhập</MDBDropdownLink>
       </MDBDropdownItem>
     </MDBDropdownMenu>
@@ -90,7 +90,7 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   width: 225px;
-  MDBDropdownLink{
+  .dropdown-item{
     color: red;
   } 
   .cart-btn {
