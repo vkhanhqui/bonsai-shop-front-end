@@ -6,10 +6,7 @@ import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
 // import { useUserContext } from "../context/user_context";
 import { useHistory } from "react-router-dom";
-import Dropdown from 'react-dropdown';
-import { DropdownButton} from 'react-bootstrap';
-import { CDropdown, CDropdownToggle, CDropdownItem, CDropdownMenu } from "@coreui/react";
-import Popper from "popper.js";
+
 import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
 
 const CartButton = () => {
@@ -39,43 +36,33 @@ const CartButton = () => {
         </span>
       </Link>
       {localStorage.getItem("token") ? (
-       // <button type="button" className="auth-btn" onClick={Logout}>
-       //   {localStorage.getItem("username")} <FaUserMinus />
-       // </button>
        
-    //    <select type="button" className="auth-btn">
-            
-    //         <option value="username">{localStorage.getItem("username")}</option>
-    //         <option value="ls đơn hàng" onChange={handleCLick}>ls đơn hàng
-            
-    //         </option>
-    //         <option value="Đăng xuất" onClick={Logout}>Đăng xuất</option>         
-    //  </select>
-    <MDBDropdown>
+    <MDBDropdown className="dropdown">
     <MDBDropdownToggle tag='a' className='btn btn-primary'>
       {localStorage.getItem("username")}
     </MDBDropdownToggle>
-    <MDBDropdownMenu>
-      <MDBDropdownItem>
-        <MDBDropdownLink href="/get-bill">Lịch sử mua hàng</MDBDropdownLink>
+
+    <MDBDropdownMenu >
+      <MDBDropdownItem >
+        <MDBDropdownLink href="/get-bill" className="dropdown-item">Lịch sử mua hàng</MDBDropdownLink>
       </MDBDropdownItem>
-      <MDBDropdownItem>
-        <MDBDropdownLink href="#" onClick={Logout}>Đăng xuất</MDBDropdownLink>
+      <MDBDropdownItem >
+        <MDBDropdownLink href="/login" onClick={Logout} className="dropdown-item">Đăng xuất</MDBDropdownLink>
       </MDBDropdownItem>
     </MDBDropdownMenu>
   </MDBDropdown>
      
       ) : (
-        <MDBDropdown>
+        <MDBDropdown className="dropdown">
     <MDBDropdownToggle tag='a' className='btn btn-primary'>
       Tài Khoản <FaUserPlus/>
     </MDBDropdownToggle>
-    <MDBDropdownMenu>
-      <MDBDropdownItem className="dropdown-item">
-        <MDBDropdownLink href="/register">Đăng ký</MDBDropdownLink>
+    <MDBDropdownMenu >
+      <MDBDropdownItem >
+        <MDBDropdownLink href="/register" className="dropdown-item">Đăng ký</MDBDropdownLink>
       </MDBDropdownItem>
-      <MDBDropdownItem className="dropdown-item">
-        <MDBDropdownLink href="/login">Đăng nhập</MDBDropdownLink>
+      <MDBDropdownItem>
+        <MDBDropdownLink href="/login"className="dd dropdown-item" >Đăng nhập</MDBDropdownLink>
       </MDBDropdownItem>
     </MDBDropdownMenu>
   </MDBDropdown>
@@ -90,9 +77,9 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   width: 225px;
-  .dropdown-item{
+  .dd dropdown-item {
     color: red;
-  } 
+  }
   .cart-btn {
     color: var(--clr-grey-1);
     font-size: 1.5rem;

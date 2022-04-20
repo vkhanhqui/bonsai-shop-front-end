@@ -30,6 +30,7 @@
     "react-multiple-select-dropdown-lite": "^2.0.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.0",
+    "react-simple-star-rating": "^4.0.5",
     "react-toastify": "^8.2.0",
     "recharts": "^2.1.9",
     "stripe": "^8.130.0",
