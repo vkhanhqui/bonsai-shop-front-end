@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+
+import 'font-awesome/css/font-awesome.min.css';
+import { FaShoppingCart, FaUserMinus, FaUserPlus ,FontAwesomeIcon} from "react-icons/fa";
 const Chat = () => {
   return (
     
@@ -7,27 +10,27 @@ const Chat = () => {
       <div className="social-button">
     <div className="social-button-content">
        <a href="tel:0981481368" className="call-icon" rel="nofollow">
-          <i className="fa fa-whatsapp" aria-hidden="true"></i>
-          <div className="animated alo-circle"></div>
-          <div className="animated alo-circle-fill  "></div>
+       <i className="fa fa-whatsapp" aria-hidden="true"/>
+          {/* <div className="animated alo-circle"></div>
+          <div className="animated alo-circle-fill  "></div> */}
            <span>Hotline:0909090909</span>
         </a>
         <a href="sms:0909090909" className="sms">
-          <i className="FaDiscourse" aria-hidden="true"></i>
-          <div className="animated alo-circle"></div>
-          <div className="animated alo-circle-fill  "></div>
+          <i className="fa fa-weixin" aria-hidden="true"></i>
+          {/* <div className="animated alo-circle"></div>
+          <div className="animated alo-circle-fill  "></div> */}
           <span>SMS: 09090909</span>
         </a>
         <a href="https://www.facebook.com/messages/t/108674048489679/" className="mes">
           <i className="fa fa-facebook-square" aria-hidden="true"></i>
-          <div className="animated alo-circle"></div>
-          <div className="animated alo-circle-fill  "></div>
+          {/* <div className="animated alo-circle"></div>
+          <div className="animated alo-circle-fill  "></div> */}
           <span>Nhắn tin Facebook</span>
         </a>
         <a href="http://zalo.me/" className="zalo">
           <i className="fa fa-commenting-o" aria-hidden="true"></i>
-          <div className="animated alo-circle"></div>
-          <div className="animated alo-circle-fill  "></div>
+          {/* <div className="animated alo-circle"></div> */}
+          {/* <div className="animated alo-circle-fill  "></div> */}
           <span>Zalo: 0909090</span>
         </a>
     </div>
@@ -46,7 +49,8 @@ const Container = styled.main`
   display: inline-grid;
     position: fixed;
     bottom: 150px;
-    left: 1110px;top:200px;
+   top:200px;
+   right:-50px;
     min-width: 200px;
     text-align: center;
  
@@ -58,7 +62,7 @@ const Container = styled.main`
 .social-button i{
   width: 40px;
     height: 40px;
-    background: #43a1f3;
+    background: hsl(131, 29%, 58%);
     color: #fff;
     border-radius: 100%;
     font-size: 20px;
