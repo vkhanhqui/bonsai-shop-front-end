@@ -17,9 +17,9 @@ import Stars from './Stars'
 import CartContent from './CarContent'
 import PageHero from './PageHero'
 import StripeCheckout from './StripeCheckout'
-
+import Chat from './Chat'
 export {
-  FeaturedProducts,
+  FeaturedProducts,Chat,
   Navbar,
   CartButtons,
   Footer,

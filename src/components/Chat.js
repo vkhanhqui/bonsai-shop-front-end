@@ -1,32 +1,55 @@
 import React from 'react'
 import styled from 'styled-components'
-const Footer = () => {
+const Chat = () => {
   return (
     
     <Container>
-      
-      <div>
-      <h5>
-        &copy; {new Date().getFullYear()}
-        <span> Green Life </span>
-      </h5>
-      <h5>All rights reserved</h5>
-      </div>
+      <div className="social-button">
+    <div className="social-button-content">
+       <a href="tel:0981481368" className="call-icon" rel="nofollow">
+          <i className="fa fa-whatsapp" aria-hidden="true"></i>
+          <div className="animated alo-circle"></div>
+          <div className="animated alo-circle-fill  "></div>
+           <span>Hotline:0909090909</span>
+        </a>
+        <a href="sms:0909090909" className="sms">
+          <i className="FaDiscourse" aria-hidden="true"></i>
+          <div className="animated alo-circle"></div>
+          <div className="animated alo-circle-fill  "></div>
+          <span>SMS: 09090909</span>
+        </a>
+        <a href="https://www.facebook.com/messages/t/108674048489679/" className="mes">
+          <i className="fa fa-facebook-square" aria-hidden="true"></i>
+          <div className="animated alo-circle"></div>
+          <div className="animated alo-circle-fill  "></div>
+          <span>Nhắn tin Facebook</span>
+        </a>
+        <a href="http://zalo.me/" className="zalo">
+          <i className="fa fa-commenting-o" aria-hidden="true"></i>
+          <div className="animated alo-circle"></div>
+          <div className="animated alo-circle-fill  "></div>
+          <span>Zalo: 0909090</span>
+        </a>
+    </div>
+       
+    
+  </div>
+    
     </Container>
   )
 }
 
-const Container = styled.footer`
+const Container = styled.main`
 
   
 .social-button{
   display: inline-grid;
     position: fixed;
-    bottom: 15px;
-    left: 45px;
-    min-width: 45px;
+    bottom: 150px;
+    left: 1110px;top:200px;
+    min-width: 200px;
     text-align: center;
-    z-index: 99999;
+ 
 }
 .social-button-content{
   display: inline-grid;   
@@ -127,27 +150,6 @@ const Container = styled.footer`
   left: -10px;
   top: 10px;
 }
-  height: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: var(--clr-black);
-  text-align: center;
-  span {
-    color: var(--clr-primary-7);
-  }
-  h5 {
-    color: var(--clr-primary-7);
-    margin: 0.1rem;
-
-    font-weight: 400;
-    text-transform: none;
-    line-height: 1.25;
-  }
-  @media (min-width: 776px) {
-    flex-direction: row;
-  }
 `
 
-export default Footer
+export default Chat;

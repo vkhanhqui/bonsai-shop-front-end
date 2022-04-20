@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Navbar, Sidebar, Footer } from "./components";
+import { Navbar, Sidebar, Footer ,Chat} from "./components";
 import {
   Home,
   SingleProduct,
@@ -159,6 +159,7 @@ function App() {
               <Router>
                 <Route>
                   <Navbar />
+                  <Chat/>
                   <Sidebar />
                   <Switch>
                   <Route exact path="/">
@@ -202,7 +203,7 @@ function App() {
             </>
           )}
         </Switch>
-
+<Chat/>
         <Footer />
       </Router>
     </AuthWrapper>
