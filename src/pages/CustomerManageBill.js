@@ -12,7 +12,7 @@ import { useLocation } from "react-router-dom";
 const CustomerManageBill= () => {
   const [bills, setBills] = useState([]);
   const data = useLocation().state;
-  const products = data.products;
+  
   useEffect(() => {
     getBillCustomer(localStorage.getItem("token")).then((res) => setBills(res));
   }, []);
@@ -46,12 +46,6 @@ const CustomerManageBill= () => {
       title: "Trạng thái đơn hàng",
       dataIndex: "bill_status",
       key: "bill_status",
-      align: "center",
-    },
-    {
-      title: "Bill ID",
-      dataIndex: "total_price",
-      key: "total_price",
       align: "center",
     },
     {
@@ -96,7 +90,7 @@ const CustomerManageBill= () => {
           </div>
           
           <Table
-            dataSource={products}
+            dataSource={bills}
             columns={columns}
             pagination={{ defaultPageSize: 10 }}
           />
