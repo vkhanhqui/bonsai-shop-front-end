@@ -7,16 +7,21 @@ import AdminMenu from "../components/admin_menu";
 import getStaffs from "../context/get_staffs_context";
 import getBillCustomer from "../context/get_bill_customer";
 import getBills from "../context/get_bills_context";
-import GetBillDetail from "../context/get_detailBill_context";
+
 import { useLocation } from "react-router-dom";
+import GetBillDetail from "../context/get_detailBill_context";
 const CustomerManageBill= () => {
   const [bills, setBills] = useState([]);
   const data = useLocation().state;
   
   useEffect(() => {
     getBillCustomer(localStorage.getItem("token")).then((res) => setBills(res));
+   
   }, []);
-
+  const onChange = (e) => {
+    
+   bills.bills?.map((obj) => ({ ...obj, key: obj.bill_id}));
+  };
   const handleConfirmBill = (record) => {
       return (
         <Link
@@ -90,6 +95,7 @@ const CustomerManageBill= () => {
           </div>
           
           <Table
+          onChange={onChange}
             dataSource={bills}
             columns={columns}
             pagination={{ defaultPageSize: 10 }}
