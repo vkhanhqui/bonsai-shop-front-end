@@ -21,7 +21,9 @@ const CustomerManageBill= () => {
   const onChange = (e) => {
     
    bills.bills?.map((obj) => ({ ...obj, key: obj.bill_id}));
+   
   };
+  
   const handleConfirmBill = (record) => {
       return (
         <Link
@@ -38,7 +40,20 @@ const CustomerManageBill= () => {
       );
     
   };
-
+  const handleRating = (record) => {
+    return (
+      <Link
+          to={{
+            pathname: "/rating",
+            state: {
+              bill_id: record.bill_id
+            },
+          }}
+        >
+          <p>Đánh giá {record.bill_id}</p>
+        </Link>
+    )
+  }
   
   const columns = [
     {
@@ -70,7 +85,9 @@ const CustomerManageBill= () => {
       key: "action",
       render: (text, record) => handleConfirmBill(record),
       },
-    
+      {
+        key: "action",
+        render: (text, record) => handleRating(record),},
   ];
   return (
     <main>
@@ -95,7 +112,7 @@ const CustomerManageBill= () => {
           </div>
           
           <Table
-          onChange={onChange}
+            onChange={onChange}
             dataSource={bills}
             columns={columns}
             pagination={{ defaultPageSize: 10 }}

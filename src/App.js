@@ -35,10 +35,12 @@ import {
   AdminDeleteCategory,
   AdminDelStaff,
   DetailBill,
-  CustomerManageBill
+  CustomerManageBill,
+  Rating
 } from "./pages";
 
 import BillPage from "./pages/BillPage";
+import PageRating from "./pages/PageRating";
 
 
 
@@ -167,6 +169,9 @@ function App() {
                   </Route> 
                   <Route path="/get-bill">
                   <CustomerManageBill />
+                </Route>
+                <Route path="/rating">
+                  <PageRating />
                 </Route>
                   <Route path="/about">
                     <About />

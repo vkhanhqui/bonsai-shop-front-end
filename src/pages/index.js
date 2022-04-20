@@ -31,6 +31,8 @@ import AdminDeleteCategory from './AdminDeleteCategory';
 import AdminDelStaff from './AdminDelStaff';
 import DetailBill from "./DetailBill";
 import CustomerManageBill from "./CustomerManageBill";
+import Rating from "./Rating";
+import PageRating from "./PageRating";
 export {
   Home,CustomerManageBill,
   SingleProduct,
@@ -63,6 +65,8 @@ export {
   AdminDeleteProduct,
   AdminDeleteCategory,
   AdminDelStaff,
-  DetailBill
+  DetailBill,
+  Rating,
+  PageRating
 
 };
