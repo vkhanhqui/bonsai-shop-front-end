@@ -10,7 +10,6 @@ import { Stars,PageHero } from "../components";
 import { Form, Select, Input, Button, Upload, notification } from "antd";
 import getProductById from "../context/get_product_by_id";
 import GetBillDetail from "../context/get_detailBill_context"
-
 import { FaStar } from "react-icons/fa";
 import { Container, Radio, Rating } from "./RatingStyle";
 import Rate from "./Rating"
@@ -22,7 +21,9 @@ const PageRating = () => {
     const products = bills.products;
     const bill_total = bills.bill_total;
     const [rate, setRate] = useState(0);
-    const [table] = Table.useTable();
+    
+    
+   
     useEffect(() => {
       GetBillDetail(bill_id).then((res) => setBills(res));
     }, []);
@@ -47,6 +48,7 @@ const PageRating = () => {
       const product_id = values.product_id;
       const message = values.message;
      
+      
       try {
         const response = createRating(
          
@@ -55,21 +57,12 @@ const PageRating = () => {
          message
       
         );
-        if (response) {
-          Table.resetFields();
-          openNotificationWithIcon("success");
-        } else {
-          Table.resetFields();
-          errorNotfication("error");
-        }
       } catch {
         errorNotfication("error");
       }
     };
   
-    const onFinishFailed = (errorInfo) => {
-      console.log("Failed:", errorInfo);
-    };
+    
     const calculatePrice = (price, number) => {
         return new Intl.NumberFormat("it-IT", {
           style: "currency",
@@ -77,7 +70,7 @@ const PageRating = () => {
         }).format(price * number);
       };
       
-      console.log(bill_total);
+      
       
       const columns = [
         {
@@ -85,6 +78,7 @@ const PageRating = () => {
           dataIndex: "product_id",
           key: "product_id",
           align: "center",
+          name: "product_id"
           
         },
         {
@@ -120,38 +114,14 @@ const PageRating = () => {
         },
         {
             title: "Đánh giá",
-            key: "images",
+            key: "start_number",
             align: "center",
-            dataIndex: "images",
+            dataIndex: "start_number",
+            name: "start_number",
             render: (text, record) => (
-
-                <Container>
-                {[...Array(5)].map((item, index) => {
-                  const start_number= index + 1;
-                  return (
-                  <label>
-                    <Radio
-                    type="radio"
-                    value={start_number}
-                    onClick={() => {
-                      setRate(start_number);
-                      alert(`Are you sure you want to give ${start_number} stars ?`);
-                    }}
-                    
-                    />
-                    <Rating>
-                    <FaStar
-                      color={
-                        start_number < rate || start_number === rate
-                        ? "rgb(255,255,0)"
-                        : "rgb(192,192,192)"
-                      }
-                    />
-                    </Rating>
-                  </label>
-                  );
-                })}
-                </Container>
+                
+                <Rate/>
+                
             )},
             
           {
@@ -159,6 +129,7 @@ const PageRating = () => {
             key: "message",
             align: "center",
             dataIndex: "message",
+            name : "message",
             render: (text, record) => (
                 <Form
             >
@@ -170,6 +141,23 @@ const PageRating = () => {
               ),
             
           },
+          {
+            title: "Thao tac",
+            key: "submit",
+            align: "center",
+            dataIndex: "submit",
+            name : "submit",
+            render: (text, record) => (
+              <Form>
+              <Button type="primary" htmlType="submit" onClick={onFinish}>
+                Đánh giá
+             </Button>
+             </Form>
+            
+              ),
+            
+          },
+
       ];
     
       return (
@@ -193,21 +181,22 @@ const PageRating = () => {
                 </h2>
                 <div className="underline"></div>
               </div>
-    
+              
               <Table 
+              name= "basic"
               dataSource={products} 
               columns={columns} 
               pagination={false} 
               onFinish={onFinish}
+              initialValues={{ remember: true }}
+              
               />
               <div style={{
                 float: "right",
                 padding: "50px"
               }}>
               
-                <Button type="primary" htmlType="submit">
-                  Đánh giá
-                </Button>
+               
               
               </div>
             </article>

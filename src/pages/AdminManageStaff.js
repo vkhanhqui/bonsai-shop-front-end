@@ -59,7 +59,7 @@ const AdminManageStaff = () => {
                 padding: "20px",
               }}
             >
-              Quản Lý Nhân Viên
+              Quản Lý Khách Hàng
             </h2>
             <div className="underline"></div>
           </div>

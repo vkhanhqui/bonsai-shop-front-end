@@ -139,11 +139,16 @@ function App() {
                   <Route exact path="/products">
                     <Products />
                   </Route>
+                  <Route path="/get-bill">
+                  <CustomerManageBill />
+                </Route>
                   <Route exact path="/blogs">
                     <Blogs />
                   </Route>
                   <Route exact path="/register">
                     <Register />
+                  </Route>  <Route path='/detail-bill'>
+                    <DetailBill/>
                   </Route>
                   <Route path="/products/:id" children={<SingleProduct />} />
                   <PrivateRoute path="/checkout">
@@ -170,6 +175,24 @@ function App() {
                   <Route path="/get-bill">
                   <CustomerManageBill />
                 </Route>
+                <Route path='/details'>
+            <DetailsBlog/>
+          </Route>
+
+          
+          <Route path='/details1'>
+            <DetailsBlog1/>
+          </Route>
+
+          <Route path='/details2'>
+            <DetailsBlog2/>
+          </Route>
+          <Route path='/details3'>
+            <DetailsBlog3/>
+          </Route>
+          <Route path='/details4'>
+            <DetailsBlog4/>
+          </Route>
                 <Route path="/rating">
                   <PageRating />
                 </Route>

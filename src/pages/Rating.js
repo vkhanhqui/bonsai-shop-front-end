@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Container, Radio, Rating } from "./RatingStyle";
+
 const Rate= () => {
 const [rate, setRate] = useState(0);
 return (
@@ -16,7 +17,7 @@ return (
 				setRate(givenRating);
 				
 			}}
-			state= {givenRating}
+			
 			/>
 			<Rating>
 			<FaStar
@@ -30,6 +31,8 @@ return (
 		</label>
 		);
 	})}
+	     
+			  
 	</Container>
 );
 };

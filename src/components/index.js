@@ -18,6 +18,7 @@ import CartContent from './CarContent'
 import PageHero from './PageHero'
 import StripeCheckout from './StripeCheckout'
 import Chat from './Chat'
+
 export {
   FeaturedProducts,Chat,
   Navbar,
@@ -38,4 +39,5 @@ export {
   CartContent,
   PageHero,
   StripeCheckout,
+  
 }
