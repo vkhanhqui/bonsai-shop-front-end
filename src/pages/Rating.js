@@ -14,8 +14,9 @@ return (
 			value={givenRating}
 			onClick={() => {
 				setRate(givenRating);
-				alert(`Are you sure you want to give ${givenRating} stars ?`);
+				
 			}}
+			state= {givenRating}
 			/>
 			<Rating>
 			<FaStar

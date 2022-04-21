@@ -10,17 +10,66 @@ import { Stars,PageHero } from "../components";
 import { Form, Select, Input, Button, Upload, notification } from "antd";
 import getProductById from "../context/get_product_by_id";
 import GetBillDetail from "../context/get_detailBill_context"
+
+import { FaStar } from "react-icons/fa";
+import { Container, Radio, Rating } from "./RatingStyle";
 import Rate from "./Rating"
+import createRating from "../context/rating_context";
 const PageRating = () => {
     const data = useLocation().state;
     const [bills, setBills] = useState([]);
     const bill_id = data.bill_id;
     const products = bills.products;
     const bill_total = bills.bill_total;
+    const [rate, setRate] = useState(0);
+    const [table] = Table.useTable();
     useEffect(() => {
       GetBillDetail(bill_id).then((res) => setBills(res));
     }, []);
 
+    const openNotificationWithIcon = (type) => {
+      notification[type]({
+        message: "Thêm Địa chỉ Thành Công !!!",
+        description:
+          "Địa chỉ đã được thêm thành công. Bỏ qua thông báo này để tiếp tục !!",
+      });
+    };
+    const errorNotfication = (type) => {
+      notification[type]({
+        message: "Thêm Địa chỉ Thất Bại!!!",
+        description:
+          "Địa chỉ đã được thêm thất bại. Bỏ qua thông báo này để tiếp tục !!",
+      });
+    };
+  
+    const onFinish = async (values) => {
+      const start_number = values.start_number;
+      const product_id = values.product_id;
+      const message = values.message;
+     
+      try {
+        const response = createRating(
+         
+         start_number,
+         product_id,
+         message
+      
+        );
+        if (response) {
+          Table.resetFields();
+          openNotificationWithIcon("success");
+        } else {
+          Table.resetFields();
+          errorNotfication("error");
+        }
+      } catch {
+        errorNotfication("error");
+      }
+    };
+  
+    const onFinishFailed = (errorInfo) => {
+      console.log("Failed:", errorInfo);
+    };
     const calculatePrice = (price, number) => {
         return new Intl.NumberFormat("it-IT", {
           style: "currency",
@@ -31,7 +80,13 @@ const PageRating = () => {
       console.log(bill_total);
       
       const columns = [
-       
+        {
+          title: "Product_id",
+          dataIndex: "product_id",
+          key: "product_id",
+          align: "center",
+          
+        },
         {
           title: "Sản Phẩm",
           dataIndex: "product_name",
@@ -69,20 +124,45 @@ const PageRating = () => {
             align: "center",
             dataIndex: "images",
             render: (text, record) => (
-                <Rate />
-                
-              ),
+
+                <Container>
+                {[...Array(5)].map((item, index) => {
+                  const start_number= index + 1;
+                  return (
+                  <label>
+                    <Radio
+                    type="radio"
+                    value={start_number}
+                    onClick={() => {
+                      setRate(start_number);
+                      alert(`Are you sure you want to give ${start_number} stars ?`);
+                    }}
+                    
+                    />
+                    <Rating>
+                    <FaStar
+                      color={
+                        start_number < rate || start_number === rate
+                        ? "rgb(255,255,0)"
+                        : "rgb(192,192,192)"
+                      }
+                    />
+                    </Rating>
+                  </label>
+                  );
+                })}
+                </Container>
+            )},
             
-          },
           {
             title: "Bình luận",
-            key: "images",
+            key: "message",
             align: "center",
-            dataIndex: "images",
+            dataIndex: "message",
             render: (text, record) => (
                 <Form
             >
-              <Form.Item label="Bình luận" name="product_name">
+              <Form.Item label="Bình luận" name="message">
                 <Input placeholder="input placeholder" />
               </Form.Item>
               
@@ -109,21 +189,26 @@ const PageRating = () => {
                     padding: "20px",
                   }}
                 >
-                  Đánh giá
+                  Đánh giá 
                 </h2>
                 <div className="underline"></div>
               </div>
     
-              <Table dataSource={products} columns={columns} pagination={false} />
+              <Table 
+              dataSource={products} 
+              columns={columns} 
+              pagination={false} 
+              onFinish={onFinish}
+              />
               <div style={{
                 float: "right",
                 padding: "50px"
               }}>
-              <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+              
                 <Button type="primary" htmlType="submit">
                   Đánh giá
                 </Button>
-              </Form.Item>
+              
               </div>
             </article>
           </Wrapper>

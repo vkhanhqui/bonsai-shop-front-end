@@ -50,7 +50,7 @@ const CustomerManageBill= () => {
             },
           }}
         >
-          <p>Đánh giá {record.bill_id}</p>
+          <p>Đánh giá</p>
         </Link>
     )
   }
