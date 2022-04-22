@@ -6,7 +6,7 @@ import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
 // import { useUserContext } from "../context/user_context";
 import { useHistory } from "react-router-dom";
-
+import 'mdbreact/dist/css/mdb.css';
 import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
 
 const CartButton = () => {
@@ -37,7 +37,7 @@ const CartButton = () => {
       </Link>
       {localStorage.getItem("token") ? (
        
-    <MDBDropdown className="dropdown">
+    <MDBDropdown className="cart-btn">
     <MDBDropdownToggle tag='a' className='cart-btn'>
       {localStorage.getItem("username")} <FaUserMinus />
     </MDBDropdownToggle>
@@ -53,7 +53,7 @@ const CartButton = () => {
   </MDBDropdown>
      
       ) : (
-        <MDBDropdown className="dropdown">
+        <MDBDropdown className="cart-btn">
     <MDBDropdownToggle tag='a' className='cart-btn'>
       Account <FaUserPlus/>
     </MDBDropdownToggle>

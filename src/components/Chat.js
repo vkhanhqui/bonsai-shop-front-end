@@ -73,6 +73,7 @@ const Container = styled.main`
 }
 .social-button span{
   display: none;
+  right:100px;
 }
 .alo-circle {
     animation-iteration-count: infinite;
@@ -119,6 +120,7 @@ const Container = styled.main`
 .social-button a span {
     border-radius: 2px;
     text-align: center;
+    right:100px;
     background: rgb(103, 182, 52);
     padding: 9px;
     display: none;
@@ -152,6 +154,7 @@ const Container = styled.main`
   border-color: transparent rgb(103, 182, 52) transparent transparent;
   position: absolute;
   left: -10px;
+  right:100px;
   top: 10px;
 }
 `
