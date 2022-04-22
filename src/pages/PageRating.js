@@ -209,6 +209,7 @@ const Wrapper = styled.section`
   gap: 4rem;
 
   }
+  
   .nav-header {
     display: flex;
     align-items: center;

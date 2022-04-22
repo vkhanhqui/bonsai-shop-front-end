@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 import updateProduct from "../context/update_product"
 import updateCategory from "../context/update_category";
 import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
 import "antd/dist/antd.css";
 
 const { Option } = Select;
@@ -27,6 +28,7 @@ const normFile = (e) => {
 const AdminModCategory = () => {
   const data = useLocation().state;
   const [form] = Form.useForm();
+  const history = useHistory();
   useEffect(() => {
     getCategories().then((res) => setCategories(res));
   }, []);
@@ -53,9 +55,11 @@ const AdminModCategory = () => {
     try {
       const response = updateCategory(
         category_id,
-        category_name
+        category_name,
+       
       );
-     
+      history.push("/manage-category");
+      window.location.reload();
       if (response) {
         form.resetFields();
         openNotificationWithIcon("success");

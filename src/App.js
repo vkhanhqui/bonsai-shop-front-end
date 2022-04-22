@@ -194,7 +194,7 @@ function App() {
             <DetailsBlog4/>
           </Route>
                 <Route path="/rating">
-                  <PageRating />
+                  <Error />
                 </Route>
                   <Route path="/about">
                     <About />

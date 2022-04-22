@@ -33,9 +33,9 @@ const AdminManageStaff = () => {
       align: "center",
     },
     {
-      title: "Nhân viên",
-      dataIndex: "category_name",
-      key: "category_name",
+      title: "Khách hàng",
+      dataIndex: "name",
+      key: "name",
       align: "center",
       render: (text, record) =>
         `${record.last_name} ${record.first_name}`,

@@ -6,7 +6,7 @@ import getCategories from "../context/category_context";
 import createProduct from "../context/create_product_context";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
-
+import { Link, useHistory } from "react-router-dom";
 const { Option } = Select;
 
 const normFile = (e) => {
@@ -22,7 +22,7 @@ const normFile = (e) => {
 const AdminAddProduct = () => {
   const [form] = Form.useForm();
   const [categories, setCategories] = useState([]);
-
+  const history = useHistory();
   useEffect(() => {
     getCategories().then((res) => setCategories(res));
   }, []);
@@ -61,6 +61,8 @@ const AdminAddProduct = () => {
         description,
         formData
       );
+      history.push("/manage-product");
+      window.location.reload();
       if (response) {
         form.resetFields();
         openNotificationWithIcon("success");

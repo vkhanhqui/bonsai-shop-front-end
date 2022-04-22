@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import updateProduct from "../context/update_product"
 import deleteProduct from "../context/delete_product";
 import deleteCategory from "../context/delete_category";
-
+import { Link, useHistory } from "react-router-dom";
 const { Option } = Select;
 
 const normFile = (e) => {
@@ -27,7 +27,7 @@ const AdminDeleteCategory = () => {
   const data = useLocation().state;
   const [form] = Form.useForm();
   const [categories, setCategories] = useState([]);
-
+  const history = useHistory();
   useEffect(() => {
     getCategories().then((res) => setCategories(res));
   }, []);
@@ -55,6 +55,8 @@ const AdminDeleteCategory = () => {
       const response = deleteCategory(
         category_id
       );
+      history.push("/manage-category");
+      window.location.reload();
       if (response) {
         form.resetFields();
         openNotificationWithIcon("success");

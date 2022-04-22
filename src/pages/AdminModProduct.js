@@ -8,7 +8,7 @@ import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
 import { useLocation } from "react-router-dom";
 import updateProduct from "../context/update_product"
-
+import { Link, useHistory } from "react-router-dom";
 const { Option } = Select;
 
 const normFile = (e) => {
@@ -25,7 +25,7 @@ const AdminModProduct = () => {
   const data = useLocation().state;
   const [form] = Form.useForm();
   const [categories, setCategories] = useState([]);
-
+  const history = useHistory();
   useEffect(() => {
     getCategories().then((res) => setCategories(res));
   }, []);
@@ -52,6 +52,7 @@ const AdminModProduct = () => {
     const category_id = values.category_id;
     const description = values.description;
     const images = values.images;
+   
     const formData = new FormData();
     try {
       for (let i = 0; i < images.length; i++) {
@@ -65,6 +66,8 @@ const AdminModProduct = () => {
         description,
         
       );
+      history.push("/manage-product");
+      window.location.reload();
       if (response) {
         form.resetFields();
         openNotificationWithIcon("success");
