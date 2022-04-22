@@ -38,31 +38,31 @@ const CartButton = () => {
       {localStorage.getItem("token") ? (
        
     <MDBDropdown className="dropdown">
-    <MDBDropdownToggle tag='a' className='btn btn-primary'>
-      {localStorage.getItem("username")}
+    <MDBDropdownToggle tag='a' className='cart-btn'>
+      {localStorage.getItem("username")} <FaUserMinus />
     </MDBDropdownToggle>
 
     <MDBDropdownMenu >
       <MDBDropdownItem >
-        <MDBDropdownLink href="/get-bill" className="dropdown-item">Lịch sử mua hàng</MDBDropdownLink>
+        <MDBDropdownLink href="/get-bill" className="cart-btn">Lịch sử mua hàng</MDBDropdownLink>
       </MDBDropdownItem>
       <MDBDropdownItem >
-        <MDBDropdownLink href="/login" onClick={Logout} className="dropdown-item">Đăng xuất</MDBDropdownLink>
+        <MDBDropdownLink href="/login" onClick={Logout} className="cart-btn">Đăng xuất</MDBDropdownLink>
       </MDBDropdownItem>
     </MDBDropdownMenu>
   </MDBDropdown>
      
       ) : (
         <MDBDropdown className="dropdown">
-    <MDBDropdownToggle tag='a' className='btn btn-primary'>
-      Tài Khoản <FaUserPlus/>
+    <MDBDropdownToggle tag='a' className='cart-btn'>
+      Account <FaUserPlus/>
     </MDBDropdownToggle>
     <MDBDropdownMenu >
       <MDBDropdownItem >
-        <MDBDropdownLink href="/register" className="dropdown-item">Đăng ký</MDBDropdownLink>
+        <MDBDropdownLink href="/register" className="cart-btn">Đăng ký</MDBDropdownLink>
       </MDBDropdownItem>
       <MDBDropdownItem>
-        <MDBDropdownLink href="/login"className="dd dropdown-item" >Đăng nhập</MDBDropdownLink>
+        <MDBDropdownLink href="/login"className="cart-btn" >Đăng nhập</MDBDropdownLink>
       </MDBDropdownItem>
     </MDBDropdownMenu>
   </MDBDropdown>
