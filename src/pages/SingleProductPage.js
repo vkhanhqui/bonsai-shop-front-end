@@ -56,7 +56,7 @@ const SingleProductPage = () => {
           <ProductImages images={images} />
           <section className="content">
             <h2>{product_name}</h2>
-            <Stars stars={star_number} reviews={reviews} />
+            <Stars stars={4.3} reviews={reviews} />
             <h5 className="price">{formatPrice(product_price)}</h5>
             <p className="desc">{description}</p>
             {/* <p className="info">
