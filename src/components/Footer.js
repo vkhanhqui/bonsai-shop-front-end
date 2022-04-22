@@ -9,8 +9,9 @@ const Footer = () => {
       <h5>
         &copy; {new Date().getFullYear()}
         <span> Green Life </span>
+        All rights reserved
       </h5>
-      <h5>All rights reserved</h5>
+     
       </div>
     </Container>
   )
@@ -138,10 +139,10 @@ const Container = styled.footer`
     color: var(--clr-primary-7);
   }
   h5 {
-    color: var(--clr-primary-7);
+    color: var( --clr-white);
     margin: 0.1rem;
 
-    font-weight: 400;
+    font-weight: 400;cc
     text-transform: none;
     line-height: 1.25;
   }
