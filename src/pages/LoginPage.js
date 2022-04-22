@@ -3,9 +3,12 @@ import styled from "styled-components";
 import { PageHero } from "../components";
 import { Link, useHistory } from "react-router-dom";
 import handleLogin from "../context/login_context";
+
+import { Form, Select, Input, Button, Upload, notification } from "antd";
 const LoginPage = () => {
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
+  const [form] = Form.useForm();
   const roles = {
     1: "admin",
     2: "staff",
@@ -35,13 +38,16 @@ const LoginPage = () => {
       localStorage.setItem("role", roles[login.role_id]);
       history.push("/");
       window.location.reload();
-    }
+    } 
   };
   return (
     <main>
       <PageHero title="login" />
       <Wrapper className="page">
         <article>
+          <Form
+          form={form}
+          >
           <div className="informationLogin">
             <h2>User: </h2>
           </div>
@@ -82,6 +88,7 @@ const LoginPage = () => {
           <Link to="/register" className="register-btn">
             Bạn chưa có tài khoản?
           </Link>
+          </Form>
         </article>
       </Wrapper>
     </main>
