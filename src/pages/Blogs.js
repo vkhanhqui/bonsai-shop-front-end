@@ -19,26 +19,26 @@ const Blogs = () => {
         <article>
           <div className='title'>
           <Link to='/details' className='blogdetails'>
-   
-           HƯỚNG DẪN CHĂM SÓC SEN ĐÁ 
-          
+
+           HƯỚNG DẪN CHĂM SÓC SEN ĐÁ
+
          </Link>
             <div className='underline'></div>
           </div>
           <p>
           Sen đá là tên gọi của một loài xương rồng có những cánh hoa xếp chồng lên nhau trông giống như hoa sen. Nhóm cây này có nguồn gốc từ châu Mỹ, châu Phi và đã trở nên phổ biến được người dân nuôi trồng và chăm bón. Cách chăm sóc sen đá cũng không quá cầu kỳ, phức tạp.
-          Hãy cùng Green Life tìm hiểu cách chăm sóc loại cây này nhé. 
+          Hãy cùng Green Life tìm hiểu cách chăm sóc loại cây này nhé.
           </p>
-          
+
         </article>
 
         <img src={aboutImgs} alt='nice desk' />
         <article>
           <div className='title'>
           <Link to='/details4' className='blogdetails'>
-   
+
    BẠN ĐÃ PHƠI NẮNG CHO CÂY ĐÚNG CÁCH CHƯA ?
-  
+
  </Link>
             <div className='underline'></div>
           </div>
@@ -46,15 +46,15 @@ const Blogs = () => {
             Chúng ta có nên phơi nắng cây nội thất ? Hãy theo dõi bài viết sau đây để hiểu thêm về cây và cách phơi nắng cây cho đúng nhé.
           </p>
         </article>
-        
+
         <img src={img1} alt='nice desk' />
         <article>
           <div className='title'>
 
           <Link to='/details2' className='blogdetails'>
-   
+
    NGƯỜI MỚI CHƠI NÊN CHĂM CÂY GÌ ?
-  
+
  </Link>
             <div className='underline'></div>
           </div>
@@ -67,11 +67,11 @@ const Blogs = () => {
         <img src={img2} alt='nice desk' />
         <article>
           <div className='title'>
-            
+
           <Link to='/details1' className='blogdetails'>
-   
+
         HƯỚNG DẪN CHĂM SÓC TRẦU BÀ CẨM THẠCH
-  
+
         </Link>
             <div className='underline'></div>
           </div>
@@ -84,11 +84,11 @@ const Blogs = () => {
         <img src={img3} alt='nice desk' />
         <article>
           <div className='title'>
-            
+
           <Link to='/details3' className='blogdetails'>
-   
+
    HƯỚNG DẪN CHĂM SÓC CÂY ĐA BÚP ĐỎ
-  
+
  </Link>
             <div className='underline'></div>
           </div>
@@ -101,17 +101,17 @@ const Blogs = () => {
         <img src={img4} alt='nice desk' />
         <article>
           <div className='title'>
-            
+
           <Link to='/detsiler' className='blogdetails'>
-   
+
    ĐÔ LA HỒNG
-  
+
  </Link>
             <div className='underline'></div>
           </div>
           <p>
             Cây Đô la là loài cây có tên vô cùng độc đáo, khiến nhiều người cảm thấy tò mò. Cây này không chỉ đẹp mắt mà còn là biểu tượng của may mắn, tài lộc.
-            Nếu bạn còn băn khoăn không biết cây Đô la là cây gì, có nguồn gốc và ý nghĩa thế nào thì đừng 
+            Nếu bạn còn băn khoăn không biết cây Đô la là cây gì, có nguồn gốc và ý nghĩa thế nào thì đừng
             bỏ qua bài viết sau nhé. Những thông tin sau sẽ cung cấp cho bạn cái nhìn tổng quan về loài cây này.
           </p>
         </article>
@@ -120,15 +120,15 @@ const Blogs = () => {
         <article>
           <div className='title'>
           <Link to='/detsiler' className='blogdetails'>
-   
+
    11 BÍ "KÍP" CỦA NGHỆ THUẬT TẶNG QUÀ
-  
+
  </Link>
             <div className='underline'></div>
           </div>
           <p>
             Một sự thật hiển nhiên luôn tồn tại đó là nơi nào có cuộc sống, nơi đó có quà tặng. Đặc biệt hơn, khi cuộc sống
-            con người ngày càng hiện đại thì nhu cầu tặng quà và được tặng quà ngày càng được quan tâm. 
+            con người ngày càng hiện đại thì nhu cầu tặng quà và được tặng quà ngày càng được quan tâm.
             Tặng quà là một hoạt động giao tiếp trong cuộc sống hiện đại và trong bất cứ mối quan hệ nào
             cũng có nó: bạn bè, gia đình, người yêu, khách hàng công việc, đối tác,...
           </p>
@@ -150,15 +150,15 @@ const Wrapper = styled.section`
 
   h2{
     font-family:"Courier New", BrushScript, monospace;
-    
+
     color: rgb(0,100,0);
   }
   .blogdetails{
     font-family:"Courier New", BrushScript, monospace;
-    
+
     color: rgb(0,100,0);
     font-size: 30px;
-    
+
  }
   p {
     line-height: 2;
@@ -169,7 +169,7 @@ const Wrapper = styled.section`
   }
   .title {
     text-align: left;
-    
+
   }
   .underline {
     margin-left: 0;
