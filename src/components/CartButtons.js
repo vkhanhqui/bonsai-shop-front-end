@@ -7,6 +7,7 @@ import { useCartContext } from "../context/cart_context";
 // import { useUserContext } from "../context/user_context";
 import { useHistory } from "react-router-dom";
 
+
 import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
 
 const CartButton = () => {
@@ -77,9 +78,8 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   width: 225px;
-  .dd dropdown-item {
-    color: red;
-  }
+  
+ 
   .cart-btn {
     color: var(--clr-grey-1);
     font-size: 1.5rem;

@@ -128,7 +128,7 @@ const Container = styled.main`
     color: #ffffff;
     z-index: 999;
     top: 9px;
-    left: 40px;
+    left: -30px;
     transition: all 0.2s ease-in-out 0s;
     -moz-animation: headerAnimation 0.7s 1;
     -webkit-animation: headerAnimation 0.7s 1;
