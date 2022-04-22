@@ -7,7 +7,7 @@ function AuthWrapper({ children }) {
   if (isLoading) {
     return (
       <Wrapper>
-        <h1>Loading....</h1>
+        <h1>Đang tải....</h1>
       </Wrapper>
     )
   }

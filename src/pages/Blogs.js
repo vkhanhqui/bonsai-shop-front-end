@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 const Blogs = () => {
   return (
     <main>
-      <PageHero title='blogs' />
+      <PageHero title='Tin tức' />
       <Wrapper className='page section section-center'>
 
         <img src={aboutImg} alt='nice desk' />

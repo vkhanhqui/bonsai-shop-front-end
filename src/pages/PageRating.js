@@ -20,10 +20,7 @@ const PageRating = () => {
     const bill_id = data.bill_id;
     const products = bills.products;
     const bill_total = bills.bill_total;
-    const [rate, setRate] = useState(0);
     
-    
-   
     useEffect(() => {
       GetBillDetail(bill_id).then((res) => setBills(res));
     }, []);

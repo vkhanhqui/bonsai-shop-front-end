@@ -73,7 +73,7 @@ const Add_address = () => {
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit" onclick>
-          Submit
+          Thêm
         </Button>
       </Form.Item>
     </Form>

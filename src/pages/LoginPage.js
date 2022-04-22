@@ -39,6 +39,7 @@ const LoginPage = () => {
       history.push("/");
       window.location.reload();
     } 
+    
   };
   return (
     <main>
@@ -49,7 +50,7 @@ const LoginPage = () => {
           form={form}
           >
           <div className="informationLogin">
-            <h2>User: </h2>
+            <h2>User </h2>
           </div>
           <div className="inputLogin">
             <input
@@ -78,13 +79,14 @@ const LoginPage = () => {
               className="submit-btn"
               onClick={handleSubmit}
             >
-              Login
+              Đăng nhập
             </button>
 
             <button type="cancelBtn" className="submit-btn1">
-              Cancel
+              Thoát
             </button>
           </div>
+          <br></br>
           <Link to="/register" className="register-btn">
             Bạn chưa có tài khoản?
           </Link>
@@ -102,6 +104,7 @@ const Wrapper = styled.section`
     font-family: "Courier New", BrushScript, monospace;
     color: rgb(0, 100, 0);
     margin-left: 450px;
+    
   }
 
   p {

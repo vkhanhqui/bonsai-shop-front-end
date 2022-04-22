@@ -165,7 +165,7 @@ const AdminModProduct = () => {
               </Form.Item>
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                 DELETE
+                 Xóa
                 </Button>
               </Form.Item>
             </Form>

@@ -24,7 +24,7 @@ const ListView = ({ products, total }) => {
               <h5 className="price">{formatPrice(product_price)}</h5>
               <p>{description.substring(0, 150)}...</p>
               <Link to={`/products/${product_id}`} className="btn">
-                Details
+                Chi tiết
               </Link>
             </div>
           </article>

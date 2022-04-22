@@ -6,9 +6,9 @@ const ErrorPage = () => {
     <Wrapper className='page-100'>
       <section>
         <h1>404</h1>
-        <h3>Sorry, the page you tried cannot be found</h3>
+        <h3>Xin lỗi, không thể tìm thấy trang</h3>
         <Link to='/' className='btn'>
-          back home
+          Trở về
         </Link>
       </section>
     </Wrapper>

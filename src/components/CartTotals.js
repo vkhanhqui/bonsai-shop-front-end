@@ -130,7 +130,7 @@ const CartTotals = () => {
               type="cancel"
               onClick={handleCancelConfirmPayment}
             >
-              Cancel
+              Thoát
             </Button>,
           ]}
         >

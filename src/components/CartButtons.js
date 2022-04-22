@@ -30,7 +30,7 @@ const CartButton = () => {
   return (
     <Wrapper className="cart-btn-wrapper">
       <Link to="/cart" className="cart-btn" onClick={closeSidebar}>
-        Cart
+        Giỏ hàng
         <span className="cart-container">
           <FaShoppingCart />
           <span className="cart-value">{total_items}</span>
@@ -56,7 +56,7 @@ const CartButton = () => {
       ) : (
         <MDBDropdown className="dropdown">
     <MDBDropdownToggle tag='a' className='cart-btn'>
-      Account <FaUserPlus/>
+      Tài khoản <FaUserPlus/>
     </MDBDropdownToggle>
     <MDBDropdownMenu >
       <MDBDropdownItem >
@@ -82,7 +82,7 @@ const Wrapper = styled.div`
  
   .cart-btn {
     color: var(--clr-grey-1);
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     letter-spacing: var(--spacing);
     color: var(--clr-grey-1);
     display: flex;

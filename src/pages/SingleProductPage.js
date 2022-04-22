@@ -50,7 +50,7 @@ const SingleProductPage = () => {
 
       <div className="section section-center page">
         <Link to="/products" className="btn">
-          back to products
+          Trở về trang sản phẩm
         </Link>
         <div className="product-center">
           <ProductImages images={images} />

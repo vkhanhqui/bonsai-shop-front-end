@@ -42,7 +42,7 @@ const Register = () => {
       <Wrapper className="page">
         <article>
           <div className="informationLogin">
-            <h2>User: </h2>
+            <h2>Tên đăng nhập: </h2>
           </div>
           <div className="inputLogin">
             <input
@@ -54,7 +54,7 @@ const Register = () => {
           </div>
 
           <div className="informationLogin">
-            <h2>Password: </h2>
+            <h2>Mật khẩu:  </h2>
           </div>
 
           <div className="inputLogin">
@@ -119,11 +119,11 @@ const Register = () => {
               className="submit-btn"
               onClick={handleSubmit}
             >
-              Register
+              Đăng ký
             </button>
 
             <button type="cancelBtn" className="submit-btn1">
-              Cancel
+              Thoát
             </button>
           </div>
         </article>

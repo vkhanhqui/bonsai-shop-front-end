@@ -11,7 +11,7 @@ const HomePage = () => {
   const search = useLocation().search;
   const isVNPaySuccess = new URLSearchParams(search).get("isVNPaySuccess");
   if (isVNPaySuccess === "true") {
-    toast("Thanh toán thành công!!!", {
+    toast("Đặt hàng thành công!!!", {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
