@@ -30,7 +30,7 @@ const CartButton = () => {
   return (
     <Wrapper className="cart-btn-wrapper">
       <Link to="/cart" className="cart-btn" onClick={closeSidebar}>
-        Giỏ hàng
+        Giỏ hàng 
         <span className="cart-container">
           <FaShoppingCart />
           <span className="cart-value">{total_items}</span>

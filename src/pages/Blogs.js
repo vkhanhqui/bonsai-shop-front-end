@@ -102,7 +102,7 @@ const Blogs = () => {
         <article>
           <div className='title'>
             
-          <Link to='/' className='blogdetails'>
+          <Link to='/detsiler' className='blogdetails'>
    
    ĐÔ LA HỒNG
   
@@ -119,7 +119,7 @@ const Blogs = () => {
         <img src={img5} alt='nice desk' />
         <article>
           <div className='title'>
-          <Link to='/' className='blogdetails'>
+          <Link to='/detsiler' className='blogdetails'>
    
    11 BÍ "KÍP" CỦA NGHỆ THUẬT TẶNG QUÀ
   

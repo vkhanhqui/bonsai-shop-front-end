@@ -38,11 +38,11 @@ const Register = () => {
   };
   return (
     <main>
-      <PageHero title="register" />
+      <PageHero title="Đăng ký" />
       <Wrapper className="page">
         <article>
           <div className="informationLogin">
-            <h2>Tên đăng nhập: </h2>
+            <h2>UserName: </h2>
           </div>
           <div className="inputLogin">
             <input
@@ -54,13 +54,13 @@ const Register = () => {
           </div>
 
           <div className="informationLogin">
-            <h2>Mật khẩu:  </h2>
+            <h2>Password:  </h2>
           </div>
 
           <div className="inputLogin">
             <input
               ref={passwordRef}
-              type="passw"
+              type="password"
               className="form-input"
               placeholder="Enter Password"
             />
@@ -79,7 +79,7 @@ const Register = () => {
           </div>
 
           <div className="informationLogin">
-            <h2>Firstname: </h2>
+            <h2>FirstName:</h2>
           </div>
           <div className="inputLogin">
             <input
@@ -91,7 +91,7 @@ const Register = () => {
           </div>
 
           <div className="informationLogin">
-            <h2>Lastname: </h2>
+            <h2>LastName: </h2>
           </div>
           <div className="inputLogin">
             <input
@@ -103,7 +103,7 @@ const Register = () => {
           </div>
 
           <div className="informationLogin">
-            <h2>Birthday: </h2>
+            <h2>Birthday:</h2>
           </div>
           <div className="inputLogin">
             <input

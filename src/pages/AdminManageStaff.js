@@ -33,7 +33,7 @@ const AdminManageStaff = () => {
       align: "center",
     },
     {
-      title: "Khách hàng",
+      title: "Nhân Viên",
       dataIndex: "name",
       key: "name",
       align: "center",
@@ -59,7 +59,7 @@ const AdminManageStaff = () => {
                 padding: "20px",
               }}
             >
-              Quản Lý Khách Hàng
+              Quản Lý Nhân Viên
             </h2>
             <div className="underline"></div>
           </div>

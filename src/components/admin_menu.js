@@ -71,7 +71,7 @@ const AdminMenu = () => {
         title="Quản Lý Nhân Viên"
       >
         <Link to="/manage-staff" className="cart-btn">
-          Quản Lý Khách Hàng
+          Quản Lý Nhân Viên
         </Link>
       </Menu.Item>
     </Menu>

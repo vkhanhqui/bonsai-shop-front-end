@@ -43,21 +43,21 @@ const LoginPage = () => {
   };
   return (
     <main>
-      <PageHero title="login" />
+      <PageHero title="Đăng nhập" />
       <Wrapper className="page">
         <article>
           <Form
           form={form}
           >
           <div className="informationLogin">
-            <h2>User </h2>
+            <h2>User: </h2>
           </div>
           <div className="inputLogin">
             <input
               ref={usernameRef}
               type="user"
               className="form-input"
-              placeholder="Enter User"
+              placeholder="Vui lòng nhập tên đăng nhập"
             />
           </div>
 
@@ -70,7 +70,7 @@ const LoginPage = () => {
               ref={passwordRef}
               type="password"
               className="form-input"
-              placeholder="Enter Password"
+              placeholder="Vui lòng nhập mật khẩu"
             />
           </div>
           <div>
@@ -114,6 +114,7 @@ const Wrapper = styled.section`
     margin-top: 2rem;
     color: var(--clr-grey-5);
     font-size: 30px;
+    
   }
   .title {
     text-align: left;
