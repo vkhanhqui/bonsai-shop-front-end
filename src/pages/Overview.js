@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
-import Chart from "../components/Chart"
-import Charts from "../components/PieCharts"
+import BarChartOvv from "../components/BarChart";
+import ChartExample from "../components/Chart"
+import ApexChart from "../components/PieCharts"
 
 const Overview = () => {
 
@@ -29,12 +30,13 @@ const Overview = () => {
             <div className="underline"></div>
           </div>
           <p>DOANH THU</p>
-          <Chart />
+          <ChartExample />
+
           <p>LOẠI SẢN PHẨM</p>
-          <Charts />
-          <p>
-           
-          </p>
+          <ApexChart />
+
+          <p>HÀNG TỒN</p>
+          <BarChartOvv />
         </article>
       </Wrapper>
     </main>
