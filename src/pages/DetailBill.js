@@ -93,7 +93,7 @@ const DetailBill = () => {
             </h2>
             <div className="underline"></div>
           </div>
-          <Link to="/export-bill">Xuất hoá đơn</Link>
+          <Link to={`/export-bill?bill_id=${bill_id}`}>Xuất hoá đơn</Link>
           <Table dataSource={products} columns={columns} pagination={false} />
           <div style={{
             float: "right",

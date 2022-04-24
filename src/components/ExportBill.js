@@ -1,112 +1,121 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
 import exportBill from "../context/export_bill";
 const ExportBill = () => {
-  const [bill, setBill] = useState({});
+  const [bill, setBill] = useState(false);
+  const search = useLocation().search;
+  const bill_id = new URLSearchParams(search).get("bill_id");
 
   useEffect(() => {
-    exportBill(79).then((res) => setBill(res));
+    exportBill(bill_id).then((res) => setBill(res));
   }, []);
 
   return (
-    <Wrapper>
-      <div className="main">
-        <header>
-          <h1>Hoá đơn thanh toán</h1>
-          <span>
-            <img
-              alt=""
-              src="http://www.jonathantneal.com/examples/invoice/logo.png"
-            />
-          </span>
-        </header>
+    bill && (
+      <Wrapper>
+        <div className="main">
+          <header>
+            <h1>Hoá đơn từ GreenLife</h1>
+            <span>
+              <img
+                alt=""
+                src="http://www.jonathantneal.com/examples/invoice/logo.png"
+              />
+            </span>
+          </header>
 
-        <article>
-          <address contenteditable>
-            <p>
-              Khách hàng: {bill.customer.first_name} {bill.customer.last_name}
-            </p>
-            <p>Địa chỉ: {bill.full_address}</p>
-            <p>Số điện thoại: {bill.phone_number}</p>
-            <p>Email: {bill.customer.email}</p>
-          </address>
-          <table class="meta">
-            <tr>
-              <th>
-                <span contenteditable>ID #</span>
-              </th>
-              <td>
-                <span contenteditable>{bill.bill_id}</span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <span contenteditable>Ngày tạo</span>
-              </th>
-              <td>
-                <span contenteditable>{bill.created_at}</span>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <span contenteditable>Tổng thanh toán</span>
-              </th>
-              <td>
-                <span>{formatPrice(bill.total_price)} vnđ</span>
-              </td>
-            </tr>
-          </table>
-          <table class="inventory">
-            <thead>
+          <article>
+            <address contenteditable>
+              <p>
+                Khách hàng: {bill.customer.first_name} {bill.customer.last_name}
+              </p>
+              <p>Địa chỉ: {bill.full_address}</p>
+              <p>Số điện thoại: {bill.phone_number}</p>
+              <p>Email: {bill.customer.email}</p>
+            </address>
+            <table class="meta">
               <tr>
                 <th>
-                  <span contenteditable>STT</span>
+                  <span contenteditable>ID #</span>
                 </th>
-                <th>
-                  <span contenteditable>Tên sản phẩm</span>
-                </th>
-                <th>
-                  <span contenteditable>Giá</span>
-                </th>
-                <th>
-                  <span contenteditable>Số lượng</span>
-                </th>
-                <th>
-                  <span contenteditable>Tổng</span>
-                </th>
+                <td>
+                  <span contenteditable>{bill.bill_id}</span>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {
+              <tr>
+                <th>
+                  <span contenteditable>Ngày tạo</span>
+                </th>
+                <td>
+                  <span contenteditable>{bill.created_at}</span>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <span contenteditable>Tổng thanh toán</span>
+                </th>
+                <td>
+                  <span>{formatPrice(bill.total_price)}</span>
+                </td>
+              </tr>
+            </table>
+            <table class="inventory">
+              <thead>
                 <tr>
-                  <td>
-                    <span contenteditable>1</span>
-                  </td>
-                  <td>
-                    <span contenteditable>Chậu abc</span>
-                  </td>
-                  <td>
-                    <span contenteditable>600 vnđ</span>
-                  </td>
-                  <td>
-                    <span contenteditable>4</span>
-                  </td>
-                  <td>
-                    <span>600 vnđ</span>
-                  </td>
+                  <th>
+                    <span contenteditable>STT</span>
+                  </th>
+                  <th>
+                    <span contenteditable>Tên sản phẩm</span>
+                  </th>
+                  <th>
+                    <span contenteditable>Giá</span>
+                  </th>
+                  <th>
+                    <span contenteditable>Số lượng</span>
+                  </th>
+                  <th>
+                    <span contenteditable>Tổng</span>
+                  </th>
                 </tr>
-              }
-            </tbody>
-          </table>
-        </article>
-        <aside>
-          <h1>
-            <span contenteditable>Cảm ơn bạn đã mua hàng</span>
-          </h1>
-        </aside>
-      </div>
-    </Wrapper>
+              </thead>
+              <tbody>
+                {bill.bill_managements.map((products, index) => {
+                  return (
+                    <tr>
+                      <td>
+                        <span contenteditable>{index + 1}</span>
+                      </td>
+                      <td>
+                        <span contenteditable>{products.product_name}</span>
+                      </td>
+                      <td>
+                        <span contenteditable>
+                          {formatPrice(products.product_price)}
+                        </span>
+                      </td>
+                      <td>
+                        <span contenteditable>{products.number_product}</span>
+                      </td>
+                      <td>
+                        <span>{formatPrice(products.product_price*products.number_product)}</span>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </article>
+          <aside>
+            <h1>
+              <span contenteditable>Cảm ơn bạn đã mua hàng</span>
+            </h1>
+          </aside>
+        </div>
+      </Wrapper>
+    )
   );
 };
 const Wrapper = styled.section`
