@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useCartContext } from "../context/cart_context";
 import { formatPrice } from "../utils/helpers";
 import { Modal, Select } from "antd";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import customerConfirmBill from "../context/customer_confirm_bill";
 import Add_address from "../pages/AdminAddAddress";
 import getAddresses from "../context/get_all_addresses";
@@ -113,9 +113,10 @@ const CartTotals = () => {
         <Modal
           title="Add Address"
           visible={isModalVisible1}
-          onOk={handleOk1}
+          // onOk={handleOk1}
           onCancel={handleCancel1}
-        >
+            footer={null}
+>
           <Add_address />
         </Modal>
 
@@ -129,7 +130,7 @@ const CartTotals = () => {
               type="cancel"
               onClick={handleCancelConfirmPayment}
             >
-              Cancel
+              Thoát
             </Button>,
           ]}
         >

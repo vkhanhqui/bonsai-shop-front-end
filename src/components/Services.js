@@ -7,7 +7,7 @@ const Services = () => {
       <div className='section-center'>
         <article className='header'>
           <h3>
-            Life is beautiful <br /> built only for you
+           Cuộc sống tươi đẹp <br /> được xây dựng chỉ dành cho bạn
           </h3>
           <p>
             Cùng sống, tìm hiểu và làm việc với cây xanh mỗi ngày, tình yêu với màu xanh ấy

@@ -16,7 +16,7 @@ const Hero = () => {
           "Khi tôi bận tâm về điều gì đó, tôi bỏ chút thời gian ở giữa thiên nhiên, và luôn luôn tìm được câu trả lời. – Katrina Mayer"
         </p>
         <Link to='/products' className='btn hero-btn'>
-          shop now
+          Mua sắm ngay
         </Link>
       </article>
       <article className='img-container'>

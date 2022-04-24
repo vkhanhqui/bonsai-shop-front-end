@@ -16,9 +16,9 @@ const CheckoutPage = () => {
       <Wrapper className='page'>
         {cart.length < 1 ? (
           <div className='empty'>
-            <h2>Your cart is empty</h2>
+            <h2>Giỏ hàng rỗng</h2>
             <Link to='/products' className='btn'>
-              fill it
+              Thêm vào giỏ
             </Link>
           </div>
         ) : (

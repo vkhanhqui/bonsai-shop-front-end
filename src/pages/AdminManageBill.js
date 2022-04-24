@@ -134,13 +134,7 @@ const BillPage = () => {
             </h2>
             <div className="underline"></div>
           </div>
-          <Button
-            type="primary"
-            size="large"
-            style={{ marginLeft: "900px", marginBottom: "20px" }}
-          >
-            <Link to="add-product">Thêm mới</Link>
-          </Button>
+         
           <Table
             dataSource={bills}
             columns={columns}

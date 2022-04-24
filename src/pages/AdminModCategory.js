@@ -10,7 +10,8 @@ import { useLocation } from "react-router-dom";
 import updateProduct from "../context/update_product"
 import updateCategory from "../context/update_category";
 import axios from "axios";
-import "antd/dist/antd.css";
+import { Link, useHistory } from "react-router-dom";
+import "antd/dist/antd.min.css";
 
 const { Option } = Select;
 
@@ -27,6 +28,7 @@ const normFile = (e) => {
 const AdminModCategory = () => {
   const data = useLocation().state;
   const [form] = Form.useForm();
+  const history = useHistory();
   useEffect(() => {
     getCategories().then((res) => setCategories(res));
   }, []);
@@ -53,9 +55,11 @@ const AdminModCategory = () => {
     try {
       const response = updateCategory(
         category_id,
-        category_name
+        category_name,
+
       );
-     
+      history.push("/manage-category");
+      window.location.reload();
       if (response) {
         form.resetFields();
         openNotificationWithIcon("success");
@@ -79,7 +83,7 @@ const AdminModCategory = () => {
         <AdminMenu />
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
-           
+
           </div>
           <div>
             <Form
@@ -96,7 +100,7 @@ const AdminModCategory = () => {
               autoComplete="off"
               style={{ marginLeft: -300 }}
               form={form}
-              
+
             > <h2>CHI TIẾT LOẠI SẢN PHẨM </h2> <div className="underline"> </div>
             <Form.Item label="Mã loại sản phẩm" name="category_id">
               <Input placeholder="input placeholder" required = {true} readOnly = {true}  />
@@ -106,7 +110,7 @@ const AdminModCategory = () => {
                   style={{
                     width: 300,
                   }}
-                  required = {true} 
+                  required = {true}
                   readOnly = {true}
                 >
                   {categories.map((category) => {
@@ -121,19 +125,19 @@ const AdminModCategory = () => {
                   })}
                 </Select>
               </Form.Item>
-            
+
             <h2> SỬA LOẠI SẢN PHẨM </h2> <div className="underline"> </div>
               <Form.Item label="Mã loại sản phẩm" name="category_id">
                 <Input placeholder="input placeholder" required = {true} readOnly = {true}  />
               </Form.Item>
               <Form.Item label="Loại Sản Phẩm" name="category_name">
               <Input placeholder="input placeholder" />
-              
+
               </Form.Item>
-              
+
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  Submit
+                  Sửa
                 </Button>
               </Form.Item>
             </Form>

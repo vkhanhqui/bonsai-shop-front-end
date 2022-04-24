@@ -6,6 +6,10 @@ import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
 // import { useUserContext } from "../context/user_context";
 import { useHistory } from "react-router-dom";
+
+
+import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
+
 const CartButton = () => {
   const { closeSidebar } = useProductsContext();
   const { total_items, clearCart } = useCartContext();
@@ -18,23 +22,52 @@ const CartButton = () => {
     localStorage.removeItem("username");
     history.push("/login");
   };
+  const handleCLick = () => {
+    <Link to="/cart" className="cart-btn">
+        
+      </Link>
+  }
   return (
     <Wrapper className="cart-btn-wrapper">
       <Link to="/cart" className="cart-btn" onClick={closeSidebar}>
-        Cart
+        Giỏ hàng 
         <span className="cart-container">
           <FaShoppingCart />
           <span className="cart-value">{total_items}</span>
         </span>
       </Link>
       {localStorage.getItem("token") ? (
-        <button type="button" className="auth-btn" onClick={Logout}>
-          {localStorage.getItem("username")} <FaUserMinus />
-        </button>
+       
+    <MDBDropdown className="dropdown">
+    <MDBDropdownToggle tag='a' className='cart-btn'>
+      {localStorage.getItem("username")} <FaUserMinus />
+    </MDBDropdownToggle>
+
+    <MDBDropdownMenu >
+      <MDBDropdownItem >
+        <MDBDropdownLink href="/get-bill" className="cart-btn">Lịch sử mua hàng</MDBDropdownLink>
+      </MDBDropdownItem>
+      <MDBDropdownItem >
+        <MDBDropdownLink href="/login" onClick={Logout} className="cart-btn">Đăng xuất</MDBDropdownLink>
+      </MDBDropdownItem>
+    </MDBDropdownMenu>
+  </MDBDropdown>
+     
       ) : (
-        <Link to="/login" className="cart-btn" onClick={closeSidebar}>
-          Login <FaUserPlus />
-        </Link>
+        <MDBDropdown className="dropdown">
+    <MDBDropdownToggle tag='a' className='cart-btn'>
+      Tài khoản <FaUserPlus/>
+    </MDBDropdownToggle>
+    <MDBDropdownMenu >
+      <MDBDropdownItem >
+        <MDBDropdownLink href="/register" className="cart-btn">Đăng ký</MDBDropdownLink>
+      </MDBDropdownItem>
+      <MDBDropdownItem>
+        <MDBDropdownLink href="/login"className="cart-btn" >Đăng nhập</MDBDropdownLink>
+      </MDBDropdownItem>
+    </MDBDropdownMenu>
+  </MDBDropdown>
+        
       )}
     </Wrapper>
   );
@@ -45,10 +78,11 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   width: 225px;
-
+  
+ 
   .cart-btn {
     color: var(--clr-grey-1);
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     letter-spacing: var(--spacing);
     color: var(--clr-grey-1);
     display: flex;

@@ -8,7 +8,7 @@ const BestSeller = () => {
   if (products.length < 1) {
     return (
       <h5 style={{ textTransform: "none" }}>
-        Sorry, no products matched your search.
+        Xin lỗi, không có sản phẩm nào phù hợp với tìm kiếm của bạn.
       </h5>
     );
   }

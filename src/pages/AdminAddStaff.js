@@ -7,7 +7,7 @@ import createProduct from "../context/create_product_context";
 import AdminHeader from "../components/admin_header";
 import AdminMenu from "../components/admin_menu";
 import createStaff from "../context/create_staff";
-
+import { Link, useHistory } from "react-router-dom";
 const { Option } = Select;
 
 const normFile = (e) => {
@@ -23,7 +23,7 @@ const normFile = (e) => {
 const AdminAddStaff = () => {
   const [form] = Form.useForm();
   const [categories, setCategories] = useState([]);
-
+  const history = useHistory();
   useEffect(() => {
     getCategories().then((res) => setCategories(res));
   }, []);
@@ -60,6 +60,8 @@ const AdminAddStaff = () => {
         passwork,
         username,
       );
+      history.push("/manage-staff");
+      window.location.reload();
       if (response) {
         form.resetFields();
         openNotificationWithIcon("success");
@@ -117,7 +119,7 @@ const AdminAddStaff = () => {
               </Form.Item>
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  Submit
+                 Thêm
                 </Button>
               </Form.Item>
             </Form>

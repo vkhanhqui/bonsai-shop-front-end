@@ -1,104 +1,76 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Table, Button } from "antd";
-import { Link } from "react-router-dom";
-import AdminHeader from "../components/admin_header";
-import AdminMenu from "../components/admin_menu";
+import { Table } from "antd";
+import { useLocation, Link } from "react-router-dom";
 import { formatPrice } from "../utils/helpers";
-import getBills from "../context/get_bills_context";
-import adminConfirmBill from "../context/admin_confirm_bill";
-import AmountButtons from "../components/AmountButtons";
-import { useCartContext } from "../context/cart_context";
-import { useProductsContext } from "../context/products_context";
 import GetBillDetail from "../context/get_detailBill_context"
-const DetailBill = ( id, image, name, price, amount) => {
-  const [bills,setBills] = useState([]);
-  const { product } = useProductsContext();
-  const { total_amount, cart, clearCart } = useCartContext();
-  const handleBillStatus = (bill_status) => {
-    if (bill_status === "Customer confirmed") {
-      return "Đơn hàng mới";
-    } else if (bill_status === "Admin confirmed") {
-      return "Đã duyệt";
-    }
-  };
 
-  const handleConfirm = async (bill_id) => {
-    GetBillDetail(localStorage.getItem("token"), bill_id).then((res) => {
-      getBills(localStorage.getItem("token")).then((res) => setBills(res));
-    });
-
-  };
-
-  const handleConfirmBill = (record) => {
-    if (record.bill_status === "Admin confirmed") {
-      return (
-        <Link
-          to={{
-            pathname: "/detail-bill/",
-            state: {
-              bill_id: record.bill_id,
-            },
-          }}
-        >
-          <p>Xem chi tiết</p>
-        </Link>
-      );
-    } else if (record.bill_status === "Customer confirmed") {
-      return (
-        <Link onClick={() => handleConfirm(record.bill_id)}>
-          <p>Xác nhận đơn hàng</p>
-        </Link>
-      );
-    }
-  };
-
+const DetailBill = () => {
+  const data = useLocation().state;
+  const [bills, setBills] = useState([]);
+  const bill_id = data.bill_id;
+  const products = bills.products;
+  const bill_total = bills.bill_total;
   useEffect(() => {
-    getBills(localStorage.getItem("token")).then((res) => setBills(res));
+    GetBillDetail(bill_id).then((res) => setBills(res));
   }, []);
-  const response = GetBillDetail(
 
-  );
+  const calculatePrice = (price, number) => {
+    return new Intl.NumberFormat("it-IT", {
+      style: "currency",
+      currency: "VND",
+    }).format(price * number);
+  };
+  const columns = [
 
-    const columns = [
-      {
-        title: "Số Thứ Tự",
-        dataIndex: "stt",
-        key: "stt",
-        align: "center",
-      },
-      {
-        title: "Sản Phẩm",
-        dataIndex: "customer",
-        key: "customer",
-        align: "center",
+    {
+      title: "Sản Phẩm",
+      dataIndex: "product_name",
+      key: "product_name",
+      align: "center",
 
-      },
-      {
-        title: "Giá",
-        dataIndex: "total_price",
-        key: "total_price",
-        align: "center",
+    },
 
-      },
-      {
-        title: "Số Lượng",
-        dataIndex: "total_price",
-        key: "total_price",
-        align: "center",
+    {
+      title: "Giá",
+      dataIndex: "product_price",
+      key: "product_price",
+      align: "center",
+      render: (text, record) =>
+        calculatePrice(record.product_price, 1),
+    },
+    {
+      title: "Số Lượng",
+      dataIndex: "number_product",
+      key: "number_product",
+      align: "center",
 
-      },
-
-      {
-        title: "Tổng cộng",
-        dataIndex: "total_price",
-        key: "total_price",
-        align: "center",
-
-      },
-
-
-    ];
+    },
+    {
+      title: "Tổng cộng",
+      dataIndex: "product_price",
+      key: "product_price",
+      align: "center",
+      render: (text, record) =>
+        calculatePrice(record.product_price, record.number_product),
+    },
+    {
+      title: "Ảnh",
+      key: "images",
+      align: "center",
+      dataIndex: "images",
+      render: (text, record) => (
+        <img
+          style={{
+            width: "100px",
+            height: "100px",
+          }}
+          src={`${record.image_path}`}
+          alt={`${record.image_path}`}
+        />
+      ),
+    },
+  ];
 
   return (
     <main>
@@ -121,18 +93,14 @@ const DetailBill = ( id, image, name, price, amount) => {
             </h2>
             <div className="underline"></div>
           </div>
-
-          <Table
-           // dataSource={bills}
-            columns={columns}
-            pagination={{ defaultPageSize: 10 }}
-          />
-          <div>
-          <h4>
-          Tổng cộng :<span>{formatPrice(total_amount)}</span>
-            </h4>
+          <Link to={`/export-bill?bill_id=${bill_id}`}>Xuất hoá đơn</Link>
+          <Table dataSource={products} columns={columns} pagination={false} />
+          <div style={{
+            float: "right",
+            padding: "50px"
+          }}>
             <h4>
-              Method Payment :<span>{"......"}</span>
+              Tổng cộng : <span>{formatPrice(bill_total)}</span>
             </h4>
           </div>
         </article>
@@ -181,4 +149,4 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
   }
 `;
-export default DetailBill;
+export default DetailBill

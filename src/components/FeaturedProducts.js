@@ -21,7 +21,7 @@ const FeaturedProducts = () => {
   return (
     <Wrapper className="section">
       <div className="title">
-        <h2>Best Seller</h2>
+        <h2>Sản phẩm bán chạy</h2>
         <div className="underline"></div>
       </div>
 
@@ -32,7 +32,7 @@ const FeaturedProducts = () => {
       </div>
 
       <Link to="/products" className="btn">
-        all products
+        Tất cả sản phẩm
       </Link>
     </Wrapper>
   );

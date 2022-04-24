@@ -4,11 +4,11 @@ const Contact = () => {
   return (
     <Wrapper>
       <div className='section-center'>
-        <h3>Join our newsletter and get 10% off</h3>
+        <h3>Tham gia bản tin của chúng tôi và được giảm giá 10%</h3>
         <div className='content'>
           <p>
              Bạn sẽ trở thành khách hàng thân thiết của nhà Green Life sau khi hoàn thành đơn hàng đầu tiên. Đặc biệt, khách hàng sẽ được
-             hưởng ưu đãi giảm 20% đối với đơn hàng đầu tiên. 
+             hưởng ưu đãi giảm 10% đối với đơn hàng đầu tiên. 
 
              Cảm ơn khách hàng vì đã tin tưởng Green Life.
           </p>
@@ -17,10 +17,10 @@ const Contact = () => {
             <input
               type='email'
               className='form-input'
-              placeholder='enter email'
+              placeholder='Vui lòng nhập Email của bạn'
             />
             <button type='submit' className='submit-btn'>
-              subscribe
+              Đăng ký
             </button>
           </form>
         </div>

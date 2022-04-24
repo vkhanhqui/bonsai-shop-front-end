@@ -37,25 +37,7 @@ const AddToCart = ({ oldProduct }) => {
   };
   return (
     <Wrapper>
-      {/* <div className="colors">
-        <span>colors :</span>
-        <div>
-          {colors.map((color, index) => {
-            return (
-              <button
-                key={index}
-                style={{ background: color }}
-                className={`${
-                  mainColor === color ? "color-btn active" : "color-btn"
-                }`}
-                onClick={() => setMainColor(color)}
-              >
-                {mainColor === color ? <FaCheck /> : null}
-              </button>
-            );
-          })}
-        </div>
-      </div> */}
+    
       <div className="btn-container">
         <AmountButtons
           increase={increase}

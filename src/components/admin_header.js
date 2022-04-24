@@ -35,7 +35,7 @@ const AdminHeader = () => {
           onClick={closeSidebar}
           style={{ "font-size": 27, color: "black", marginLeft: 770 }}
         >
-          Login <FaUserPlus />
+          Đăng nhập <FaUserPlus />
         </Link>
       )}
     </div>

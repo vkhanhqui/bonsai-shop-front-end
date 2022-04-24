@@ -1,33 +1,59 @@
 import React from 'react'
 import styled from 'styled-components'
-const Footer = () => {
+
+import 'font-awesome/css/font-awesome.min.css';
+import { FaShoppingCart, FaUserMinus, FaUserPlus ,FontAwesomeIcon} from "react-icons/fa";
+const Chat = () => {
   return (
     
     <Container>
-      
-      <div>
-      <h5>
-        &copy; {new Date().getFullYear()}
-        <span> Green Life </span>
-        All rights reserved
-      </h5>
-     
-      </div>
+      <div className="social-button">
+    <div className="social-button-content">
+       <a href="tel:0981481368" className="call-icon" rel="nofollow">
+       <i className="fa fa-whatsapp" aria-hidden="true"/>
+          {/* <div className="animated alo-circle"></div>
+          <div className="animated alo-circle-fill  "></div> */}
+           <span>Hotline:0981481368</span>
+        </a>
+        <a href="sms:0909090909" className="sms">
+          <i className="fa fa-weixin" aria-hidden="true"></i>
+          {/* <div className="animated alo-circle"></div>
+          <div className="animated alo-circle-fill  "></div> */}
+          <span>SMS: 0981481368</span>
+        </a>
+        <a href="https://www.facebook.com/messages/t/108674048489679/" className="mes">
+          <i className="fa fa-facebook-square" aria-hidden="true"></i>
+          {/* <div className="animated alo-circle"></div>
+          <div className="animated alo-circle-fill  "></div> */}
+          <span>Nhắn tin Facebook</span>
+        </a>
+        <a href="http://zalo.me/" className="zalo">
+          <i className="fa fa-commenting-o" aria-hidden="true"></i>
+          {/* <div className="animated alo-circle"></div> */}
+          {/* <div className="animated alo-circle-fill  "></div> */}
+          <span>Zalo: 0981481368</span>
+        </a>
+    </div>
+       
+    
+  </div>
+    
     </Container>
   )
 }
 
-const Container = styled.footer`
+const Container = styled.main`
 
   
 .social-button{
   display: inline-grid;
     position: fixed;
-    bottom: 15px;
-    left: 45px;
-    min-width: 45px;
+    bottom: 150px;
+   top:200px;
+   right:-50px;
+    min-width: 200px;
     text-align: center;
-    z-index: 99999;
+ 
 }
 .social-button-content{
   display: inline-grid;   
@@ -36,7 +62,7 @@ const Container = styled.footer`
 .social-button i{
   width: 40px;
     height: 40px;
-    background: #43a1f3;
+    background: hsl(131, 29%, 58%);
     color: #fff;
     border-radius: 100%;
     font-size: 20px;
@@ -47,6 +73,7 @@ const Container = styled.footer`
 }
 .social-button span{
   display: none;
+  right:100px;
 }
 .alo-circle {
     animation-iteration-count: infinite;
@@ -93,6 +120,7 @@ const Container = styled.footer`
 .social-button a span {
     border-radius: 2px;
     text-align: center;
+    right:100px;
     background: rgb(103, 182, 52);
     padding: 9px;
     display: none;
@@ -102,7 +130,7 @@ const Container = styled.footer`
     color: #ffffff;
     z-index: 999;
     top: 9px;
-    left: 40px;
+    left: -30px;
     transition: all 0.2s ease-in-out 0s;
     -moz-animation: headerAnimation 0.7s 1;
     -webkit-animation: headerAnimation 0.7s 1;
@@ -126,29 +154,9 @@ const Container = styled.footer`
   border-color: transparent rgb(103, 182, 52) transparent transparent;
   position: absolute;
   left: -10px;
+  right:100px;
   top: 10px;
 }
-  height: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: var(--clr-black);
-  text-align: center;
-  span {
-    color: var(--clr-primary-7);
-  }
-  h5 {
-    color: var( --clr-white);
-    margin: 0.1rem;
-
-    font-weight: 400;cc
-    text-transform: none;
-    line-height: 1.25;
-  }
-  @media (min-width: 776px) {
-    flex-direction: row;
-  }
 `
 
-export default Footer
+export default Chat;
