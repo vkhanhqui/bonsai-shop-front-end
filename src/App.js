@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Navbar, Sidebar, Footer ,Chat} from "./components";
+import ExportBill from "./components/ExportBill";
 import {
   Home,
   SingleProduct,
@@ -59,11 +60,11 @@ function App() {
                 <Route path="/del-product">
                   <AdminDeleteProduct />
                 </Route>
-              
+
                 <Route path="/get-bill-detail/">
                   <BillPage />
                   </Route>
-                 
+
                 <Route path="/del-staff">
                   <AdminDelStaff />
                 </Route>
@@ -119,7 +120,7 @@ function App() {
             <DetailsBlog/>
           </Route>
 
-          
+
           <Route path='/details1'>
             <DetailsBlog1/>
           </Route>
@@ -171,7 +172,7 @@ function App() {
                   <Switch>
                   <Route exact path="/">
                     <Home />
-                  </Route> 
+                  </Route>
                   <Route path="/get-bill">
                   <CustomerManageBill />
                 </Route>
@@ -179,7 +180,9 @@ function App() {
             <DetailsBlog/>
           </Route>
 
-          
+
+          <Route path="/export-bill" component={ExportBill} />
+
           <Route path='/details1'>
             <DetailsBlog1/>
           </Route>
@@ -221,10 +224,11 @@ function App() {
                   <PrivateRoute path="/checkout">
                     <Checkout />
                   </PrivateRoute>
+
                 <Route path="/*">
                     <Error />
                   </Route>
-                  
+
               </Switch>
                 </Route>
               </Router>
