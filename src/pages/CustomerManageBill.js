@@ -13,24 +13,24 @@ import GetBillDetail from "../context/get_detailBill_context";
 const CustomerManageBill= () => {
   const [bills, setBills] = useState([]);
   const data = useLocation().state;
-  
+
   useEffect(() => {
     getBillCustomer(localStorage.getItem("token")).then((res) => setBills(res));
-   
+
   }, []);
   const onChange = (e) => {
-    
+
    bills.bills?.map((obj) => ({ ...obj, key: obj.bill_id}));
-   
+
   };
-  
+
   const handleConfirmBill = (record) => {
       return (
         <Link
           to={{
             pathname: "/detail-bill",
             state: {
-              
+
               bill_id: record.bill_id,
             },
           }}
@@ -38,7 +38,7 @@ const CustomerManageBill= () => {
           <p>Xem chi tiết</p>
         </Link>
       );
-    
+
   };
   const handleRating = (record) => {
     return (
@@ -54,7 +54,7 @@ const CustomerManageBill= () => {
         </Link>
     )
   }
-  
+
   const columns = [
     {
       title: "Số thứ tự",
@@ -66,12 +66,6 @@ const CustomerManageBill= () => {
       title: "Trạng thái đơn hàng",
       dataIndex: "bill_status",
       key: "bill_status",
-      align: "center",
-    },
-    {
-      title: "Bill ID",
-      dataIndex: "bill_id",
-      key: "bill_id",
       align: "center",
     },
     {
@@ -91,9 +85,9 @@ const CustomerManageBill= () => {
   ];
   return (
     <main>
-     
+
       <Wrapper className="page section section-center">
-        
+
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
             <h2
@@ -110,7 +104,7 @@ const CustomerManageBill= () => {
             </h2>
             <div className="underline"></div>
           </div>
-          
+
           <Table
             onChange={onChange}
             dataSource={bills}

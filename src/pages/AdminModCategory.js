@@ -11,7 +11,7 @@ import updateProduct from "../context/update_product"
 import updateCategory from "../context/update_category";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 
 const { Option } = Select;
 
@@ -56,7 +56,7 @@ const AdminModCategory = () => {
       const response = updateCategory(
         category_id,
         category_name,
-       
+
       );
       history.push("/manage-category");
       window.location.reload();
@@ -83,7 +83,7 @@ const AdminModCategory = () => {
         <AdminMenu />
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
-           
+
           </div>
           <div>
             <Form
@@ -100,7 +100,7 @@ const AdminModCategory = () => {
               autoComplete="off"
               style={{ marginLeft: -300 }}
               form={form}
-              
+
             > <h2>CHI TIẾT LOẠI SẢN PHẨM </h2> <div className="underline"> </div>
             <Form.Item label="Mã loại sản phẩm" name="category_id">
               <Input placeholder="input placeholder" required = {true} readOnly = {true}  />
@@ -110,7 +110,7 @@ const AdminModCategory = () => {
                   style={{
                     width: 300,
                   }}
-                  required = {true} 
+                  required = {true}
                   readOnly = {true}
                 >
                   {categories.map((category) => {
@@ -125,16 +125,16 @@ const AdminModCategory = () => {
                   })}
                 </Select>
               </Form.Item>
-            
+
             <h2> SỬA LOẠI SẢN PHẨM </h2> <div className="underline"> </div>
               <Form.Item label="Mã loại sản phẩm" name="category_id">
                 <Input placeholder="input placeholder" required = {true} readOnly = {true}  />
               </Form.Item>
               <Form.Item label="Loại Sản Phẩm" name="category_name">
               <Input placeholder="input placeholder" />
-              
+
               </Form.Item>
-              
+
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
                   Sửa

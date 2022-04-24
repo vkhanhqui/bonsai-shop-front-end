@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useCartContext } from "../context/cart_context";
 import { formatPrice } from "../utils/helpers";
 import { Modal, Select } from "antd";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import customerConfirmBill from "../context/customer_confirm_bill";
 import Add_address from "../pages/AdminAddAddress";
 import getAddresses from "../context/get_all_addresses";

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Table } from "antd";
-import AdminHeader from "../components/admin_header";
-import { useLocation } from "react-router-dom";
-import AdminMenu from "../components/admin_menu";
+import { useLocation, Link } from "react-router-dom";
 import { formatPrice } from "../utils/helpers";
 import GetBillDetail from "../context/get_detailBill_context"
 
@@ -23,24 +21,23 @@ const DetailBill = () => {
       currency: "VND",
     }).format(price * number);
   };
-  const billid = bills.bill_id;
-  console.log(bill_total);
   const columns = [
-   
+
     {
       title: "Sản Phẩm",
       dataIndex: "product_name",
       key: "product_name",
       align: "center",
-      
+
     },
-    
+
     {
       title: "Giá",
       dataIndex: "product_price",
       key: "product_price",
       align: "center",
-      
+      render: (text, record) =>
+        calculatePrice(record.product_price, 1),
     },
     {
       title: "Số Lượng",
@@ -54,7 +51,8 @@ const DetailBill = () => {
       dataIndex: "product_price",
       key: "product_price",
       align: "center",
-      
+      render: (text, record) =>
+        calculatePrice(record.product_price, record.number_product),
     },
     {
       title: "Ảnh",
@@ -76,9 +74,9 @@ const DetailBill = () => {
 
   return (
     <main>
-      
+
       <Wrapper className="page section section-center">
-       
+
         <article>
           <div className="title" style={{ marginLeft: 50 }}>
             <h2
@@ -95,7 +93,7 @@ const DetailBill = () => {
             </h2>
             <div className="underline"></div>
           </div>
-
+          <Link to={`/export-bill?bill_id=${bill_id}`}>Xuất hoá đơn</Link>
           <Table dataSource={products} columns={columns} pagination={false} />
           <div style={{
             float: "right",
